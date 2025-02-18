@@ -1,4 +1,5 @@
 let world;
+let pepeIdleImages = [];
 
 function init() {
     canvas = document.getElementById("canvas");

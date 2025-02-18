@@ -6,7 +6,9 @@ class World {
         new Enemy()
     ];
     clouds = [
-        new Cloud()
+        new Cloud("../img/5_background/layers/4_clouds/1.png", 700, 20),
+        new Cloud("../img/5_background/layers/4_clouds/2.png", 300, 70),
+        new Cloud("../img/5_background/layers/4_clouds/1.png", 10, 0)
     ];
     backgroundObjects = [
         // from back
