@@ -1,5 +1,5 @@
 class backgroundObject extends MovableObject {
-    height = 360;
+    height = 480;
 
     constructor(path, x) {
         super();

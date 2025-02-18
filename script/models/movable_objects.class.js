@@ -2,6 +2,7 @@ class MovableObject {
 
     x;
     y;
+    yOffset = 50;
     img;
     width;
     height;
