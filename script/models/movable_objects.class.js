@@ -5,6 +5,7 @@ class MovableObject {
     img;
     width;
     height;
+    otherDirection = false;
 
 
     constructor(x, y, img, width, height) {

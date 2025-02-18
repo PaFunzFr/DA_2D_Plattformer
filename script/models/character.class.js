@@ -6,7 +6,7 @@ class Character extends MovableObject {
     imagesJumping = [];
     isJumping = false;
     x = 0;
-    characterSpeed = 6;
+    characterSpeed = 10;
 
     constructor() {
         super();
@@ -18,17 +18,27 @@ class Character extends MovableObject {
     }
 
     animate() {
+
             setInterval(() => {
                 if (!this.isJumping && this.world.keyboard.clickedRight) {
                     this.x += this.characterSpeed;
-                    this.loopingImagesFromArray(this.imagesWalking);
+                    this.otherDirection = false;
                 }
                 if (!this.isJumping && this.world.keyboard.clickedLeft) {
                     this.x -= this.characterSpeed;
+                    this.otherDirection = true;
+                }
+                this.world.cameraX = -this.x;
+            }, 1000/60);
+
+            setInterval(() => {
+                if (!this.isJumping && this.world.keyboard.clickedRight) {
+                    this.loopingImagesFromArray(this.imagesWalking);
+                }
+                if (!this.isJumping && this.world.keyboard.clickedLeft) {
                     this.loopingImagesFromArray(this.imagesWalking);
                 }
             }, 70);
-        
     }
 
     jump() {
@@ -40,7 +50,7 @@ class Character extends MovableObject {
             if (this.currentImage >= this.imagesJumping.length) {
                 this.endJump(jumpInterval);
             }
-        }, 200);
+        }, 70);
     }
     
     loopingImagesFromArray(array) {

@@ -1,27 +1,12 @@
 class World {
     character = new Character();
-    enemies = [
-        new Enemy(),
-        new Enemy(),
-        new Enemy()
-    ];
-    clouds = [
-        new Cloud("../img/5_background/layers/4_clouds/1.png", 700, 20),
-        new Cloud("../img/5_background/layers/4_clouds/2.png", 300, 70),
-        new Cloud("../img/5_background/layers/4_clouds/1.png", 10, 0)
-    ];
-    backgroundObjects = [
-        // from back
-        new backgroundObject("../img/5_background/layers/air.png", 0),
-        new backgroundObject("../img/5_background/layers/3_third_layer/1.png", 0),
-        new backgroundObject("../img/5_background/layers/3_third_layer/2.png", 0),
-        new backgroundObject("../img/5_background/layers/2_second_layer/1.png", 0),
-        new backgroundObject("../img/5_background/layers/1_first_layer/1.png", 0),
-        // ... to front
-    ];
+    enemies = level1.enemies;
+    clouds = level1.clouds;
+    backgroundObjects = level1.backgroundObjects;
     canvas;
     ctx;
-    keyboard; 
+    keyboard;
+    cameraX = -100;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext("2d");
@@ -38,10 +23,14 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // refresh / clear canvas before
 
+        this.ctx.translate(this.cameraX, 0);
+
         this.addObjectsToMap(this.backgroundObjects);
         this.addToMap(this.character);
         this.addObjectsToMap(this.enemies);
         this.addObjectsToMap(this.clouds);
+
+        this.ctx.translate(-this.cameraX, 0);
 
         requestAnimationFrame(this.draw.bind(this)); // bind(this) instead of let self = this and self.draw()
     } 
@@ -52,6 +41,24 @@ class World {
         });
     }
     addToMap(object) {
+        if (object.otherDirection) {
+            this.flipContent(object);
+        } 
         this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
+        if (object.otherDirection) {
+            this.flipContentBack(object);
+        }
+    }
+
+    flipContent(object) {
+        this.ctx.save();
+        this.ctx.translate(object.width, 0); //move img origin
+        this.ctx.scale(-1, 1); // flip img
+        object.x = object.x * -1; // flip x position back to 0 = left
+    }
+
+    flipContentBack(object) {
+        object.x = object.x * -1;
+        this.ctx.restore();
     }
 } 
