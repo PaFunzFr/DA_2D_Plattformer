@@ -5,7 +5,7 @@ class MovableObject {
     img;
     width;
     height;
-    imageCache = [];
+    isInfinite = false;
 
     constructor(x, y, img, width, height) {
         this.x = x;
@@ -34,8 +34,16 @@ class MovableObject {
         console.log("moveRight");
     }
 
-    moveLeft() {
-        console.log("moveLeft");
+    moveLeft(speed, boolean) {
+        this.isInfinite = boolean;
+        setInterval(() => {
+            this.x -= speed;
+            if (this.x < -this.width) {
+                if (this.isInfinite) { 
+                    this.x = 780 + Math.random() * 200;
+                } 
+            }
+        }, 1000 / 60);
     }
     
     jump() {
