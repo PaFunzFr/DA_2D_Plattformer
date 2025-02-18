@@ -12,7 +12,7 @@ class Enemy extends MovableObject {
         this.loadImage("../img/3_enemies_chicken/chicken_normal/1_walk/w_1.png")
         this.preloadImages(this.imagesWalking, "img/3_enemies_chicken/chicken_normal/1_walk/w_", 3);
         this.animate();
-        this.moveLeft(this.chickenSpeed, false);
+        this.moveLeft(this.chickenSpeed);
     }
 
     animate() {

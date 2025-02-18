@@ -5,7 +5,6 @@ class MovableObject {
     img;
     width;
     height;
-    isInfinite = false;
 
     constructor(x, y, img, width, height) {
         this.x = x;
@@ -34,15 +33,9 @@ class MovableObject {
         console.log("moveRight");
     }
 
-    moveLeft(speed, boolean) {
-        this.isInfinite = boolean;
+    moveLeft(speed) {
         setInterval(() => {
             this.x -= speed;
-            if (this.x < -this.width) {
-                if (this.isInfinite) { 
-                    this.x = 780 + Math.random() * 200;
-                } 
-            }
         }, 1000 / 60);
     }
     
