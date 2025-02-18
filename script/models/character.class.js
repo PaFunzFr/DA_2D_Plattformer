@@ -18,13 +18,12 @@ class Character extends MovableObject {
     }
 
     animate() {
-
             setInterval(() => {
-                if (!this.isJumping && this.world.keyboard.clickedRight) {
+                if (!this.isJumping && this.world.keyboard.clickedRight && this.x < this.world.level.levelEndX) {
                     this.x += this.characterSpeed;
                     this.otherDirection = false;
                 }
-                if (!this.isJumping && this.world.keyboard.clickedLeft) {
+                if (!this.isJumping && this.world.keyboard.clickedLeft && this.x > -719) {
                     this.x -= this.characterSpeed;
                     this.otherDirection = true;
                 }
@@ -33,10 +32,10 @@ class Character extends MovableObject {
 
             setInterval(() => {
                 if (!this.isJumping && this.world.keyboard.clickedRight) {
-                    this.loopingImagesFromArray(this.imagesWalking);
+                    this.playAnimation(this.imagesWalking);
                 }
                 if (!this.isJumping && this.world.keyboard.clickedLeft) {
-                    this.loopingImagesFromArray(this.imagesWalking);
+                    this.playAnimation(this.imagesWalking);
                 }
             }, 70);
     }
@@ -46,17 +45,11 @@ class Character extends MovableObject {
         this.isJumping = true;
         this.currentImage = 0;
         let jumpInterval = setInterval(() => {
-            this.loopingImagesFromArray(this.imagesJumping);
+            this.playAnimation(this.imagesJumping);
             if (this.currentImage >= this.imagesJumping.length) {
                 this.endJump(jumpInterval);
             }
         }, 70);
-    }
-    
-    loopingImagesFromArray(array) {
-        let index = this.currentImage % array.length; // modulo used for loop
-        this.img = array[index];
-        this.currentImage++;
     }
     
     endJump(interval) {

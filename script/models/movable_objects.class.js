@@ -6,7 +6,7 @@ class MovableObject {
     width;
     height;
     otherDirection = false;
-
+    currentImage = 0;
 
     constructor(x, y, img, width, height) {
         this.x = x;
@@ -45,6 +45,13 @@ class MovableObject {
         console.log("jumping");
         
     }
+
+    playAnimation(array) {
+        let index = this.currentImage % array.length;
+        this.img = array[index];
+        this.currentImage ++
+    }
+    
 
 }
 

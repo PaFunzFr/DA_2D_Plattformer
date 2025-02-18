@@ -12,15 +12,12 @@ class Enemy extends MovableObject {
         this.loadImage("../img/3_enemies_chicken/chicken_normal/1_walk/w_1.png")
         this.preloadImages(this.imagesWalking, "img/3_enemies_chicken/chicken_normal/1_walk/w_", 3);
         this.animate();
-        this.moveLeft(this.chickenSpeed);
     }
 
     animate() {
+        this.moveLeft(this.chickenSpeed);
         setInterval(() => {
-            let index = this.currentImage % this.imagesWalking.length;
-            this.img = this.imagesWalking[index];
-            this.currentImage ++
+            this.playAnimation(this.imagesWalking);
         }, 150);
-        console.log(this.img);
     }
 }
