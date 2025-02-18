@@ -5,10 +5,11 @@ class Character extends MovableObject {
     imagesWalking = [];
     imagesJumping = [];
     isJumping = false;
+    x = 0;
+    characterSpeed = 6;
 
     constructor() {
         super();
-        this.x = 100;
         this.y = 480 - this.height - this.yOffset;
         this.loadImage("../img/2_character_pepe/2_walk/W-1.png");
         this.preloadImages(this.imagesWalking, "../img/2_character_pepe/2_walk/W-", 6);
@@ -17,11 +18,17 @@ class Character extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
-            if (!this.isJumping) {
-                this.loopingImagesFromArray(this.imagesWalking);
-            }
-        }, 150);
+            setInterval(() => {
+                if (!this.isJumping && this.world.keyboard.clickedRight) {
+                    this.x += this.characterSpeed;
+                    this.loopingImagesFromArray(this.imagesWalking);
+                }
+                if (!this.isJumping && this.world.keyboard.clickedLeft) {
+                    this.x -= this.characterSpeed;
+                    this.loopingImagesFromArray(this.imagesWalking);
+                }
+            }, 70);
+        
     }
 
     jump() {

@@ -6,6 +6,7 @@ class MovableObject {
     width;
     height;
 
+
     constructor(x, y, img, width, height) {
         this.x = x;
         this.y = y;

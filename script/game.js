@@ -3,7 +3,7 @@ let keyboard = new Keyboard();
 
 function init() {
     canvas = document.getElementById("canvas");
-    world = new World(canvas);
+    world = new World(canvas, keyboard);
     console.log(world.character);
 }
 
@@ -23,8 +23,31 @@ window.addEventListener("keydown", (event) => {
     if (event.keyCode === 40) {
         keyboard.clickedDown = true;
     }
+    if (event.keyCode === 32) {
+        keyboard.clickedSpace = true;
+    }
     console.log(event); 
 });
+
+window.addEventListener("keyup", (event) => {
+    if (event.keyCode === 39) {
+        keyboard.clickedRight = false;
+    }
+    if (event.keyCode === 37) {
+        keyboard.clickedLeft = false;
+    }
+    if (event.keyCode === 38 &&!keyboard.isJumping) {
+        keyboard.clickedUp = false;
+    }
+    if (event.keyCode === 40) {
+        keyboard.clickedDown = false;
+    }
+    if (event.keyCode === 32) {
+        keyboard.clickedSpace = false;
+    }
+    console.log(event); 
+});
+
 // zum verständnis: 
     /*
     character.src = "../img/2_character_pepe/1_idle/long_idle/I-11.png";
