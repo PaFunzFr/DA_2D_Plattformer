@@ -12,6 +12,18 @@ class World {
         this.keyboard = keyboard;
         this.setWorld();
         this.draw();
+        this.checkCollisions();
+    }
+
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                    this.character.hit();
+                    console.log(this.character.energy);
+                }
+            })
+        }, 200);
     }
 
     setWorld() {
@@ -39,6 +51,7 @@ class World {
             this.addToMap(object);
         });
     }
+
     addToMap(object) {
         if (object.otherDirection) {
             this.flipContent(object);
@@ -47,6 +60,7 @@ class World {
         if (object.otherDirection) {
             this.flipContentBack(object);
         }
+        object.drawCollisionBody(this.ctx);
     }
 
     flipContent(object) {

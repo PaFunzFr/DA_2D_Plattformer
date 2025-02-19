@@ -7,6 +7,7 @@ class Enemy extends MovableObject {
 
     constructor() {
         super();
+        this.yOffset = 60;
         this.x = 200 + (Math.random() * 500);
         this.y = 480 - this.height - this.yOffset;
         this.loadImage("../img/3_enemies_chicken/chicken_normal/1_walk/w_1.png")
@@ -15,7 +16,9 @@ class Enemy extends MovableObject {
     }
 
     animate() {
-        this.moveLeft(this.chickenSpeed);
+        setInterval(() => {
+            this.moveLeft(this.chickenSpeed);
+        }, 1000 / 60);
         setInterval(() => {
             this.playAnimation(this.imagesWalking);
         }, 150);
