@@ -8,7 +8,7 @@ class Character extends MovableObject {
     imagesDead = [];
     imagesHurt = [];
     isJumping = false;
-    x = 240;
+    x = 0;
     jumpHeight = 90;
     speedX = 10;
     speedY = 0;
@@ -18,7 +18,7 @@ class Character extends MovableObject {
     constructor() {
         super();
         this.y = this.characterOnGround;
-        this.offset = { top: 100, bottom: 30, left: 40, right: 40 };
+        this.offset = { top: 80, bottom: 0, left: 40, right: 40 };
         this.loadImage("../img/2_character_pepe/2_walk/W-1.png");
         this.preloadImages(this.imagesWalking, "../img/2_character_pepe/2_walk/W-", 6);
         this.preloadImages(this.imagesJumping, "../img/2_character_pepe/3_jump/J-", 9);
@@ -64,7 +64,7 @@ class Character extends MovableObject {
                 if (this.world.keyboard.clickedUp || this.world.keyboard.clickedSpace) {
                     this.jump();
                 }
-                this.world.cameraX = -(this.x - 240); // - offsetX from character to canvas border
+                this.world.cameraX = -(this.x - 0); // - offsetX from character to canvas border
             }, 1000/60);
 
             // ANIMATION SET (PICTURES)

@@ -5,6 +5,7 @@ class World {
     ctx;
     keyboard;
     cameraX = -100;
+    statusBar = new StatusBar();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext("2d");
@@ -20,6 +21,7 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
                     this.character.hit();
+                    this.statusBar.setPercentage(this.character.energy);
                     console.log(this.character.energy);
                 }
             })
@@ -27,7 +29,6 @@ class World {
     }
 
     setWorld() {
-        // why?
         this.character.world = this; // add world instance (class) to character.world
     }
 
@@ -38,11 +39,12 @@ class World {
 
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.character);
+
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
 
         this.ctx.translate(-this.cameraX, 0);
-
+        this.addToMap(this.statusBar);
         requestAnimationFrame(this.draw.bind(this)); // bind(this) instead of let self = this and self.draw()
     } 
 
