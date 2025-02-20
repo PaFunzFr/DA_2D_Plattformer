@@ -5,13 +5,14 @@ class ThrowableObject extends MovableObject {
     acceleration = 0.5;
     elementOnGround = 370;
 
-    constructor() {
+    constructor(x, y) {
         super();
-        this.x = 100;
-        this.y = 100;
+        this.x = x;
+        this.y = y;
         this.width = 50;
         this.height = 50;
         this.loadImage("../img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png");
+        this.throw();
 
     }
 
