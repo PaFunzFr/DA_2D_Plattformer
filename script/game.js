@@ -1,55 +1,37 @@
 let world;
 let keyboard = new Keyboard();
+const startButton = document.getElementById('startButton');
 
 function init() {
     canvas = document.getElementById("canvas");
-    world = new World(canvas, keyboard);
-    console.log(world.character);
+    // console.log(world.character);
 }
 
-window.addEventListener("keydown", (event) => {
-    if (event.keyCode === 39) {
-        keyboard.clickedRight = true;
-        //world.character.moveRight(0.1, );
+function startGame() {
+    world = new World(canvas, keyboard, level1);
+}
+function isButtonClicked(event, buttonCode, classNameButton, boolean) {
+    if (event.code === buttonCode) {
+        keyboard[classNameButton] = boolean;
     }
-    if (event.keyCode === 37) {
-        keyboard.clickedLeft = true;
-        //world.character.moveLeft(0.1, );
-    }
-    if (event.keyCode === 38 &&!keyboard.isJumping) {
-        keyboard.clickedUp = true;
-    }
+}
 
-    if (event.keyCode === 40) {
-        keyboard.clickedDown = true;
-    }
-    if (event.keyCode === 32) {
-        keyboard.clickedSpace = true;
-    }
-    if (event.keyCode === 68) {
-        keyboard.clickedD = true;
-    }
+document.addEventListener("keydown", (event) => {
+    isButtonClicked(event, "ArrowRight", "clickedRight", true);
+    isButtonClicked(event, "ArrowLeft", "clickedLeft", true);
+    isButtonClicked(event, "ArrowUp", "clickedUp", true);
+    isButtonClicked(event, "ArrowDown", "clickedDown", true);
+    isButtonClicked(event, "Space", "clickedSpace", true);
+    isButtonClicked(event, "KeyD", "clickedD", true);
 });
 
-window.addEventListener("keyup", (event) => {
-    if (event.keyCode === 39) {
-        keyboard.clickedRight = false;
-    }
-    if (event.keyCode === 37) {
-        keyboard.clickedLeft = false;
-    }
-    if (event.keyCode === 38 &&!keyboard.isJumping) {
-        keyboard.clickedUp = false;
-    }
-    if (event.keyCode === 40) {
-        keyboard.clickedDown = false;
-    }
-    if (event.keyCode === 32) {
-        keyboard.clickedSpace = false;
-    }
-    if (event.keyCode === 68) {
-        keyboard.clickedD = false;
-    }
+document.addEventListener("keyup", (event) => {
+    isButtonClicked(event, "ArrowRight", "clickedRight", false);
+    isButtonClicked(event, "ArrowLeft", "clickedLeft", false);
+    isButtonClicked(event, "ArrowUp", "clickedUp", false);
+    isButtonClicked(event, "ArrowDown", "clickedDown", false);
+    isButtonClicked(event, "Space", "clickedSpace", false);
+    isButtonClicked(event, "KeyD", "clickedD", false);
 });
 
 // zum verständnis: 

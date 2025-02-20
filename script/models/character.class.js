@@ -18,7 +18,7 @@ class Character extends MovableObject {
     constructor() {
         super();
         this.y = this.elementOnGround;
-        this.offset = { top: 80, bottom: 0, left: 40, right: 40 };
+        this.offset = { top: 80, bottom: 20, left: 40, right: 40 };
         this.loadImage("../img/2_character_pepe/2_walk/W-1.png");
         this.preloadImages(this.imagesWalking, "../img/2_character_pepe/2_walk/W-", 6);
         this.preloadImages(this.imagesJumping, "../img/2_character_pepe/3_jump/J-", 9);
