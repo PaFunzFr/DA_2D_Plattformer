@@ -49,6 +49,8 @@ class MovableObject extends DrawableObject {
     playAnimation(array) {
         let index = this.currentImage % array.length;
         this.img = array[index];
+        //this.width = this.img.width;
+        //this.height = this.img.height;
         this.currentImage ++
     }
 

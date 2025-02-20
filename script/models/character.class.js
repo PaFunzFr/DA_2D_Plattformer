@@ -7,24 +7,27 @@ class Character extends MovableObject {
     imagesJumping = [];
     imagesHurt = [];
     imagesDead = [];
+    imagesAttack = [];
     isJumping = false;
     x = 200;
     jumpHeight = 90;
     speedX = 10;
     speedY = 0;
     acceleration = 0.5;
+    yOffset = 35;
     elementOnGround = 480 - this.height - this.yOffset;
 
-    constructor() {
+    constructor() { 
         super();
         this.y = this.elementOnGround;
-        this.offset = { top: 0, bottom: 20, left: 0, right: 40 };
+        this.offset = { top: 20, bottom: 40, left: 40, right: 40 };
         this.loadImage("../img/brawlnbounce/01_characters/axe/1_idle/IDLE_000.png");
         this.preloadImages(this.imagesIdle, "../img/brawlnbounce/01_characters/axe/1_idle/IDLE_00", 5);
         this.preloadImages(this.imagesWalking, "../img/brawlnbounce/01_characters/axe/2_walk/WALK_00", 5);
         this.preloadImages(this.imagesJumping, "../img/brawlnbounce/01_characters/axe/3_jump/JUMP_00", 5);
         this.preloadImages(this.imagesHurt, "../img/brawlnbounce/01_characters/axe/4_hurt/HURT_00", 5);
         this.preloadImages(this.imagesDead, "../img/brawlnbounce/01_characters/axe/5_dead/DIE_00", 5);
+        this.preloadImages(this.imagesAttack, "../img/brawlnbounce/01_characters/axe/6_attack/ATTACK_00", 5)
         this.applyGravity();
         this.animate();
     }
@@ -56,6 +59,8 @@ class Character extends MovableObject {
                         this.playAnimation(this.imagesDead);
                     } else if (this.isHurt()) {
                         this.playAnimation(this.imagesHurt);
+                    } else if (this.world.keyboard.clickedD) {
+                        this.playAnimation(this.imagesAttack);
                     } else {
                         this.playAnimation(this.imagesIdle);
                     }

@@ -30,12 +30,12 @@ class World {
             let offsetX = this.character.width / 2; // x centered to character
             let offsetY = this.character.height / 3; // y slightly above character
             let direction = this.character.otherDirection ? -1 : 1; // throw left if walking left
+
             let throwableObject = new ThrowableObject(this.character.x + offsetX * direction, this.character.y - offsetY, "axe", this.character.otherDirection);
             throwableObject.speedX = throwableObject.speedX * direction; // set direction
             this.throwableObjects.push(throwableObject);
         }
     }
-    
 
     checkCollisions() {
             this.level.enemies.forEach((enemy) => {
@@ -59,9 +59,10 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.character);
 
+        this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.clouds);
+
 
         this.ctx.translate(-this.cameraX, 0);
         this.addToMap(this.statusBar);
