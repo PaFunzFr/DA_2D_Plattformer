@@ -9,7 +9,6 @@ class MovableObject extends DrawableObject {
         left: 0
     };
 
-
     moveRight(speed) {
         this.x += speed;
         //this.walkingSound.play();
@@ -61,5 +60,41 @@ class MovableObject extends DrawableObject {
             (this.y + this.offset.top) < (obj.y + obj.height - obj.offset.bottom)
         );
     }
+
+    applyGravity() {
+        setInterval(() => {
+            if (this.isAboveGround() || this.speedY > 0) {
+                this.y -= this.speedY
+                this.speedY -= this.acceleration; 
+                if (this instanceof ThrowableObject) {
+                    this.x += this.speedX;
+                }
+                this.isOnGround();
+            }
+        }, 1000/60);
+    }
+
+    isAboveGround() {
+        if (this instanceof ThrowableObject) {
+            return true;
+        } else {
+            return this.y + this.yOffset < 180
+        }
+    }
+
+    isOnGround() {
+        if (this.y >= this.elementOnGround) {
+            this.y = this.elementOnGround;
+            this.speedY = 0;
+            if (this instanceof ThrowableObject) {
+                this.speedX = 0;
+            } 
+            this.isJumping = false;
+            this.currentImage = 0; // reset animation
+            return true;
+        }
+        return false;
+    }
+
 }
 

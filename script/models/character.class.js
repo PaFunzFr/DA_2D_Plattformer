@@ -8,16 +8,16 @@ class Character extends MovableObject {
     imagesDead = [];
     imagesHurt = [];
     isJumping = false;
-    x = 0;
+    x = 200;
     jumpHeight = 90;
     speedX = 10;
     speedY = 0;
     acceleration = 0.5;
-    characterOnGround = 480 - this.height - this.yOffset;
+    elementOnGround = 480 - this.height - this.yOffset;
 
     constructor() {
         super();
-        this.y = this.characterOnGround;
+        this.y = this.elementOnGround;
         this.offset = { top: 80, bottom: 0, left: 40, right: 40 };
         this.loadImage("../img/2_character_pepe/2_walk/W-1.png");
         this.preloadImages(this.imagesWalking, "../img/2_character_pepe/2_walk/W-", 6);
@@ -29,28 +29,6 @@ class Character extends MovableObject {
         this.animate();
     }
 
-    applyGravity() {
-        setInterval(() => {
-            if (this.isAboveGround() || this.speedY > 0) {
-                this.y -= this.speedY
-                this.speedY -= this.acceleration; 
-                this.isOnGround();
-            }
-        }, 1000/60);
-    }
-
-    isAboveGround() {
-        return this.y + this.yOffset < 180
-    }
-
-    isOnGround() {
-        if (this.y >= this.characterOnGround) {
-            this.y = this.characterOnGround;
-            this.speedY = 0; 
-            this.isJumping = false;
-            this.currentImage = 0; // reset animation
-        }
-    }
 
     animate() {
         this.isOnGround();
@@ -64,7 +42,7 @@ class Character extends MovableObject {
                 if (this.world.keyboard.clickedUp || this.world.keyboard.clickedSpace) {
                     this.jump();
                 }
-                this.world.cameraX = -(this.x - 0); // - offsetX from character to canvas border
+                this.world.cameraX = -(this.x - 200); // - offsetX from character to canvas border
             }, 1000/60);
 
             // ANIMATION SET (PICTURES)
@@ -84,5 +62,4 @@ class Character extends MovableObject {
                 }
             }, 100);
     }
-
 }

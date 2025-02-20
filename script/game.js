@@ -18,13 +18,16 @@ window.addEventListener("keydown", (event) => {
     }
     if (event.keyCode === 38 &&!keyboard.isJumping) {
         keyboard.clickedUp = true;
-        world.character.jump();
     }
+
     if (event.keyCode === 40) {
         keyboard.clickedDown = true;
     }
     if (event.keyCode === 32) {
         keyboard.clickedSpace = true;
+    }
+    if (event.keyCode === 68) {
+        keyboard.clickedD = true;
     }
 });
 
@@ -43,6 +46,9 @@ window.addEventListener("keyup", (event) => {
     }
     if (event.keyCode === 32) {
         keyboard.clickedSpace = false;
+    }
+    if (event.keyCode === 68) {
+        keyboard.clickedD = false;
     }
 });
 

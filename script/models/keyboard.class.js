@@ -4,4 +4,5 @@ class Keyboard {
     clickedUp = false;
     clickedDown = false;
     clickedSpace = false;
+    clickedD = false;
 }
