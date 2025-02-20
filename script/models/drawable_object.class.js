@@ -23,7 +23,7 @@ class DrawableObject {
     }
     
     drawCollisionBody(ctx) {
-        if (this instanceof Character || this instanceof Enemy || this instanceof Endboss) {
+        if (this instanceof Character || this instanceof Enemy || this instanceof Endboss || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = "2";
             ctx.strokeStyle = "blue";
