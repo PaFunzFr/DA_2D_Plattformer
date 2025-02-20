@@ -1,9 +1,9 @@
 const level1 = new Level(
     [
-        new Enemy("ork", 1),
-        new Enemy("ork", 1),
-        new Enemy("ork", 1),
-        new Enemy("troll", 1),
+        new Enemy("ork", 1, 500 + (Math.random() * 100)),
+        new Enemy("ork", 1, 700 + (Math.random() * 100)),
+        new Enemy("ork", 1, 900 + (Math.random() * 100)),
+        new Enemy("troll", 1, 1300 + (Math.random() * 100)),
         new Endboss()
     ],
     [

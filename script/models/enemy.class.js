@@ -5,8 +5,9 @@ class Enemy extends MovableObject {
     imagesWalking = [];
     enemySpeed = 0;
 
-    constructor(name, number) {
+    constructor(name, number, positionX) {
         super();
+        this.x = positionX;
         this.getCharacterStat(name, number);
         this.y = 480 - this.height - this.yOffset;
         this.loadImage(`../img/brawlnbounce/02_enemies/${name}/${name}${number}/2_walk/WALK_000.png`)
@@ -15,14 +16,13 @@ class Enemy extends MovableObject {
     }
 
     getCharacterStat(name, number) {
+        
         if (name == "ork") {
             this.getOrkType(number);
             this.offset = { top: 120, bottom: 30, left: 55, right: 70 };
-            this.x = 400 + (Math.random() * 1000);
         } else if (name == "troll" && number == 1) {
             this.getTrollType(number);
             this.offset = { top: 120, bottom: 30, left: 40, right: 60 };
-            this.x = 1600 + (Math.random() * 100);
         }
     }
 
@@ -40,13 +40,11 @@ class Enemy extends MovableObject {
     setTrollMetaStats() {
         this.enemySpeed = 0.15 + Math.random() * 0.25;
         this.offset = { top: 120, bottom: 30, left: 55, right: 70 };
-        this.x = 400 + (Math.random() * 1000);
     }
 
     setOrkMetaStats() {
         this.enemySpeed = 0.45 + Math.random() * 0.55;
         this.offset = { top: 120, bottom: 30, left: 55, right: 70 };
-        this.x = 400 + (Math.random() * 1000);
     }
 
     getOrkType(number) {
