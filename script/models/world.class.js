@@ -19,7 +19,6 @@ class World {
 
 
     run() {
-
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
@@ -28,10 +27,15 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.clickedD) {
-            let throwableObject = new ThrowableObject(this.character.x + 100, this.character.y + 100)
+            let offsetX = this.character.width / 2; // x centered to character
+            let offsetY = this.character.height / 3; // y slightly above character
+            let direction = this.character.otherDirection ? -1 : 1; // throw left if walking left
+            let throwableObject = new ThrowableObject(this.character.x + offsetX * direction, this.character.y - offsetY, "axe", this.character.otherDirection);
+            throwableObject.speedX = throwableObject.speedX * direction; // set direction
             this.throwableObjects.push(throwableObject);
         }
     }
+    
 
     checkCollisions() {
             this.level.enemies.forEach((enemy) => {

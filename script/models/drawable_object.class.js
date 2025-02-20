@@ -16,7 +16,7 @@ class DrawableObject {
     preloadImages(array, path, imageCount) {
         for (let index = 0; index < imageCount; index++) {
             let img = new Image();
-            img.src = `${path}${index + 1}.png`;
+            img.src = `${path}${index}.png`;
             array.push(img);            
         }
         console.log(array);

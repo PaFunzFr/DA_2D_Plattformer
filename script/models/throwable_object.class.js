@@ -1,17 +1,19 @@
 class ThrowableObject extends MovableObject {
 
     speedY = 0;
-    speedX = 5;
+    speedX = 10;
     acceleration = 0.5;
     elementOnGround = 370;
+    otherDirection = false;
 
-    constructor(x, y) {
+    constructor(x, y, name, otherDirection = false) {
         super();
         this.x = x;
         this.y = y;
         this.width = 50;
         this.height = 50;
-        this.loadImage("../img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png");
+        this.otherDirection = otherDirection;
+        this.loadImage(`../img/brawlnbounce/05_throwables/${name}/${name}.png`);
         this.throw();
 
     }

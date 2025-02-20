@@ -1,12 +1,12 @@
 class Character extends MovableObject {
     width = 150;
-    height = 300;
+    height = 150;
     currentImage = 0;
+    imagesIdle = [];
     imagesWalking = [];
     imagesJumping = [];
-    imagesIdle = [];
-    imagesDead = [];
     imagesHurt = [];
+    imagesDead = [];
     isJumping = false;
     x = 200;
     jumpHeight = 90;
@@ -18,13 +18,13 @@ class Character extends MovableObject {
     constructor() {
         super();
         this.y = this.elementOnGround;
-        this.offset = { top: 80, bottom: 20, left: 40, right: 40 };
-        this.loadImage("../img/2_character_pepe/2_walk/W-1.png");
-        this.preloadImages(this.imagesWalking, "../img/2_character_pepe/2_walk/W-", 6);
-        this.preloadImages(this.imagesJumping, "../img/2_character_pepe/3_jump/J-", 9);
-        this.preloadImages(this.imagesIdle, "../img/2_character_pepe/1_idle/idle/I-", 10);
-        this.preloadImages(this.imagesDead, "../img/2_character_pepe/5_dead/D-", 7);
-        this.preloadImages(this.imagesHurt, "../img/2_character_pepe/4_hurt/H-", 3);
+        this.offset = { top: 0, bottom: 10, left: 0, right: 40 };
+        this.loadImage("../img/brawlnbounce/01_characters/axe/1_idle/IDLE_000.png");
+        this.preloadImages(this.imagesIdle, "../img/brawlnbounce/01_characters/axe/1_idle/IDLE_00", 5);
+        this.preloadImages(this.imagesWalking, "../img/brawlnbounce/01_characters/axe/2_walk/WALK_00", 5);
+        this.preloadImages(this.imagesJumping, "../img/brawlnbounce/01_characters/axe/3_jump/JUMP_00", 5);
+        this.preloadImages(this.imagesHurt, "../img/brawlnbounce/01_characters/axe/4_hurt/HURT_00", 5);
+        this.preloadImages(this.imagesDead, "../img/brawlnbounce/01_characters/axe/5_dead/DIE_00", 5);
         this.applyGravity();
         this.animate();
     }

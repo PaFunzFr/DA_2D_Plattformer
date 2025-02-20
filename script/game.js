@@ -4,6 +4,7 @@ const startButton = document.getElementById('startButton');
 
 function init() {
     canvas = document.getElementById("canvas");
+    //world = new World(canvas, keyboard, level1);
     // console.log(world.character);
 }
 
