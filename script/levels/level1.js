@@ -3,6 +3,7 @@ const level1 = new Level(
         new Enemy("ork", 1),
         new Enemy("ork", 1),
         new Enemy("ork", 1),
+        new Enemy("troll", 1),
         new Endboss()
     ],
     [

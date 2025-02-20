@@ -18,7 +18,7 @@ class Character extends MovableObject {
     constructor() {
         super();
         this.y = this.elementOnGround;
-        this.offset = { top: 0, bottom: 10, left: 0, right: 40 };
+        this.offset = { top: 0, bottom: 20, left: 0, right: 40 };
         this.loadImage("../img/brawlnbounce/01_characters/axe/1_idle/IDLE_000.png");
         this.preloadImages(this.imagesIdle, "../img/brawlnbounce/01_characters/axe/1_idle/IDLE_00", 5);
         this.preloadImages(this.imagesWalking, "../img/brawlnbounce/01_characters/axe/2_walk/WALK_00", 5);

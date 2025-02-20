@@ -7,8 +7,7 @@ class Enemy extends MovableObject {
 
     constructor(name, number) {
         super();
-        this.yOffset = 20;
-        this.getCharacterStat(name);
+        this.getCharacterStat(name, number);
         this.x = 400 + (Math.random() * 1000);
         this.y = 480 - this.height - this.yOffset;
         this.loadImage(`../img/brawlnbounce/02_enemies/${name}/${name}${number}/2_walk/WALK_000.png`)
@@ -16,18 +15,49 @@ class Enemy extends MovableObject {
         this.animate();
     }
 
-
-    getCharacterStat(name) {
+    getCharacterStat(name, number) {
         if (name == "ork") {
-            this.width = 150;
-            this.height = 250;
-            this.offset = { top: 120, bottom: 30, left: 40, right: 60 };
-        } else if (name == "troll") {
-            this.width = 300;
-            this.height = 350;
+            this.checkOrkType(number);
+            this.offset = { top: 120, bottom: 30, left: 55, right: 70 };
+        } else if (name == "troll" && number == 1) {
+            this.checkTrollType(number);
             this.offset = { top: 120, bottom: 30, left: 40, right: 60 };
         }
     }
+
+    checkTrollType(number) {
+        if (number == 1) {
+            this.setEnemyStats(20, 300, 350, 300);
+        } else if (number == 2) {
+            this.setEnemyStats(20, 300, 350, 350);
+        } else if (number == 3) {
+            this.setEnemyStats(20, 300, 350, 400);
+        }
+    }
+
+    checkOrkType(number) {
+        if (number == 1) {
+            this.setEnemyStats(30, 200, 250, 100);
+        } else if (number == 2) {
+            this.setEnemyStats(30, 200, 250, 150);
+        } else if (number == 3) {
+            this.setEnemyStats(30, 200, 250, 200);
+        }
+    }
+
+    setEnemyStats(yOffset, width, height, energy) {
+        this.yOffset = yOffset;
+        this.width = width;
+        this.height = height;
+        this.energy = energy;
+    }
+
+
+    getStatsOrk3() {
+        
+    }
+
+
 
     animate() {
         setInterval(() => {
