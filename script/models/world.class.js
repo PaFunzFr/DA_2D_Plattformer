@@ -71,6 +71,7 @@ class World {
             this.flipContentBack(object);
         }
         object.drawCollisionBody(this.ctx);
+        object.drawCollisionBodyJump(this.ctx)
     }
 
     flipContent(object) {

@@ -5,10 +5,12 @@ class Enemy extends MovableObject {
     imagesWalking = [];
     imagesAttacking = [];
     enemySpeed = 0;
+    name;
 
     constructor(name, number, positionX) {
         super();
         this.x = positionX;
+        this.name = name;
         this.getCharacterStat(name, number);
         this.y = 480 - this.height - this.yOffset;
         this.loadImage(`../img/brawlnbounce/02_enemies/${name}/${name}${number}/6_attack/ATTACK_000.png`)
@@ -70,8 +72,5 @@ class Enemy extends MovableObject {
         setInterval(() => {
             this.moveLeft(this.enemySpeed);
         }, 1000 / 60);
-    /*        setInterval(() => {
-                this.playAnimation(this.imagesWalking);
-            }, 150);*/
     }
 }

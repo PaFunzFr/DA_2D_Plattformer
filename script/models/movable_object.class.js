@@ -67,17 +67,6 @@ class MovableObject extends DrawableObject {
         );
     }
 
-    checkCollisionAndCrush(obj) {
-        if (this.isColliding(obj) && this.speedY > 0) {
-            // Wenn der Spieler von oben kommt
-            if (this.y + this.height <= obj.y + obj.height / 2) {
-                obj.hit(100);  // Schaden verursachen (hier: 100 als Beispiel)
-                return true;  // Kollision erkannt und Gegner zerquetscht
-            }
-        }
-        return false;
-    }
-
     isApproaching(obj, distance) {
         return (
             (this.x + this.width - this.offset.right + distance) > obj.x + obj.offset.left &&
@@ -90,6 +79,8 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY
                 this.speedY -= this.acceleration; 
+                console.log(this.y);
+                
                 if (this instanceof ThrowableObject) {
                     this.x += this.speedX;
                 }

@@ -56,8 +56,6 @@ class Character extends MovableObject {
                 } else {
                     if (!this.isJumping && this.world.keyboard.clickedRight || this.world.keyboard.clickedLeft) {
                         this.playAnimation(this.imagesWalking);
-                    } else if (this.isDead()) {
-                        //this.playAnimation(this.imagesDead);
                     } else if (this.isHurt()) {
                         this.playAnimation(this.imagesHurt);
                     } else if (this.world.keyboard.clickedD) {

@@ -5,12 +5,13 @@ const startButton = document.getElementById('startButton');
 function init() {
     canvas = document.getElementById("canvas");
     //world = new World(canvas, keyboard, level1);
-    // console.log(world.character);
+    //console.log(world.character);
 }
 
 function startGame() {
     let level = loadLevel(1);
     world = new World(canvas, keyboard, level);
+    console.log(world.character);
 }
 function isButtonClicked(event, buttonCode, classNameButton, boolean) {
     if (event.code === buttonCode) {
