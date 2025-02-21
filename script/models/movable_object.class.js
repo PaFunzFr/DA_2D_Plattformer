@@ -2,6 +2,12 @@ class MovableObject extends DrawableObject {
     yOffset = 50;
     energy = 100;
     lastHit = 0;
+    imagesIdle = [];
+    imagesWalking = [];
+    imagesJumping = [];
+    imagesHurt = [];
+    imagesDead = [];
+    imagesAttack = [];
     offset = {
         top: 0,
         bottom: 0,
@@ -49,17 +55,33 @@ class MovableObject extends DrawableObject {
     playAnimation(array) {
         let index = this.currentImage % array.length;
         this.img = array[index];
-        //this.width = this.img.width;
-        //this.height = this.img.height;
         this.currentImage ++
     }
-
+    
     isColliding(obj) {
         return (
             (this.x + this.width - this.offset.right) > (obj.x + obj.offset.left) &&
             (this.y + this.height - this.offset.bottom) > (obj.y + obj.offset.top) &&
             (this.x + this.offset.left) < (obj.x + obj.width -obj.offset.right) &&
             (this.y + this.offset.top) < (obj.y + obj.height - obj.offset.bottom)
+        );
+    }
+
+    checkCollisionAndCrush(obj) {
+        if (this.isColliding(obj) && this.speedY > 0) {
+            // Wenn der Spieler von oben kommt
+            if (this.y + this.height <= obj.y + obj.height / 2) {
+                obj.hit(100);  // Schaden verursachen (hier: 100 als Beispiel)
+                return true;  // Kollision erkannt und Gegner zerquetscht
+            }
+        }
+        return false;
+    }
+
+    isApproaching(obj, distance) {
+        return (
+            (this.x + this.width - this.offset.right + distance) > obj.x + obj.offset.left &&
+            (this.x + this.offset.left) < (obj.x + obj.width - obj.offset.right)
         );
     }
 
@@ -97,6 +119,5 @@ class MovableObject extends DrawableObject {
         }
         return false;
     }
-
 }
 

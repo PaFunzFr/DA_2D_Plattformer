@@ -1,5 +1,6 @@
 class World {
     character = new Character();
+    collidingHandler = new CollidingObject();
     canvas;
     ctx;
     keyboard;
@@ -8,6 +9,7 @@ class World {
     throwableObjects = [];
     throwableAmount = 10;
     lastThrowTime = 0;
+    gameOver = false;
 
     constructor(canvas, keyboard, level) {
         this.ctx = canvas.getContext("2d");
@@ -16,103 +18,43 @@ class World {
         this.level = level;
         this.setWorld();
         this.draw();
-        this.run();
+        this.runCollisionHandler();
+
     }
 
-    run() {
+    runCollisionHandler() {
+        this.collidingHandler.checkDistance();
         setInterval(() => {
-            this.checkCollisions();
+            this.collidingHandler.checkCollisions();
+            this.stopGame();
         }, 200);
         setInterval(() => {
-           // this.checkThrowObjects();
-        }, 1000);
-        setInterval(() => {
-            this.checkCollisionsThrowable();
+            this.collidingHandler.checkCollisionsThrowable();
         }, 20);
     }
 
-    checkThrowObjects() {
-        let currentTime = Date.now();
-        let cooldown = currentTime - this.lastThrowTime;
-        if (this.keyboard.clickedD && cooldown >= 500) { // cooldown on throw by 0.5s
-            if (this.throwableAmount <= 0) {
-                return;
-            }
-            this.throwableAmount -= 1;
-            this.lastThrowTime = currentTime; // set time of last throw
-            console.log(this.throwableAmount + " Wurfwaffen übrig");
-
-            let offsetX = this.character.width / 2; // x centered to character
-            let offsetY = this.character.height / 3; // y slightly above character
-            let direction = this.character.otherDirection ? -1 : 1; // throw left if walking left
-
-            let throwableObject = new ThrowableObject(
-                this.character.x + offsetX * direction,
-                this.character.y - offsetY,
-                "axe",
-                this.character.otherDirection
-            );
-            throwableObject.speedX = throwableObject.speedX * direction; // set direction
-            this.throwableObjects.push(throwableObject);
-        }
-    }
-
-    checkCollisions() {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.hit(5);
-                    this.statusBar.setPercentage(this.character.energy);
-                    console.log(this.character.energy);
-                }
-            });
-    }
-    
-    checkCollisionsThrowable() {
-        this.throwableObjects.forEach((throwableObject) => {
-            let inAir = false;
-            if (this.character.isColliding(throwableObject)) {
-                this.throwableObjects.splice(this.throwableObjects.indexOf(throwableObject), 1);
-                console.log("waffe + 1");
-                this.throwableAmount += 1;
-            }
-            if (throwableObject.y < 360) {
-                inAir = true;
-            }
-            this.level.enemies.forEach((enemy) => {
-                if (inAir && throwableObject.isColliding(enemy)) {
-                    enemy.hit(100);
-                    this.throwableObjects.splice(this.throwableObjects.indexOf(throwableObject), 1);
-                    if (enemy.isDead()) {
-                        this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
-                    }
-                }
-            });
-        });
-    }
-    
-
     setWorld() {
         this.character.world = this; // add world instance (class) to character.world
+        this.collidingHandler.world = this; // add a world instance to 
     }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // refresh / clear canvas before
-
         this.ctx.translate(this.cameraX, 0);
-
         this.addObjectsToMap(this.level.backgroundObjects);
-        this.addToMap(this.character);
+        this.addMovableObjects();
+        this.ctx.translate(-this.cameraX, 0);
+        this.addToMap(this.statusBar);
+        this.collidingHandler.throwObject(); 
+        requestAnimationFrame(this.draw.bind(this)); // bind(this) instead of let self = this and self.draw()
+    } 
 
+    addMovableObjects() {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.enemies);
-
-
-        this.ctx.translate(-this.cameraX, 0);
-        this.addToMap(this.statusBar);
-        this.checkThrowObjects(); 
-        requestAnimationFrame(this.draw.bind(this)); // bind(this) instead of let self = this and self.draw()
-    } 
+        this.addToMap(this.character);
+    }
 
     addObjectsToMap(objects) {
         objects.forEach(object => {
@@ -142,4 +84,27 @@ class World {
         object.x = object.x * -1;
         this.ctx.restore();
     }
+
+
+    clearAllIntervals() {
+        for (let i = 1; i < 9999; i++) window.clearInterval(i);
+    }
+    stopGame() {
+        if (this.character.energy === 0 && !this.gameOver) {
+            console.log("YOU DIED!");
+            this.gameOver = true;
+            this.clearAllIntervals();
+    
+            let frame = 0;
+            this.character.currentImage = 0;
+            let animationInterval = setInterval(() => {
+                this.character.playAnimation(this.character.imagesDead);
+                frame++;
+                if (frame >= this.character.imagesDead.length) {
+                    clearInterval(animationInterval);
+                }
+            }, 100);
+        }
+    }
+    
 } 

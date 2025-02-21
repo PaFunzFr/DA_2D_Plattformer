@@ -3,7 +3,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
 }
 canvas {
     background-color: black;
+    width: "";
+    height: "";
 }

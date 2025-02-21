@@ -16,6 +16,7 @@ class Character extends MovableObject {
     acceleration = 0.5;
     yOffset = 35;
     elementOnGround = 480 - this.height - this.yOffset;
+    energy = 100;
 
     constructor() { 
         super();
@@ -56,7 +57,7 @@ class Character extends MovableObject {
                     if (!this.isJumping && this.world.keyboard.clickedRight || this.world.keyboard.clickedLeft) {
                         this.playAnimation(this.imagesWalking);
                     } else if (this.isDead()) {
-                        this.playAnimation(this.imagesDead);
+                        //this.playAnimation(this.imagesDead);
                     } else if (this.isHurt()) {
                         this.playAnimation(this.imagesHurt);
                     } else if (this.world.keyboard.clickedD) {
@@ -67,4 +68,6 @@ class Character extends MovableObject {
                 }
             }, 100);
     }
+
+    
 }

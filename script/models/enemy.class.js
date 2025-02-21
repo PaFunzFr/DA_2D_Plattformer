@@ -3,6 +3,7 @@ class Enemy extends MovableObject {
     height = 0;
     currentImage = 0;
     imagesWalking = [];
+    imagesAttacking = [];
     enemySpeed = 0;
 
     constructor(name, number, positionX) {
@@ -10,13 +11,13 @@ class Enemy extends MovableObject {
         this.x = positionX;
         this.getCharacterStat(name, number);
         this.y = 480 - this.height - this.yOffset;
-        this.loadImage(`../img/brawlnbounce/02_enemies/${name}/${name}${number}/2_walk/WALK_000.png`)
+        this.loadImage(`../img/brawlnbounce/02_enemies/${name}/${name}${number}/6_attack/ATTACK_000.png`)
         this.preloadImages(this.imagesWalking, `../img/brawlnbounce/02_enemies/${name}/${name}${number}/2_walk/WALK_00`, 10);
+        this.preloadImages(this.imagesAttacking, `../img/brawlnbounce/02_enemies/${name}/${name}${number}/6_attack/ATTACK_00`, 10);
         this.animate();
     }
 
     getCharacterStat(name, number) {
-        
         if (name == "ork") {
             this.getOrkType(number);
             this.offset = { top: 120, bottom: 30, left: 55, right: 70 };
@@ -69,8 +70,8 @@ class Enemy extends MovableObject {
         setInterval(() => {
             this.moveLeft(this.enemySpeed);
         }, 1000 / 60);
-        setInterval(() => {
-            this.playAnimation(this.imagesWalking);
-        }, 150);
+    /*        setInterval(() => {
+                this.playAnimation(this.imagesWalking);
+            }, 150);*/
     }
 }
