@@ -15,7 +15,6 @@ class ThrowableObject extends MovableObject {
         this.otherDirection = otherDirection;
         this.loadImage(`../img/brawlnbounce/05_throwables/${name}/${name}.png`);
         this.throw();
-
     }
 
     throw() {

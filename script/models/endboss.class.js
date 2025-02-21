@@ -7,7 +7,8 @@ class Endboss extends MovableObject {
     floatingRange = 50;
     floatingSpeed = 1;
     initialY;
-    movingUp = true; // Richtung des Schwebens
+    energy = 1000;
+    movingUp = false;
 
     constructor() {
         super();

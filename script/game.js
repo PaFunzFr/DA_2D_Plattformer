@@ -9,7 +9,8 @@ function init() {
 }
 
 function startGame() {
-    world = new World(canvas, keyboard, level1);
+    let level = loadLevel(1);
+    world = new World(canvas, keyboard, level);
 }
 function isButtonClicked(event, buttonCode, classNameButton, boolean) {
     if (event.code === buttonCode) {
