@@ -2,18 +2,13 @@ class MovableObject extends DrawableObject {
     yOffset = 50;
     energy = 100;
     lastHit = 0;
-    imagesIdle = [];
-    imagesWalking = [];
-    imagesJumping = [];
-    imagesHurt = [];
-    imagesDead = [];
-    imagesAttack = [];
     offset = {
         top: 0,
         bottom: 0,
         right: 0,
         left: 0
     };
+    attackingFromAbove = false;
 
     moveRight(speed) {
         this.x += speed;
@@ -30,7 +25,7 @@ class MovableObject extends DrawableObject {
     jump() {
         if(!this.isJumping) {
             this.isJumping = true;
-            this.speedY = 12;
+            this.speedY = 11;
         }
     }
 
@@ -81,6 +76,10 @@ class MovableObject extends DrawableObject {
                 this.speedY -= this.acceleration; 
                 console.log(this.y);
                 
+                if (this instanceof Character && this.y < 210) {
+                    this.attackingFromAbove = true;
+                    console.log("attacking from above ground"); // is attacking while jumping
+                }
                 if (this instanceof ThrowableObject) {
                     this.x += this.speedX;
                 }
@@ -105,6 +104,7 @@ class MovableObject extends DrawableObject {
                 this.speedX = 0;
             } 
             this.isJumping = false;
+            this.attackingFromAbove = false;
             this.currentImage = 0; // reset animation
             return true;
         }

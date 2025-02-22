@@ -36,21 +36,5 @@ class DrawableObject {
             ctx.stroke();
         }
     }
-
-    drawCollisionBodyJump(ctx) {
-        if (this instanceof Enemy && this.name != "troll") {
-            ctx.beginPath();
-            ctx.lineWidth = "2";
-            ctx.strokeStyle = "red";
-            ctx.rect(
-                this.x + this.offset.left + 15, 
-                this.y + 120,
-                this.width - this.offset.left - this.offset.right - 30, 
-                this.height - 240
-            );
-            ctx.stroke();
-        }
-    }
-
 }
 

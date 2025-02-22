@@ -32,11 +32,11 @@ class Enemy extends MovableObject {
     getTrollType(number) {
         this.setTrollMetaStats();
         if (number == 1) {
-            this.setEnemyStats(20, 300, 350, 300);
+            this.setEnemyStats(-10, 300, 350, 300);
         } else if (number == 2) {
-            this.setEnemyStats(20, 300, 350, 350);
+            this.setEnemyStats(-10, 300, 350, 350);
         } else if (number == 3) {
-            this.setEnemyStats(20, 300, 350, 400);
+            this.setEnemyStats(-10, 300, 350, 400);
         }
     }
 
@@ -53,11 +53,11 @@ class Enemy extends MovableObject {
     getOrkType(number) {
         this.setOrkMetaStats();
         if (number == 1) {
-            this.setEnemyStats(30, 200, 250, 100);
+            this.setEnemyStats(0, 200, 250, 100);
         } else if (number == 2) {
-            this.setEnemyStats(30, 200, 250, 150);
+            this.setEnemyStats(0, 200, 250, 150);
         } else if (number == 3) {
-            this.setEnemyStats(30, 200, 250, 200);
+            this.setEnemyStats(0, 200, 250, 200);
         }
     }
 

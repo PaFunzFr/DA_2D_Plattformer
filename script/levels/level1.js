@@ -9,45 +9,13 @@ function loadLevel(levelNumber) {
                 new Endboss()
             ],
             [
-                new Cloud("../img/5_background/layers/4_clouds/1.png", 719 * 3, 20),
-                new Cloud("../img/5_background/layers/4_clouds/2.png", 719, 70),
-                new Cloud("../img/5_background/layers/4_clouds/1.png", 10, 0)
+                new Cloud("../img/brawlnbounce/04_background/layers/4_clouds/background_clouds/cloud_bg_1.png", 1255 * 3, 20),
+                new Cloud("../img/brawlnbounce/04_background/layers/4_clouds/background_clouds/cloud_bg_1.png", 1255, 70),
+                new Cloud("../img/brawlnbounce/04_background/layers/4_clouds/background_clouds/cloud_bg_1.png", 10, 0)
             ],
             [
-                new backgroundObject("../img/5_background/layers/air.png", -719 * 3),
-                new backgroundObject("../img/5_background/layers/3_third_layer/2.png", -719 * 3),
-                new backgroundObject("../img/5_background/layers/2_second_layer/2.png", -719 * 3),
-                new backgroundObject("../img/5_background/layers/1_first_layer/2.png", -719 * 3),
-
-                new backgroundObject("../img/5_background/layers/air.png", -719 * 2),
-                new backgroundObject("../img/5_background/layers/3_third_layer/1.png", -719 * 2),
-                new backgroundObject("../img/5_background/layers/2_second_layer/1.png", -719 * 2),
-                new backgroundObject("../img/5_background/layers/1_first_layer/1.png", -719 * 2),
-
-                new backgroundObject("../img/5_background/layers/air.png", -719),
-                new backgroundObject("../img/5_background/layers/3_third_layer/2.png", -719),
-                new backgroundObject("../img/5_background/layers/2_second_layer/2.png", -719),
-                new backgroundObject("../img/5_background/layers/1_first_layer/2.png", -719),
-
-                new backgroundObject("../img/5_background/layers/air.png", 0),
-                new backgroundObject("../img/5_background/layers/3_third_layer/1.png", 0),
-                new backgroundObject("../img/5_background/layers/2_second_layer/1.png", 0),
-                new backgroundObject("../img/5_background/layers/1_first_layer/1.png", 0),
-
-                new backgroundObject("../img/5_background/layers/air.png", 719),
-                new backgroundObject("../img/5_background/layers/3_third_layer/2.png", 719),
-                new backgroundObject("../img/5_background/layers/2_second_layer/2.png", 719),
-                new backgroundObject("../img/5_background/layers/1_first_layer/2.png", 719),
-
-                new backgroundObject("../img/5_background/layers/air.png", 719 * 2),
-                new backgroundObject("../img/5_background/layers/3_third_layer/1.png", 719 * 2),
-                new backgroundObject("../img/5_background/layers/2_second_layer/1.png", 719 * 2),
-                new backgroundObject("../img/5_background/layers/1_first_layer/1.png", 719 * 2),
-
-                new backgroundObject("../img/5_background/layers/air.png", 719 * 3),
-                new backgroundObject("../img/5_background/layers/3_third_layer/2.png", 719 * 3),
-                new backgroundObject("../img/5_background/layers/2_second_layer/2.png", 719 * 3),
-                new backgroundObject("../img/5_background/layers/1_first_layer/2.png", 719 * 3)
+                new backgroundObject("../img/brawlnbounce/04_background/layers/air_day.png", -1255),
+                new backgroundObject("../img/brawlnbounce/04_background/layers/1_first_layer/1.png", -1255),
             ]
         );
     }

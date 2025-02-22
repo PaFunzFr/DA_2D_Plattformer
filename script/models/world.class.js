@@ -1,5 +1,5 @@
 class World {
-    character = new Character();
+    character;
     collidingHandler = new CollidingObject();
     canvas;
     ctx;
@@ -12,6 +12,7 @@ class World {
     gameOver = false;
 
     constructor(canvas, keyboard, level) {
+        this.character = new Character();
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
         this.keyboard = keyboard;
@@ -25,9 +26,11 @@ class World {
     runCollisionHandler() {
         this.collidingHandler.checkDistance();
         setInterval(() => {
-            this.collidingHandler.checkCollisions();
             this.stopGame();
         }, 200);
+        setInterval(() => {
+            this.collidingHandler.checkCollisions();
+        }, 100);
         setInterval(() => {
             this.collidingHandler.checkCollisionsThrowable();
         }, 20);
@@ -71,7 +74,6 @@ class World {
             this.flipContentBack(object);
         }
         object.drawCollisionBody(this.ctx);
-        object.drawCollisionBodyJump(this.ctx)
     }
 
     flipContent(object) {

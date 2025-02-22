@@ -3,9 +3,16 @@ class CollidingObject {
     checkCollisions() {
         this.world.level.enemies.forEach((enemy) => {
             if (this.world.character.isColliding(enemy)) {
+                if (this.world.character.attackingFromAbove && enemy.name != "troll") {
+                    enemy.hit(100);
+                    if (enemy.isDead()) {
+                        this.world.level.enemies.splice(this.world.level.enemies.indexOf(enemy), 1);
+                    }
+                } else {
                 this.world.character.hit(5);
                 this.world.statusBar.setPercentage(this.world.character.energy);
                 console.log(this.world.character.energy);
+                }
             }
         });
     }

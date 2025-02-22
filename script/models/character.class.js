@@ -9,12 +9,11 @@ class Character extends MovableObject {
     imagesDead = [];
     imagesAttack = [];
     isJumping = false;
-    x = 200;
-    jumpHeight = 90;
+    x = 290;
     speedX = 10;
     speedY = 0;
     acceleration = 0.5;
-    yOffset = 35;
+    yOffset = 0;
     elementOnGround = 480 - this.height - this.yOffset;
     energy = 100;
 
@@ -46,7 +45,7 @@ class Character extends MovableObject {
                 if (this.world.keyboard.clickedUp || this.world.keyboard.clickedSpace) {
                     this.jump();
                 }
-                this.world.cameraX = -(this.x - 200); // - offsetX from character to canvas border
+                this.world.cameraX = -(this.x - 290); // - offsetX from character to canvas border
             }, 1000/60);
 
             // ANIMATION SET (PICTURES)
