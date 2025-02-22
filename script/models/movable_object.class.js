@@ -74,8 +74,6 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY
                 this.speedY -= this.acceleration; 
-                console.log(this.y);
-                
                 if (this instanceof Character && this.y < 210) {
                     this.attackingFromAbove = true;
                     console.log("attacking from above ground"); // is attacking while jumping

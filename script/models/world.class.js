@@ -44,7 +44,7 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // refresh / clear canvas before
         this.ctx.translate(this.cameraX, 0);
-        this.addObjectsToMap(this.level.backgroundObjects);
+        this.creatingBackground();
         this.addMovableObjects();
         this.ctx.translate(-this.cameraX, 0);
         this.addToMap(this.statusBar);
@@ -52,8 +52,14 @@ class World {
         requestAnimationFrame(this.draw.bind(this)); // bind(this) instead of let self = this and self.draw()
     } 
 
-    addMovableObjects() {
+    creatingBackground() {
+        this.addObjectsToMap(this.level.air);
+        this.addObjectsToMap(this.level.cloudsBackground);
+        this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
+    }
+
+    addMovableObjects() {
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
