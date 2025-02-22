@@ -4,7 +4,9 @@ class Enemy extends MovableObject {
     currentImage = 0;
     imagesWalking = [];
     imagesAttacking = [];
+    imagesDead = [];
     enemySpeed = 0;
+    currentlyDying = false;
     name;
 
     constructor(name, number, positionX) {
@@ -16,6 +18,7 @@ class Enemy extends MovableObject {
         this.loadImage(`../img/brawlnbounce/02_enemies/${name}/${name}${number}/6_attack/ATTACK_000.png`)
         this.preloadImages(this.imagesWalking, `../img/brawlnbounce/02_enemies/${name}/${name}${number}/2_walk/WALK_00`, 10);
         this.preloadImages(this.imagesAttacking, `../img/brawlnbounce/02_enemies/${name}/${name}${number}/6_attack/ATTACK_00`, 10);
+        this.preloadImages(this.imagesDead, `../img/brawlnbounce/02_enemies/${name}/${name}${number}/5_dead/DIE_00`, 10);
         this.animate();
     }
 
@@ -70,7 +73,9 @@ class Enemy extends MovableObject {
 
     animate() {
         setInterval(() => {
-            this.moveLeft(this.enemySpeed);
+            if (!this.currentlyDying) {
+                this.moveLeft(this.enemySpeed);
+            }
         }, 1000 / 60);
     }
 }

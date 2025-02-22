@@ -4,6 +4,7 @@ class Endboss extends MovableObject {
     currentImage = 0;
     imagesWalking = [];
     imagesAttacking = [];
+    imagesDead = [];
     bossSpeed = 0.25;
     floatingRange = 50;
     floatingSpeed = 1;
@@ -21,6 +22,7 @@ class Endboss extends MovableObject {
         this.loadImage("../img/brawlnbounce/03_endboss/dragon1/7_fly/Dragon_fly_000.png");
         this.preloadImages(this.imagesWalking, "../img/brawlnbounce/03_endboss/dragon1/7_fly/Dragon_fly_00", 10);
         this.preloadImages(this.imagesAttacking, "../img/brawlnbounce/03_endboss/dragon1/7_fly/Dragon_fly_00", 10);
+        this.preloadImages(this.imagesDead, "../img/brawlnbounce/03_endboss/dragon1/7_fly/Dragon_fly_00", 10);
         this.animate();
     }
 

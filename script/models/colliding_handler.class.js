@@ -3,12 +3,10 @@ class CollidingObject {
     checkCollisions() {
         this.world.level.enemies.forEach((enemy) => {
             if (this.world.character.isColliding(enemy)) {
-                if (this.world.character.attackingFromAbove && enemy.name != "troll") {
-                    enemy.hit(100);
-                    if (enemy.isDead()) {
-                        this.world.level.enemies.splice(this.world.level.enemies.indexOf(enemy), 1);
-                    }
-                } else {
+                if (this.world.character.attackingFromAbove && enemy.name === "ork") {
+                    this.jumpKill(enemy);
+                }
+                else if (!this.world.character.ignoreDamage && !enemy.currentlyDying){
                 this.world.character.hit(5);
                 this.world.statusBar.setPercentage(this.world.character.energy);
                 console.log(this.world.character.energy);
@@ -17,12 +15,24 @@ class CollidingObject {
         });
     }
 
+    jumpKill(enemy) {
+        enemy.hit(100);
+        if (enemy.isDead()) {
+                this.world.character.ignoreDamage = true;
+                enemy.playAnimation(enemy.imagesDead);
+                setTimeout(() => {
+                    this.world.level.enemies = this.world.level.enemies.filter(e => e !== enemy);
+                    this.world.character.ignoreDamage = false;
+                }, 200);
+        }
+    }
+
     checkDistance() {
         this.world.level.enemies.forEach((enemy) => {
                 setInterval(() => {
-                    if (this.world.character.isApproaching(enemy, 120)) {
+                    if (this.world.character.isApproaching(enemy, 120) && !enemy.currentlyDying) {
                     enemy.playAnimation(enemy.imagesAttacking);
-                } else {
+                } else if (!enemy.currentlyDying) {
                     enemy.playAnimation(enemy.imagesWalking);
                 };
             }, 200);
@@ -80,7 +90,10 @@ class CollidingObject {
                     enemy.hit(100);
                     thrownObjects.splice(thrownObjects.indexOf(throwableObject), 1);
                     if (enemy.isDead()) {
-                        enemies.splice(enemies.indexOf(enemy), 1);
+                        enemy.animateDeath(enemy);
+                        setTimeout(() => {
+                            enemies.splice(enemies.indexOf(enemy), 1);
+                        }, 1000);
                     }
                 }
             });

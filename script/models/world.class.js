@@ -20,7 +20,6 @@ class World {
         this.setWorld();
         this.draw();
         this.runCollisionHandler();
-
     }
 
     runCollisionHandler() {
@@ -33,6 +32,7 @@ class World {
         }, 100);
         setInterval(() => {
             this.collidingHandler.checkCollisionsThrowable();
+            //this.collidingHandler.enemyDead();
         }, 20);
     }
 

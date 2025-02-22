@@ -16,6 +16,7 @@ class Character extends MovableObject {
     yOffset = 0;
     elementOnGround = 480 - this.height - this.yOffset;
     energy = 100;
+    ignoreDamage = false;
 
     constructor() { 
         super();

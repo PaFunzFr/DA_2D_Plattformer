@@ -42,6 +42,16 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     }
 
+    animateDeath(target) {
+        target.currentlyDying = true;
+        let index = 0;
+        let interval = setInterval(() => {
+            target.img.src = target.imagesDead[index].src;
+            index++;
+            if (index >= target.imagesDead.length) clearInterval(interval);
+        }, 1000 / 24);
+    }
+
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; // difference in ms
         return timepassed < 500; 
@@ -52,7 +62,7 @@ class MovableObject extends DrawableObject {
         this.img = array[index];
         this.currentImage ++
     }
-    
+
     isColliding(obj) {
         return (
             (this.x + this.width - this.offset.right) > (obj.x + obj.offset.left) &&
@@ -74,6 +84,7 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY
                 this.speedY -= this.acceleration; 
+
                 if (this instanceof Character && this.y < 210) {
                     this.attackingFromAbove = true;
                     console.log("attacking from above ground"); // is attacking while jumping
