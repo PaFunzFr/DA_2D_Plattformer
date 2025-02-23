@@ -14,7 +14,7 @@ class CollidingObject {
             }
         });
     }
-
+    
     jumpKill(enemy) {
         enemy.hit(100);
         if (enemy.isDead()) {
@@ -49,7 +49,6 @@ class CollidingObject {
 
         if (this.world.keyboard.clickedD && cooldown >= 500) { // cooldown on throw by 0.5s
             this.triggerThrowingObject(offsetX, offsetY, direction, currentTime);
-
         }
     }
 
@@ -95,7 +94,6 @@ class CollidingObject {
                         setTimeout(() => {
                             this.world.level.enemies = this.world.level.enemies.filter(e => e !== enemy);
                             //enemies.splice(enemies.indexOf(enemy), 1);
-
                         }, 1000);
                     }
                 }
