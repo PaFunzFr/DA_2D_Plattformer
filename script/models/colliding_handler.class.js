@@ -91,8 +91,11 @@ class CollidingObject {
                     thrownObjects.splice(thrownObjects.indexOf(throwableObject), 1);
                     if (enemy.isDead()) {
                         enemy.animateDeath(enemy);
+                        
                         setTimeout(() => {
-                            enemies.splice(enemies.indexOf(enemy), 1);
+                            this.world.level.enemies = this.world.level.enemies.filter(e => e !== enemy);
+                            //enemies.splice(enemies.indexOf(enemy), 1);
+
                         }, 1000);
                     }
                 }

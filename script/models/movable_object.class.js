@@ -45,11 +45,14 @@ class MovableObject extends DrawableObject {
     animateDeath(target) {
         target.currentlyDying = true;
         let index = 0;
-        let interval = setInterval(() => {
-            target.img.src = target.imagesDead[index].src;
-            index++;
-            if (index >= target.imagesDead.length) clearInterval(interval);
-        }, 1000 / 24);
+        if (!target.killed) { 
+            let interval = setInterval(() => {
+                target.img.src = target.imagesDead[index].src;
+                index++;
+                if (index >= target.imagesDead.length) clearInterval(interval);
+            }, 1000 / 30);
+        }
+        target.killed = true;
     }
 
     isHurt() {
