@@ -17,9 +17,10 @@ class DrawableObject {
         for (let index = 0; index < imageCount; index++) {
             let img = new Image();
             img.src = `${path}${index}.png`;
-            array.push(img);            
+            array.push(img);   
+            console.log(img.src);         
         }
-        //console.log(array);
+
     }
     
     drawCollisionBody(ctx) {

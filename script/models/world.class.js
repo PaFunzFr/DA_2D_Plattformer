@@ -5,7 +5,8 @@ class World {
     ctx;
     keyboard;
     cameraX = -100;
-    statusBar = new StatusBar();
+    statusBar;
+    weaponBar;
     throwableObjects = [];
     throwableAmount = 10;
     lastThrowTime = 0;
@@ -13,6 +14,8 @@ class World {
 
     constructor(canvas, keyboard, level, character) {
         this.character = new Character(character);
+        this.statusBar = new StatusBar(character, "1_health", 6, 10, 5);
+        this.weaponBar = new StatusBar(character, "2_weapons", 10, 70, 10);
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
         this.keyboard = keyboard;
@@ -48,6 +51,7 @@ class World {
         this.addMovableObjects();
         this.ctx.translate(-this.cameraX, 0);
         this.addToMap(this.statusBar);
+        this.addToMap(this.weaponBar);
         this.collidingHandler.throwObject(); 
         requestAnimationFrame(this.draw.bind(this)); // bind(this) instead of let self = this and self.draw()
     } 

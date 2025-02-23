@@ -2,15 +2,19 @@ class StatusBar extends DrawableObject {
     healthBarImages = [];
     percentage = 100;
     
-    constructor() {
+    constructor(character, type, length, positionY, initialImg ) {
         super();
-        this.width = 200;
-        this.height= 50;
+        this.character = character;
+        this.type = type;
+        this.initialImg = initialImg;
+        this.length = length;
+        this.width = 220;
+        this.height= 70;
         this.x = 10;
-        this.y = 10;
-        this.loadImage("../img/7_statusbars/1_statusbar/2_statusbar_health/blue/B5.png")
-        this.preloadImages(this.healthBarImages, "img/7_statusbars/1_statusbar/2_statusbar_health/blue/B", 6);
-        this.setPercentage(100);
+        this.y = positionY;
+        this.loadImage(`../img/brawlnbounce/06_statusbars/1_statusbar/${type}/${character}/B${initialImg}.png`);
+        this.preloadImages(this.healthBarImages, `../img/brawlnbounce/06_statusbars/1_statusbar/${type}/${character}/B`, length);
+        //this.setPercentage(100);
     }
 
     setPercentage(percentage) {
