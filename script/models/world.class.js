@@ -11,8 +11,8 @@ class World {
     lastThrowTime = 0;
     gameOver = false;
 
-    constructor(canvas, keyboard, level) {
-        this.character = new Character();
+    constructor(canvas, keyboard, level, character) {
+        this.character = new Character(character);
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
         this.keyboard = keyboard;

@@ -8,9 +8,9 @@ function init() {
     //console.log(world.character);
 }
 
-function startGame() {
+function startGame(character) {
     let level = loadLevel(1);
-    world = new World(canvas, keyboard, level);
+    world = new World(canvas, keyboard, level, character);
     console.log(world.character);
 }
 function isButtonClicked(event, buttonCode, classNameButton, boolean) {

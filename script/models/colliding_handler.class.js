@@ -46,6 +46,7 @@ class CollidingObject {
         let offsetX = this.world.character.width / 2; // x centered to character
         let offsetY = this.world.character.height / 3; // y slightly above character
         let direction = this.world.character.otherDirection ? -1 : 1; // throw left if walking left
+        
 
         if (this.world.keyboard.clickedD && cooldown >= 500) { // cooldown on throw by 0.5s
             this.triggerThrowingObject(offsetX, offsetY, direction, currentTime);
@@ -66,7 +67,7 @@ class CollidingObject {
         return new ThrowableObject(
             this.world.character.x + offsetX * direction,
             this.world.character.y - offsetY,
-            "axe",
+            this.world.character.character,
             this.world.character.otherDirection
         );
     }

@@ -11,7 +11,12 @@
 <body onload="init()">
     <h1>Brawl n Bounce Saga</h1>
     <canvas id="canvas" width="720" height="480"></canvas>
-    <button id="startGame" onclick="startGame()">Start Game</button>
+    <div class="characterSelection">
+        <button id="startGame" onclick="startGame(`club`)">Play Ulfred</button>
+        <button id="startGame" onclick="startGame(`axe`)">Play Rasnak</button>
+        <button id="startGame" onclick="startGame(`hammer`)">Play Jognyr</button>
+    </div>
+
 </body>
 
 <script src="./script/models/drawable_object.class.js"></script>
