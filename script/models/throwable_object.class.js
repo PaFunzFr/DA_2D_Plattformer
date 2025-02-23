@@ -3,7 +3,7 @@ class ThrowableObject extends MovableObject {
     speedY = 0;
     speedX = 10;
     acceleration = 0.8;
-    elementOnGround = 370;
+    elementOnGround = 400;
     otherDirection = false;
 
     constructor(x, y, name, otherDirection = false) {
