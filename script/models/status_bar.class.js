@@ -30,10 +30,8 @@ class StatusBar extends DrawableObject {
         let index = Math.min(throwableAmount, this.healthBarImages.length - 1);
         let imagePath = this.healthBarImages[index];
         this.loadImage(imagePath.src);
-
     }
     
-
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;
