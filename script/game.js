@@ -9,6 +9,12 @@ function init() {
 }
 
 function startGame(character) {
+    charSelection.style.display = 'none';
+    startScreen.style.display = 'none';
+    if (typeof world !== "undefined" && world !== null) {
+        world.clearAllIntervals();
+    }
+    world = null;
     let level = loadLevel(1);
     world = new World(canvas, keyboard, level, character);
     console.log(world.character);
