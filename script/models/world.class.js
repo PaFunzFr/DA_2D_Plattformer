@@ -14,8 +14,8 @@ class World {
 
     constructor(canvas, keyboard, level, character) {
         this.character = new Character(character);
-        this.statusBar = new StatusBar(character, "1_health", 6, 10, 5);
-        this.weaponBar = new StatusBar(character, "2_weapons", 10, 70, 10);
+        this.statusBar = new StatusBar(character, "1_health", 6, 10, null);
+        this.weaponBar = new StatusBar(character, "2_weapons", 11, 50, this.throwableAmount);
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
         this.keyboard = keyboard;

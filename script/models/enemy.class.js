@@ -6,8 +6,6 @@ class Enemy extends MovableObject {
     imagesAttacking = [];
     imagesDead = [];
     enemySpeed = 0;
-    currentlyDying = false;
-    killed = false;
     name;
 
     constructor(name, number, positionX) {

@@ -56,6 +56,7 @@ class CollidingObject {
     triggerThrowingObject(offsetX, offsetY, direction, currentTime) {
         if (this.world.throwableAmount <= 0) {return};
         this.world.throwableAmount -= 1;
+        this.world.weaponBar.setWeaponAmount(this.world.throwableAmount);
         this.world.lastThrowTime = currentTime; // set time of last throw
         console.log(this.world.throwableAmount + " Wurfwaffen übrig");
         let throwableObject = this.createThrowableObject(offsetX, offsetY, direction);
@@ -81,13 +82,14 @@ class CollidingObject {
                 thrownObjects.splice(thrownObjects.indexOf(throwableObject), 1);
                 console.log("waffe + 1");
                 this.world.throwableAmount += 1;
+                this.world.weaponBar.setWeaponAmount(this.world.throwableAmount);
             }
             if (throwableObject.y < 360) {
                 inAir = true;
             }
             this.world.level.enemies.forEach((enemy) => {
                 if (inAir && throwableObject.isColliding(enemy)) {
-                    enemy.hit(100);
+                    enemy.hit(200);
                     thrownObjects.splice(thrownObjects.indexOf(throwableObject), 1);
                     if (enemy.isDead()) {
                         enemy.animateDeath(enemy);

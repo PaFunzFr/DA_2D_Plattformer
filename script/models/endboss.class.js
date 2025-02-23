@@ -22,18 +22,22 @@ class Endboss extends MovableObject {
         this.loadImage("../img/brawlnbounce/03_endboss/dragon1/7_fly/Dragon_fly_000.png");
         this.preloadImages(this.imagesWalking, "../img/brawlnbounce/03_endboss/dragon1/7_fly/Dragon_fly_00", 10);
         this.preloadImages(this.imagesAttacking, "../img/brawlnbounce/03_endboss/dragon1/7_fly/Dragon_fly_00", 10);
-        this.preloadImages(this.imagesDead, "../img/brawlnbounce/03_endboss/dragon1/7_fly/Dragon_fly_00", 10);
+        this.preloadImages(this.imagesDead, "../img/brawlnbounce/03_endboss/dragon1/5_dead/Dragon_hurt_00", 10);
         this.animate();
     }
 
     animate() {
-        setInterval(() => {
-            this.playAnimation(this.imagesWalking);
-        }, 150);
+            setInterval(() => {
+                if (!this.currentlyDying) {
+                this.playAnimation(this.imagesWalking);
+                }
+            }, 150);
 
-        setInterval(() => {
-            this.floatMovement();
-        }, 30);
+            setInterval(() => {
+                if (!this.currentlyDying) {
+                this.floatMovement();
+                }
+            }, 30);
     }
 
     floatMovement() {

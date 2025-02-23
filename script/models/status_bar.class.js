@@ -1,20 +1,23 @@
 class StatusBar extends DrawableObject {
     healthBarImages = [];
     percentage = 100;
+    throwableAmount;
     
-    constructor(character, type, length, positionY, initialImg ) {
+    constructor(character, type, length, positionY, throwableAmount) {
         super();
         this.character = character;
+        this.throwableAmount = throwableAmount;
         this.type = type;
-        this.initialImg = initialImg;
+        this.initialImg = length -1;
         this.length = length;
-        this.width = 220;
+        this.width = 300;
         this.height= 70;
         this.x = 10;
         this.y = positionY;
-        this.loadImage(`../img/brawlnbounce/06_statusbars/1_statusbar/${type}/${character}/B${initialImg}.png`);
+        this.loadImage(`../img/brawlnbounce/06_statusbars/1_statusbar/${type}/${character}/B${this.initialImg}.png`);
         this.preloadImages(this.healthBarImages, `../img/brawlnbounce/06_statusbars/1_statusbar/${type}/${character}/B`, length);
         //this.setPercentage(100);
+        //this.setWeaponAmount(throwableAmount);
     }
 
     setPercentage(percentage) {
@@ -22,6 +25,14 @@ class StatusBar extends DrawableObject {
         let imagePath = this.healthBarImages[this.resolveImageIndex()];
         this.loadImage(imagePath.src);
     }
+
+    setWeaponAmount(throwableAmount) {
+        let index = Math.min(throwableAmount, this.healthBarImages.length - 1);
+        let imagePath = this.healthBarImages[index];
+        this.loadImage(imagePath.src);
+
+    }
+    
 
     resolveImageIndex() {
         if (this.percentage == 100) {

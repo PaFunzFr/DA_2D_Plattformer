@@ -9,6 +9,8 @@ class MovableObject extends DrawableObject {
         left: 0
     };
     attackingFromAbove = false;
+    currentlyDying = false;
+    killed = false;
 
     moveRight(speed) {
         this.x += speed;
