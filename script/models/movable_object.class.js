@@ -89,6 +89,18 @@ class MovableObject extends DrawableObject {
         }, 1000/60);
     }
 
+    // ONLY FOR MISSILES (DRAGONS) used in THROWABLEOBJECT
+    fireMissile() {
+        setInterval(() => {
+            if (this.isAboveGround() || this.speedY > 0) {
+                this.y -= this.speedY
+                this.speedY -= 0.02; // acceleration
+                this.x += this.speedX;
+                this.isOnGround();
+            }
+        }, 1000/60);
+    }
+
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
@@ -103,7 +115,7 @@ class MovableObject extends DrawableObject {
             this.speedY = 0;
             if (this instanceof ThrowableObject) {
                 this.speedX = 0;
-            } 
+            }
             this.isJumping = false;
             this.attackingFromAbove = false;
             this.currentImage = 0; // reset animation

@@ -8,17 +8,25 @@ class ThrowableObject extends MovableObject {
 
     constructor(x, y, name, otherDirection = false) {
         super();
+        this.name = name;
         this.x = x;
         this.y = y;
         this.width = 60;
         this.height = 60;
         this.otherDirection = otherDirection;
         this.loadImage(`../img/brawlnbounce/05_throwables/${name}/${name}.png`);
-        this.throw();
+        this.animate();
     }
 
-    throw() {
-        this.speedY = 5;
-        this.applyGravity();
+    animate() {
+        if (this.name != "fireball") {
+            this.speedY = 5;
+            this.applyGravity();
+        } else {
+            this.fireMissile();
+        }
+
+        console.log(this.x);
+        
     }  
 }

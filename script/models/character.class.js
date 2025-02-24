@@ -10,7 +10,7 @@ class Character extends MovableObject {
     imagesAttack = [];
     isJumping = false;
     x = 290;
-    speedX = 4;
+    speedX = 4.5;
     speedY = 0;
     acceleration = 0.5;
     yOffset = 0;

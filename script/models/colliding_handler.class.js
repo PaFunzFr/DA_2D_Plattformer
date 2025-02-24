@@ -13,6 +13,11 @@ class CollidingObject {
                 }
             }
         });
+        this.world.missileObjects.forEach((missile) => {
+            if (missile.isOnGround()) {
+                this.world.missileObjects.splice(this.world.missileObjects.indexOf(missile), 1);
+            }
+        });
     }
 
     jumpKill(enemy) {
@@ -28,18 +33,48 @@ class CollidingObject {
         }
     } 
 
+    attackTriggered = false;
     checkDistance() {
-        this.world.level.enemies.forEach((enemy) => {
-                setInterval(() => {
-                    if (this.world.character.isApproaching(enemy, 120) && !enemy.currentlyDying) {
+        setInterval(() => {
+            this.world.level.enemies.forEach((enemy) => {
+                if (enemy.currentlyDying) return;
+    
+                // common enemies
+                if (this.world.character.isApproaching(enemy, 120) && enemy.name != "dragon") {
                     enemy.playAnimation(enemy.imagesAttacking);
-                } else if (!enemy.currentlyDying) {
+                } else {
                     enemy.playAnimation(enemy.imagesWalking);
-                };
-            }, 200);
-        });
+                }
+    
+                //endboss && FIREBALL ANIMATION
+                if (enemy.name === "dragon" && this.world.character.isApproaching(enemy, 230)) {
+                    if (enemy.attackTriggered) return; 
+    
+                    console.log("dragon triggered");
+                    enemy.attackTriggered = true;
+                    enemy.isAttacking = true;
+                    let fireBall = this.createFlame(enemy);
+                    fireBall.speedX = fireBall.speedX/10 + 5 * -1; // set direction
+                    this.world.missileObjects.push(fireBall); // adds object to world / canvas
+                    console.log("Feuerball trifft Feind:", fireBall.x, fireBall.y);
+
+                    setTimeout(() => {
+
+                        enemy.isAttacking = false;
+                    }, 1000);
+                    setTimeout(() => {
+                        enemy.attackTriggered = false; 
+                    }, 2000);
+                }
+
+            });
+        }, 200);
     }
     
+    
+    endbossAttack() {
+
+    }
 
     throwObject() {
         let currentTime = Date.now();
@@ -74,6 +109,22 @@ class CollidingObject {
         );
     }
 
+    createFlame(object) {
+        let offsetX = object.width / 2;
+        let offsetY = object.height / 3;
+        let direction = object.otherDirection ? -1 : 1;
+        console.log(object.attack);
+        
+        return new ThrowableObject(
+            object.x + object.offset.right * 1,
+            object.currentPositionY + object.offset.top + 70,
+            object.attack, // its a fireball
+            object.otherDirection
+        );
+    }
+
+
+
     checkCollisionsThrowable() {
         let thrownObjects = this.world.throwableObjects;
         let enemies = this.world.level.enemies;
@@ -89,8 +140,9 @@ class CollidingObject {
                 inAir = true;
             }
             this.world.level.enemies.forEach((enemy) => {
-                if (inAir && throwableObject.isColliding(enemy)) {
+                if (inAir && throwableObject.isColliding(enemy) && enemy.name != "dragon") {
                     enemy.hit(200);
+                    console.log(enemy.name + "hit by" + throwableObject.name)
                     thrownObjects.splice(thrownObjects.indexOf(throwableObject), 1);
                     if (enemy.isDead()) {
                         this.world.animations.animateDeath(enemy);

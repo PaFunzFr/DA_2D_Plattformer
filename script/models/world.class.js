@@ -9,6 +9,7 @@ class World {
     statusBar;
     weaponBar;
     throwableObjects = [];
+    missileObjects = [];
     throwableAmount = 10;
     lastThrowTime = 0;
     gameOver = false;
@@ -31,14 +32,14 @@ class World {
         this.collidingHandler.checkDistance();
         setInterval(() => {
             this.stopGame();
-        }, 200);
+        }, 100);
         setInterval(() => {
             this.collidingHandler.checkCollisions();
-        }, 100);
+        }, 150);
         setInterval(() => {
             this.collidingHandler.checkCollisionsThrowable();
             //this.collidingHandler.enemyDead();
-        }, 20);
+        }, 30);
     }
 
     setWorld() {
@@ -68,6 +69,7 @@ class World {
 
     addMovableObjects() {
         this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.missileObjects);
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
     }
