@@ -6,6 +6,7 @@ body {
     align-items: center;
     overflow: hidden;
     height: 100vh;
+    margin: 0;
     background: linear-gradient(to top, rgb(22, 38, 0),rgb(84, 118, 39), rgb(36, 111, 158), rgb(2, 68, 109));
 }
 
@@ -35,7 +36,7 @@ button:hover {
 
 /* START SCREEN */
 .start {
-    display: flex;
+    display: none; /*toggle*/
     flex-direction: column;
     position: fixed;
     top: 0;
@@ -45,6 +46,7 @@ button:hover {
     height: 100vh;
     background: linear-gradient(to top, rgb(22, 38, 0),rgb(84, 118, 39), rgb(36, 111, 158), rgb(2, 68, 109));
     transition: all 2s ease;
+    z-index: 2;
 }
 
 .img-container {
@@ -116,6 +118,7 @@ button:hover {
     filter: drop-shadow(5px 5px 5px black);
     overflow: hidden;
     transition: all 1s ease;
+    z-index: 3;
 }
 
 .char-container {
@@ -179,19 +182,52 @@ button:hover {
 /* GAME */
 .game {
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
+    height: 100vh;
+    width: 100vw;
 }
+
+.title-game {
+    margin-bottom: 15px;
+    color: white;
+    width: 50%;
+}
+
+#gameContainer {
+    position: relative;
+    top: 0;
+    justify-content: center;
+    display: flex;
+}
+
+.mobile-button {
+    position: absolute;
+    bottom: 0px;
+    left: 50px;
+    transform: translate(-50%, -50%);
+    background: #ffa904;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 16px;
+    border: 3px solid white;
+}
+
 canvas {
     background-color: black;
-    width: "";
-    height: "";
-    margin-top: 20px;
     border-radius: 16px;
 }
 
 .char-select-old {
     margin-top: 15px;
+}
+
+.current-level {
+    margin-top: 20px;
+    color: white;
+    font-size: 24px;
+    text-align: center;
 }
 
 .char-select-old button {

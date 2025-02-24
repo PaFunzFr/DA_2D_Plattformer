@@ -1,6 +1,7 @@
 class World {
     character;
     collidingHandler = new CollidingObject();
+    animations;
     canvas;
     ctx;
     keyboard;
@@ -14,6 +15,7 @@ class World {
 
     constructor(canvas, keyboard, level, character) {
         this.character = new Character(character);
+        this.animations = new Animation();
         this.statusBar = new StatusBar(character, "1_health", 6, 10, null);
         this.weaponBar = new StatusBar(character, "2_weapons", 11, 50, this.throwableAmount);
         this.ctx = canvas.getContext("2d");
@@ -41,7 +43,8 @@ class World {
 
     setWorld() {
         this.character.world = this; // add world instance (class) to character.world
-        this.collidingHandler.world = this; // add a world instance to 
+        this.collidingHandler.world = this; // add a world instance to
+        this.animations.world = this;
     }
 
     draw() {
@@ -98,10 +101,14 @@ class World {
         this.ctx.restore();
     }
 
-
     clearAllIntervals() {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
     }
+
+    resumeIntervall() {
+        this.draw();
+    }
+
     stopGame() {
         if (this.character.energy === 0 && !this.gameOver) {
             console.log("YOU DIED!");

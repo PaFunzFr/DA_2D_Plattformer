@@ -20,7 +20,6 @@ class DrawableObject {
             array.push(img);   
             console.log(img.src);         
         }
-
     }
     
     drawCollisionBody(ctx) {

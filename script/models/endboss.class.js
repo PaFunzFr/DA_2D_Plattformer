@@ -11,6 +11,7 @@ class Endboss extends MovableObject {
     initialY;
     energy = 1000;
     movingUp = false;
+    name = "dragon";
 
     constructor() {
         super();
@@ -36,8 +37,21 @@ class Endboss extends MovableObject {
             setInterval(() => {
                 if (!this.currentlyDying) {
                 this.floatMovement();
+                } else if (this.isDead()) {
+                    this.fallToGround();
                 }
             }, 30);
+    }
+
+    fallToGround() {
+        if (!this.onGround) {
+            this.y += this.floatingSpeed *2.5;
+            
+            if (this.y >= this.groundY) { 
+                this.y = this.groundY;  // Stelle sicher, dass er nicht durch den Boden fällt
+                this.onGround = true;   // Markiere, dass er den Boden erreicht hat
+            }
+        }
     }
 
     floatMovement() {

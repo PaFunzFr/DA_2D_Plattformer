@@ -44,19 +44,6 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     }
 
-    animateDeath(target) {
-        target.currentlyDying = true;
-        let index = 0;
-        if (!target.killed) { 
-            let interval = setInterval(() => {
-                target.img.src = target.imagesDead[index].src;
-                index++;
-                if (index >= target.imagesDead.length) clearInterval(interval);
-            }, 1000 / 30);
-        }
-        target.killed = true;
-    }
-
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; // difference in ms
         return timepassed < 500; 

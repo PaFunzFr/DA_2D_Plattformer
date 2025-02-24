@@ -10,8 +10,8 @@ class ThrowableObject extends MovableObject {
         super();
         this.x = x;
         this.y = y;
-        this.width = 50;
-        this.height = 50;
+        this.width = 60;
+        this.height = 60;
         this.otherDirection = otherDirection;
         this.loadImage(`../img/brawlnbounce/05_throwables/${name}/${name}.png`);
         this.throw();

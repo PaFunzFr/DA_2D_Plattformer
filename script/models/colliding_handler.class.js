@@ -14,18 +14,19 @@ class CollidingObject {
             }
         });
     }
-    
+
     jumpKill(enemy) {
         enemy.hit(100);
         if (enemy.isDead()) {
+                enemy.enemySpeed = 0;
                 this.world.character.ignoreDamage = true;
-                enemy.playAnimation(enemy.imagesDead);
+                this.world.animations.animateDeath(enemy);
                 setTimeout(() => {
                     this.world.level.enemies = this.world.level.enemies.filter(e => e !== enemy);
                     this.world.character.ignoreDamage = false;
-                }, 200);
+                }, 1000);
         }
-    }
+    } 
 
     checkDistance() {
         this.world.level.enemies.forEach((enemy) => {
@@ -92,11 +93,9 @@ class CollidingObject {
                     enemy.hit(200);
                     thrownObjects.splice(thrownObjects.indexOf(throwableObject), 1);
                     if (enemy.isDead()) {
-                        enemy.animateDeath(enemy);
-                        
+                        this.world.animations.animateDeath(enemy);
                         setTimeout(() => {
                             this.world.level.enemies = this.world.level.enemies.filter(e => e !== enemy);
-                            //enemies.splice(enemies.indexOf(enemy), 1);
                         }, 1000);
                     }
                 }
