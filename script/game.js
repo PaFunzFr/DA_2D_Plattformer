@@ -9,8 +9,9 @@ function init() {
 }
 
 function startGame(character) {
-    charSelection.style.display = 'none';
-    startScreen.style.display = 'none';
+    charSelection.style.opacity = '0';
+    charSelection.style.top = '';
+    startScreen.style.opacity = '0';
     if (typeof world !== "undefined" && world !== null) {
         world.clearAllIntervals();
     }
