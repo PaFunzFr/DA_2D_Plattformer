@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jump n Run</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./fonts/fonts.css">
     <link rel="icon" href=""><!--add favicon link-->
 </head>
 
 <body onload="init()">
     <section class="start" id="startScreen">
+        <img src="./img/brawlnbounce/08_intro/game_title.png">
         <div class="img-container">
             <img class="main-img" id="mainImgEnemies" src="./img/brawlnbounce/08_intro/background_enemies.png">
             <img class="main-img" id="mainImgHeroes" src="./img/brawlnbounce/08_intro/background_heroes.png">
         </div>
         <button class="load-characters" onclick="renderChars()">Start</button>
-        <!--<img class="main-background" src="./img/brawlnbounce/08_intro/background_ambiente.png"> -->
     </section>
 
     <section class="character-selection" id="charSelection">
@@ -23,12 +24,12 @@
     </section>
 
     <section class="game">
-        <h1>Brawl n Bounce Saga</h1>
+        <img src="./img/brawlnbounce/08_intro/game_title.png">
         <canvas id="canvas" width="720" height="480"></canvas>
-        <div class="characterSelection">
-            <button id="startGame1" onclick="startGame(`club`)">Play Ulfred</button>
-            <button id="startGame2" onclick="startGame(`axe`)">Play Rasnak</button>
-            <button id="startGame" onclick="startGame(`hammer`)">Play Jognyr</button>
+        <div class="char-select-old">
+            <button id="startGame1" onclick="startGame(`club`)">Ulfred</button>
+            <button id="startGame2" onclick="startGame(`axe`)">Rasnak</button>
+            <button id="startGame" onclick="startGame(`hammer`)">Jognyr</button>
         </div>
     </section>
 </body>

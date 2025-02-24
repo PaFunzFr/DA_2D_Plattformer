@@ -10,8 +10,14 @@ body {
 
 button {
     border: none;
+    font-size: 20px;
 }  
 
+h2 {
+    font-family: 'Skranji';
+    font-size: 28px;
+    margin: 20px 0 0 0;
+}
 button:hover {
     cursor: pointer;
 }
@@ -74,23 +80,33 @@ button:hover {
     }
 }
 
+.load-characters {
+    background: #ffa904;
+    color: white;
+    font-size: 40px;
+    padding: 10px 40px;
+    border-radius: 16px;
+    border: 3px solid white;
+}
+
 /* CHOOSE CHARACTER */
 .character-selection {
-    display: none;
+    display: flex;
     position: fixed;
     max-width: 1000px;
     width: 80%;
-    top: 20vh;
-    height: 60vh;
+    top: -200%;
+    opacity: 0;
+    height: 70vh;
     background-color: rgb(59, 54, 45);
     border-radius: 16px;
     border: 5px solid rgb(55, 38, 26);
     filter: drop-shadow(5px 5px 5px black);
     overflow: hidden;
+    transition: all 1s ease;
 }
 
 .char-container {
-    flex: 1;
     display: flex;
     position: relative;
     flex-direction: column;
@@ -112,6 +128,8 @@ button:hover {
 }
 .character-description {
     padding: 20px;
+    height: 50px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.623), transparent);
     margin: 0;
 }
 
@@ -145,6 +163,7 @@ button:hover {
     filter: blur(10px);
 } 
 
+
 /* GAME */
 .game {
     display: flex;
@@ -155,4 +174,18 @@ canvas {
     background-color: black;
     width: "";
     height: "";
+    margin-top: 20px;
+    border-radius: 16px;
+}
+
+.char-select-old {
+    margin-top: 15px;
+}
+
+.char-select-old button {
+    background: #ffa904;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 16px;
+    border: 3px solid white;
 }
