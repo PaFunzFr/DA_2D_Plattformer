@@ -25,13 +25,13 @@ class Character extends MovableObject {
         this.character = character;
         this.y = this.elementOnGround;
         this.offset = { top: 20, bottom: 40, left: 40, right: 40 };
-        this.loadImage(`./img/brawlnbounce/01_characters/${character}/1_idle/IDLE_000.png`);
-        this.preloadImages(this.imagesIdle, `./img/brawlnbounce/01_characters/${character}/1_idle/IDLE_00`, 5);
-        this.preloadImages(this.imagesWalking, `./img/brawlnbounce/01_characters/${character}/2_walk/WALK_00`, 5);
-        this.preloadImages(this.imagesJumping, `./img/brawlnbounce/01_characters/${character}/3_jump/JUMP_00`, 5);
-        this.preloadImages(this.imagesHurt, `./img/brawlnbounce/01_characters/${character}/4_hurt/HURT_00`, 5);
-        this.preloadImages(this.imagesDead, `./img/brawlnbounce/01_characters/${character}/5_dead/DIE_00`, 5);
-        this.preloadImages(this.imagesAttack, `./img/brawlnbounce/01_characters/${character}/6_attack/ATTACK_00`, 5)
+        this.loadImage(`./img/01_characters/${character}/1_idle/IDLE_000.png`);
+        this.preloadImages(this.imagesIdle, `./img/01_characters/${character}/1_idle/IDLE_00`, 5);
+        this.preloadImages(this.imagesWalking, `./img/01_characters/${character}/2_walk/WALK_00`, 5);
+        this.preloadImages(this.imagesJumping, `./img/01_characters/${character}/3_jump/JUMP_00`, 5);
+        this.preloadImages(this.imagesHurt, `./img/01_characters/${character}/4_hurt/HURT_00`, 5);
+        this.preloadImages(this.imagesDead, `./img/01_characters/${character}/5_dead/DIE_00`, 5);
+        this.preloadImages(this.imagesAttack, `./img/01_characters/${character}/6_attack/ATTACK_00`, 5)
         this.applyGravity();
         this.animate();
     }

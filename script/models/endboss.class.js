@@ -18,18 +18,18 @@ class Endboss extends MovableObject {
 
     constructor() {
         super();
-        this.name = "dragon";
+        this.name = "dragonBoss";
         this.attack ="fireball"
         this.otherDirection = true;
         this.offset = { top: 120, bottom: 190, left: 220, right: 220 };
-        this.x = 300; //2100;
+        this.x = 2100;
         this.y = 480 - this.height - this.yOffset;
         this.initialY = this.y;
-        this.loadImage("./img/brawlnbounce/03_endboss/dragon1/7_fly/Dragon_fly_000.png");
-        this.preloadImages(this.imagesWalking, "./img/brawlnbounce/03_endboss/dragon1/7_fly/Dragon_fly_00", 10);
-        this.preloadImages(this.imagesAttacking, "./img/brawlnbounce/03_endboss/dragon1/6_attack/Dragon_Attack_00", 10);
-        this.preloadImages(this.imagesHurt, "./img/brawlnbounce/03_endboss/dragon1/4_hurt/Dragon_hurt_00", 6);
-        this.preloadImages(this.imagesDead, "./img/brawlnbounce/03_endboss/dragon1/5_dead/Dragon_hurt_00", 10);
+        this.loadImage("./img/03_endboss/dragon1/7_fly/Dragon_fly_000.png");
+        this.preloadImages(this.imagesWalking, "./img/03_endboss/dragon1/7_fly/Dragon_fly_00", 10);
+        this.preloadImages(this.imagesAttacking, "./img/03_endboss/dragon1/6_attack/Dragon_Attack_00", 10);
+        this.preloadImages(this.imagesHurt, "./img/03_endboss/dragon1/4_hurt/Dragon_hurt_00", 6);
+        this.preloadImages(this.imagesDead, "./img/03_endboss/dragon1/5_dead/Dragon_hurt_00", 10);
         this.animate();
     }
 

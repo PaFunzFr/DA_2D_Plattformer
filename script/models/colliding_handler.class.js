@@ -18,7 +18,6 @@ class CollidingObject {
                 this.hitByFireBall = true;
                 this.world.character.hit(50);
                 this.world.statusBar.setPercentage(this.world.character.energy);
-                console.log(this.world.character.energy);
                 setTimeout(() => {
                     this.hitByFireBall = false;
                 }, 2000);
@@ -57,16 +56,14 @@ class CollidingObject {
                 }
     
                 //endboss && FIREBALL ANIMATION
-                if (enemy.name === "dragon" && this.world.character.isApproaching(enemy, 230)) {
+                if (enemy.name === "dragonBoss" && this.world.character.isApproaching(enemy, 250)) {
                     if (enemy.attackTriggered) return; 
     
-                    console.log("dragon triggered");
                     enemy.attackTriggered = true;
                     enemy.isAttacking = true;
                     let fireBall = this.createFlame(enemy);
                     fireBall.speedX = fireBall.speedX/10 + 5 * -1; // set direction
                     this.world.missileObjects.push(fireBall); // adds object to world / canvas
-                    console.log("Feuerball trifft Feind:", fireBall.x, fireBall.y);
 
                     setTimeout(() => {
 

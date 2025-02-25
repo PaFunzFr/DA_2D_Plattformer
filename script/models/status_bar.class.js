@@ -14,8 +14,8 @@ class StatusBar extends DrawableObject {
         this.height= 70;
         this.x = 10;
         this.y = positionY;
-        this.loadImage(`./img/brawlnbounce/06_statusbars/1_statusbar/${type}/${character}/B${this.initialImg}.png`);
-        this.preloadImages(this.healthBarImages, `./img/brawlnbounce/06_statusbars/1_statusbar/${type}/${character}/B`, length);
+        this.loadImage(`./img/06_statusbars/1_statusbar/${type}/${character}/B${this.initialImg}.png`);
+        this.preloadImages(this.healthBarImages, `./img/06_statusbars/1_statusbar/${type}/${character}/B`, length);
         //this.setPercentage(100);
         //this.setWeaponAmount(throwableAmount);
     }
