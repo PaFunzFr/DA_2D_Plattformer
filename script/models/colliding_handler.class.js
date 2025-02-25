@@ -1,5 +1,5 @@
 class CollidingObject {
-
+    hitByFireBall = false;
     checkCollisions() {
         this.world.level.enemies.forEach((enemy) => {
             if (this.world.character.isColliding(enemy)) {
@@ -14,11 +14,21 @@ class CollidingObject {
             }
         });
         this.world.missileObjects.forEach((missile) => {
+            if (this.world.character.isColliding(missile) && !this.hitByFireBall) {
+                this.hitByFireBall = true;
+                this.world.character.hit(50);
+                this.world.statusBar.setPercentage(this.world.character.energy);
+                console.log(this.world.character.energy);
+                setTimeout(() => {
+                    this.hitByFireBall = false;
+                }, 2000);
+                }
             if (missile.isOnGround()) {
                 this.world.missileObjects.splice(this.world.missileObjects.indexOf(missile), 1);
             }
         });
     }
+
 
     jumpKill(enemy) {
         enemy.hit(100);
@@ -64,7 +74,7 @@ class CollidingObject {
                     }, 1000);
                     setTimeout(() => {
                         enemy.attackTriggered = false; 
-                    }, 2000);
+                    }, 3000); // attacking each 3000ms
                 }
 
             });
@@ -140,7 +150,7 @@ class CollidingObject {
                 inAir = true;
             }
             this.world.level.enemies.forEach((enemy) => {
-                if (inAir && throwableObject.isColliding(enemy) && enemy.name != "dragon") {
+                if (inAir && throwableObject.isColliding(enemy)) {
                     enemy.hit(200);
                     console.log(enemy.name + "hit by" + throwableObject.name)
                     thrownObjects.splice(thrownObjects.indexOf(throwableObject), 1);

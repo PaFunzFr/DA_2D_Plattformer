@@ -15,11 +15,11 @@ class Enemy extends MovableObject {
         this.name = name;
         this.getCharacterStat(name, number);
         this.y = 480 - this.height - this.yOffset;
-        this.loadImage(`../img/brawlnbounce/02_enemies/${name}/${name}${number}/6_attack/ATTACK_000.png`)
-        this.preloadImages(this.imagesWalking, `../img/brawlnbounce/02_enemies/${name}/${name}${number}/2_walk/WALK_00`, 10);
-        this.preloadImages(this.imagesAttacking, `../img/brawlnbounce/02_enemies/${name}/${name}${number}/6_attack/ATTACK_00`, 10);
-        this.preloadImages(this.imagesDead, `../img/brawlnbounce/02_enemies/${name}/${name}${number}/5_dead/DIE_00`, 10);
-        this.preloadImages(this.imagesHurt, `../img/brawlnbounce/02_enemies/${name}/${name}${number}/4_hurt/HURT_00`, 10);
+        this.loadImage(`./img/brawlnbounce/02_enemies/${name}/${name}${number}/6_attack/ATTACK_000.png`)
+        this.preloadImages(this.imagesWalking, `./img/brawlnbounce/02_enemies/${name}/${name}${number}/2_walk/WALK_00`, 10);
+        this.preloadImages(this.imagesAttacking, `./img/brawlnbounce/02_enemies/${name}/${name}${number}/6_attack/ATTACK_00`, 10);
+        this.preloadImages(this.imagesDead, `./img/brawlnbounce/02_enemies/${name}/${name}${number}/5_dead/DIE_00`, 10);
+        this.preloadImages(this.imagesHurt, `./img/brawlnbounce/02_enemies/${name}/${name}${number}/4_hurt/HURT_00`, 10);
         this.animate();
     }
 
