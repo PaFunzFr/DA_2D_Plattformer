@@ -32,7 +32,7 @@ class World {
         this.collidingHandler.checkDistance();
         setInterval(() => {
             this.stopGame();
-        }, 100);
+        }, 30);
         setInterval(() => {
             this.collidingHandler.checkCollisions();
         }, 150);
@@ -114,6 +114,7 @@ class World {
     stopGame() {
         if (this.character.energy === 0 && !this.gameOver) {
             console.log("YOU DIED!");
+            deathSoundCharacter.play();
             this.gameOver = true;
             this.clearAllIntervals();
     

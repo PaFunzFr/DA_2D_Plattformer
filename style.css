@@ -36,7 +36,7 @@ button:hover {
 
 /* START SCREEN */
 .start {
-    display: none; /*toggle*/
+    display: flex; /*toggle*/
     flex-direction: column;
     position: fixed;
     top: 0;

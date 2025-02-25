@@ -38,6 +38,7 @@ class Character extends MovableObject {
 
     animate() {
         //this.isOnGround();
+        //MOVEMENT X / Y
         setInterval(() => {
             if (this.world.keyboard.clickedRight && this.x < this.world.level.levelEndX) {
                 this.moveRight(this.speedX);
@@ -53,7 +54,7 @@ class Character extends MovableObject {
 
         // ANIMATION SET (PICTURES)
         setInterval(() => {
-            if (this.isAboveGround() && !this.onObject) {
+            if (this.isAboveGround()) {
                 this.playAnimation(this.imagesJumping);
             } else {
                 if (!this.isJumping && this.world.keyboard.clickedRight || this.world.keyboard.clickedLeft) {
@@ -66,6 +67,6 @@ class Character extends MovableObject {
                     this.playAnimation(this.imagesIdle);
                 }
             }
-        }, 100);
+        }, 100); // 1 image per 100ms
     }
 }

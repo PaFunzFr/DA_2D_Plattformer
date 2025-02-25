@@ -26,12 +26,16 @@ class MovableObject extends DrawableObject {
     
     jump() {
         if(!this.isJumping) {
+            jumpSoundCharacter.play();
             this.isJumping = true;
             this.speedY = 11;
         }
     }
 
     hit(damage) {
+        if (this.character) {
+            hurtSoundCharacter.play(); // hitsound character
+        }
         this.energy -= damage;
         if(this.energy <= 0) {
             this.energy = 0;

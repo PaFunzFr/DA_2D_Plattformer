@@ -19,7 +19,7 @@ class Endboss extends MovableObject {
     constructor() {
         super();
         this.name = "dragonBoss";
-        this.attack ="fireball"
+        this.attackDragon = "fireball";
         this.otherDirection = true;
         this.offset = { top: 120, bottom: 190, left: 220, right: 220 };
         this.x = 2100;

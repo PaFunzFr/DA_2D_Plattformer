@@ -23,9 +23,10 @@ class ThrowableObject extends MovableObject {
             this.speedY = 5;
             this.applyGravity();
         } else {
+            //this.speedY = -3;
             this.fireMissile();
         }
-
+        console.log(this.y);
         console.log(this.x);
         
     }  

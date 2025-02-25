@@ -13,6 +13,7 @@ class Enemy extends MovableObject {
         super();
         this.x = positionX;
         this.name = name;
+        this.attackDragon = "fireball";
         this.getCharacterStat(name, level);
         this.y = 480 - this.height - this.yOffset;
         this.loadImage(`./img/02_enemies/${name}/${name}${level}/6_attack/ATTACK_000.png`)
@@ -49,11 +50,11 @@ class Enemy extends MovableObject {
 
     getDragonType(level) {
         this.setEnemyMetaStats(
-            0.15 + Math.random() * 0.25,
+            3 + Math.random() * 0.25,
             { top: 190, bottom: 150, left: 100, right: 100 }
         );
         if (level == 1) {
-            this.setEnemyLevelStats(150, 260, 360, 300);
+            this.setEnemyLevelStats(180, 260, 360, 300);
         } else if (level == 2) {
             this.setEnemyLevelStats(-30, 300, 350, 350);
         } else if (level == 3) {
@@ -64,8 +65,8 @@ class Enemy extends MovableObject {
 
     getOrkType(level) {
         this.setEnemyMetaStats(
-            this.enemySpeed = 0.45 + Math.random() * 0.55,
-            this.offset = { top: 120, bottom: 30, left: 55, right: 70 }
+            0.45 + Math.random() * 0.55,
+            { top: 120, bottom: 30, left: 55, right: 70 }
         );
         if (level == 1) {
             this.setEnemyLevelStats(0, 200, 250, 100);

@@ -18,9 +18,9 @@ class CollidingObject {
                 this.hitByFireBall = true;
                 this.world.character.hit(50);
                 this.world.statusBar.setPercentage(this.world.character.energy);
-                setTimeout(() => {
-                    this.hitByFireBall = false;
-                }, 2000);
+                    setTimeout(() => {
+                        this.hitByFireBall = false;
+                    }, 2000);
                 }
             if (missile.isOnGround()) {
                 this.world.missileObjects.splice(this.world.missileObjects.indexOf(missile), 1);
@@ -49,18 +49,26 @@ class CollidingObject {
                 if (enemy.currentlyDying) return;
     
                 // common enemies
-                if (this.world.character.isApproaching(enemy, 120) && enemy.name != "dragon") {
+                if (this.world.character.isApproaching(enemy, 120) &&
+                    enemy.name != "dragon" ||
+                    enemy.name != "dragonBoss") {
                     enemy.playAnimation(enemy.imagesAttacking);
                 } else {
                     enemy.playAnimation(enemy.imagesWalking);
                 }
     
-                //endboss && FIREBALL ANIMATION
-                if (enemy.name === "dragonBoss" && this.world.character.isApproaching(enemy, 250)) {
+                //Flying Enemies && FIREBALL ANIMATION
+                if (enemy.name === "dragon" &&
+                    this.world.character.isApproaching(enemy, 250) ||
+                    enemy.name === "dragonBoss" && 
+                    this.world.character.isApproaching(enemy, 250)) {
+
                     if (enemy.attackTriggered) return; 
     
                     enemy.attackTriggered = true;
                     enemy.isAttacking = true;
+                    soundAttackDragon.play();
+                    soundAttackDragon.loop = false;
                     let fireBall = this.createFlame(enemy);
                     fireBall.speedX = fireBall.speedX/10 + 5 * -1; // set direction
                     this.world.missileObjects.push(fireBall); // adds object to world / canvas
@@ -71,6 +79,8 @@ class CollidingObject {
                     }, 1000);
                     setTimeout(() => {
                         enemy.attackTriggered = false; 
+                        soundAttackDragon.pause();
+                        soundAttackDragon.currentTime = 0;
                     }, 3000); // attacking each 3000ms
                 }
 
@@ -78,10 +88,6 @@ class CollidingObject {
         }, 200);
     }
     
-    
-    endbossAttack() {
-
-    }
 
     throwObject() {
         let currentTime = Date.now();
@@ -117,20 +123,25 @@ class CollidingObject {
     }
 
     createFlame(object) {
-        let offsetX = object.width / 2;
-        let offsetY = object.height / 3;
-        let direction = object.otherDirection ? -1 : 1;
-        console.log(object.attack);
+        console.log(object.attackDragon);
         
-        return new ThrowableObject(
-            object.x + object.offset.right * 1,
-            object.currentPositionY + object.offset.top + 70,
-            object.attack, // its a fireball
-            object.otherDirection
-        );
+        if (object.name === "dragonBoss") {
+            return new ThrowableObject(
+                object.x + object.offset.right * 1,
+                object.currentPositionY + object.offset.top + 70,
+                object.attackDragon, // its a fireball
+                object.otherDirection
+            );
+        }
+        if (object.name === "dragon") {
+            return new ThrowableObject(
+                object.x + 20 * 1,
+                object.y + object.offset.top - 20,
+                object.attackDragon, // its a fireball
+                object.otherDirection
+            );
+        }
     }
-
-
 
     checkCollisionsThrowable() {
         let thrownObjects = this.world.throwableObjects;

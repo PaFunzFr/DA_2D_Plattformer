@@ -1,5 +1,6 @@
 const charSelection = document.getElementById('charSelection');
 const startScreen = document.getElementById('startScreen');
+backgroundMusic.loop = true;
 
 const characterContainer = [
     { 
@@ -24,6 +25,11 @@ const characterContainer = [
 
 
 function renderChars() {
+    setTimeout(() => {
+        backgroundMusic.play()
+    }, 1000);
+    victoryCry.play();
+    musicActive = false;
     charSelection.style.top = '15vh';
     charSelection.style.opacity = 1;
     charSelection.innerHTML = '';
@@ -40,3 +46,4 @@ function renderChars() {
     }
     charSelection.innerHTML += `<img class="char-background" src="./img/08_intro/background_ambiente.png">`
 }
+
