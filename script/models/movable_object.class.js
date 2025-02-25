@@ -97,7 +97,7 @@ class MovableObject extends DrawableObject {
     fireMissile() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
-                this.y -= this.speedY
+                this.y -= this.speedY;
                 this.speedY -= 0.02; // acceleration
                 this.x += this.speedX;
                 this.isOnGround();

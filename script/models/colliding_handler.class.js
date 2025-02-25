@@ -70,7 +70,13 @@ class CollidingObject {
                     soundAttackDragon.play();
                     soundAttackDragon.loop = false;
                     let fireBall = this.createFlame(enemy);
-                    fireBall.speedX = fireBall.speedX/10 + 5 * -1; // set direction
+                    if (enemy.name === "dragonBoss") {
+                        fireBall.speedX = fireBall.speedX/10 + 5 * -1; // set direction
+                    } else {
+                        fireBall.speedY = -5; // set gravity and speed Y
+                        fireBall.speedX = fireBall.speedX/10 + 5 * -1; // set direction and speed X
+                    }
+
                     this.world.missileObjects.push(fireBall); // adds object to world / canvas
 
                     setTimeout(() => {
@@ -98,6 +104,7 @@ class CollidingObject {
         
 
         if (this.world.keyboard.clickedD && cooldown >= 500) { // cooldown on throw by 0.5s
+            attackSoundCharacter.play();
             this.triggerThrowingObject(offsetX, offsetY, direction, currentTime);
         }
     }

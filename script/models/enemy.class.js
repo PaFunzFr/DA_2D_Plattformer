@@ -50,7 +50,7 @@ class Enemy extends MovableObject {
 
     getDragonType(level) {
         this.setEnemyMetaStats(
-            3 + Math.random() * 0.25,
+            1.5 + Math.random() * 0.25,
             { top: 190, bottom: 150, left: 100, right: 100 }
         );
         if (level == 1) {

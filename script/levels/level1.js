@@ -4,11 +4,12 @@ function loadLevel(levelNumber) {
         return new Level(
             // enemies
             [
-                new Enemy("dragon", 1, 500 + Math.random() * 100),
-                //new Enemy("ork", 1, 500 + Math.random() * 100),
-                //new Enemy("ork", 1, 700 + Math.random() * 100),
-                //new Enemy("ork", 1, 900 + Math.random() * 100),
-                //new Enemy("troll", 1, 1300 + Math.random() * 100),
+                new Enemy("dragon", 1, 2500 + Math.random() * 100),
+                new Enemy("dragon", 1, 1500 + Math.random() * 100),
+                new Enemy("ork", 1, 500 + Math.random() * 100),
+                new Enemy("ork", 1, 700 + Math.random() * 100),
+                new Enemy("ork", 1, 900 + Math.random() * 100),
+                new Enemy("troll", 1, 1300 + Math.random() * 100),
                 new Endboss()
             ],
             //clouds background
