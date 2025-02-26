@@ -40,11 +40,11 @@ class Enemy extends MovableObject {
             { top: 190, bottom: 70, left: 60, right: 100 }
         );
         if (level == 1) {
-            this.setEnemyLevelStats(-50, 360, 460, 300);
+            this.setEnemyLevelStats(-50, 360, 460, 40);
         } else if (level == 2) {
-            this.setEnemyLevelStats(-30, 300, 350, 350);
+            this.setEnemyLevelStats(-30, 300, 350, 50);
         } else if (level == 3) {
-            this.setEnemyLevelStats(-30, 300, 350, 400);
+            this.setEnemyLevelStats(-30, 300, 350, 70);
         }
     }
 
@@ -54,11 +54,11 @@ class Enemy extends MovableObject {
             { top: 190, bottom: 150, left: 100, right: 100 }
         );
         if (level == 1) {
-            this.setEnemyLevelStats(180, 260, 360, 300);
+            this.setEnemyLevelStats(180, 260, 360, 20);
         } else if (level == 2) {
-            this.setEnemyLevelStats(-30, 300, 350, 350);
+            this.setEnemyLevelStats(-30, 300, 350, 20);
         } else if (level == 3) {
-            this.setEnemyLevelStats(-30, 300, 350, 400);
+            this.setEnemyLevelStats(-30, 300, 350, 40);
         }
     }
 
@@ -69,11 +69,11 @@ class Enemy extends MovableObject {
             { top: 120, bottom: 30, left: 55, right: 70 }
         );
         if (level == 1) {
-            this.setEnemyLevelStats(0, 200, 250, 100);
+            this.setEnemyLevelStats(0, 200, 250, 20);
         } else if (level == 2) {
-            this.setEnemyLevelStats(0, 200, 250, 150);
+            this.setEnemyLevelStats(0, 200, 250, 20);
         } else if (level == 3) {
-            this.setEnemyLevelStats(0, 200, 250, 200);
+            this.setEnemyLevelStats(0, 200, 250, 20);
         }
     }
 

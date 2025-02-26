@@ -3,7 +3,7 @@ class StatusBar extends DrawableObject {
     percentage = 100;
     throwableAmount;
     
-    constructor(character, type, length, positionY, throwableAmount) {
+    constructor(character, type, length, positionX, positionY, throwableAmount) {
         super();
         this.character = character;
         this.throwableAmount = throwableAmount;
@@ -12,7 +12,7 @@ class StatusBar extends DrawableObject {
         this.length = length;
         this.width = 300;
         this.height= 70;
-        this.x = 10;
+        this.x = positionX;
         this.y = positionY;
         this.loadImage(`./img/06_statusbars/1_statusbar/${type}/${character}/B${this.initialImg}.png`);
         this.preloadImages(this.healthBarImages, `./img/06_statusbars/1_statusbar/${type}/${character}/B`, length);

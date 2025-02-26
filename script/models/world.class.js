@@ -14,13 +14,14 @@ class World {
     throwableAmount = 10;
     lastThrowTime = 0;
     gameOver = false;
+    bossTriggered = false;
 
     constructor(canvas, keyboard, level, levelNumber, character) {
         this.character = new Character(character);
         this.animations = new Animation();
-        this.statusBar = new StatusBar(character, "1_health", 6, 10, null);
-        this.weaponBar = new StatusBar(character, "2_weapons", 11, 50, this.throwableAmount);
-        //this.statusBarBoss = new StatusBar("dragon" + levelNumber, "1_health", 300, 0, null);
+        this.statusBar = new StatusBar(character, "1_health", 6, 10, 10, null);
+        this.weaponBar = new StatusBar(character, "2_weapons", 11, 10, 50, this.throwableAmount);
+        this.statusBarBoss = new StatusBar("dragon" + levelNumber, "1_health", 6, 410, 10, null);
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
         this.keyboard = keyboard;
@@ -58,7 +59,13 @@ class World {
         this.ctx.translate(-this.cameraX, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.weaponBar);
-        //this.addToMap(this.statusBarBoss);
+        if (this.character.x >= 1600) { // spawn if character reaches position x
+            if (!this.bossTriggerd) {
+                this.bossTriggerd = true;
+                playSound("dragonBoss", "death");
+            }
+            this.addToMap(this.statusBarBoss);
+        }
         this.collidingHandler.throwObject(); 
         requestAnimationFrame(this.draw.bind(this)); // bind(this) instead of let self = this and self.draw()
     } 
@@ -117,6 +124,7 @@ class World {
     stopGame() {
         if (this.character.energy === 0 && !this.gameOver) {
             playSound('character', 'death')
+            muteAllSounds(true);
             this.gameOver = true;
             this.clearAllIntervals();
             this.animations.characterDeath();

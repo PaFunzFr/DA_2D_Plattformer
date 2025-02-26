@@ -10,7 +10,7 @@ class Endboss extends MovableObject {
     floatingRange = 50;
     floatingSpeed = 2;
     initialY;
-    energy = 1000;
+    energy = 100;
     movingUp = false;
     isAttacking = false;
     yOffset = -120;

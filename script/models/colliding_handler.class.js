@@ -164,8 +164,12 @@ class CollidingObject {
             }
             this.world.level.enemies.forEach((enemy) => {
                 if (inAir && throwableObject.isColliding(enemy)) {
-                    enemy.hit(200);
-                    console.log(enemy.name + "hit by" + throwableObject.name)
+                    enemy.hit(20);
+                    console.log(enemy.name + "hit by" + throwableObject.name);
+                    if (enemy.name === "dragonBoss") {
+                        this.world.statusBarBoss.setPercentage(enemy.energy);
+                        console.log(enemy.energy);
+                    }
                     thrownObjects.splice(thrownObjects.indexOf(throwableObject), 1);
                     if (enemy.isDead()) {
                         this.world.animations.animateDeath(enemy);

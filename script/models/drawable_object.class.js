@@ -26,7 +26,7 @@ class DrawableObject {
         if (this instanceof Character || this instanceof Enemy || this instanceof Endboss || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = "2";
-            ctx.strokeStyle = "red";
+            ctx.strokeStyle = "transparent";
             ctx.rect(
                 this.x + this.offset.left, 
                 this.y + this.offset.top, 
