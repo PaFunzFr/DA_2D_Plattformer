@@ -16,6 +16,8 @@ class World {
     lastThrowTime = 0;
     gameOver = false;
     bossTriggered = false;
+    endboss;
+    levelNumber;
 
     constructor(canvas, keyboard, level, levelNumber, character) {
         this.character = new Character(character);
@@ -25,9 +27,11 @@ class World {
         this.statusBarBoss = new StatusBar("dragon" + levelNumber, "1_health", 6, 410, 10, null);
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
+        this.levelNumber = levelNumber;
         this.keyboard = keyboard;
         this.level = level;
         this.collectables = this.level.collectables;
+        this.endboss = this.level.enemies[this.level.enemies.length -1];
         this.setWorld();
         this.draw();
         this.runCollisionHandler();
@@ -132,15 +136,32 @@ class World {
         }
     }
     
-
     stopGame() {
         if (this.character.energy === 0 && !this.gameOver) {
-            playSound('character', 'death')
-            muteAllSounds(true);
-            this.gameOver = true;
-            this.clearAllIntervals();
-            this.animations.characterDeath();
+            this.gameOver();
         }
+        if (this.endboss.energy === 0 && !this.gameOver) {
+            this.statusBarBoss.img.src = `./img/06_statusbars/1_statusbar/1_health/dragon${this.levelNumber}/B6.png`;
+            this.nextLevel();
+        }
+    }
+
+    gameOver() {
+        playSound('character', 'death');
+        muteAllSounds(true);
+        this.gameOver = true;
+        this.clearAllIntervals();
+        this.animations.characterDeath();
+    }
+    
+    nextLevel() {
+        console.log("unlocked next level");
+        muteAllSounds(true);
+        this.gameOver = true;
+        setTimeout(() => {
+            this.clearAllIntervals();
+            playSound("other", "win");
+        }, 2000);
     }
     
 } 

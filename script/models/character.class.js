@@ -59,17 +59,12 @@ class Character extends MovableObject {
             } else {
                 if (!this.isJumping && this.world.keyboard.clickedRight || this.world.keyboard.clickedLeft) {
                     this.playAnimation(this.imagesWalking);
-                    console.log("walking");
-                    
                 } else if (this.isHurt()) {
                     this.playAnimation(this.imagesHurt);
-                    console.log("hurt");
                 } else if (this.world.keyboard.clickedD) {
                     this.playAnimation(this.imagesAttack);
-                    console.log("attacking");
                 } else {
                     this.playAnimation(this.imagesIdle);
-                    console.log("nothing");
                 }
             }
         }, 100);
