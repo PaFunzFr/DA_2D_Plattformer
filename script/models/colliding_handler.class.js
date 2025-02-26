@@ -68,6 +68,7 @@ class CollidingObject {
                     enemy.attackTriggered = true;
                     enemy.isAttacking = true;
                     sounds.dragon.attack.play();
+
                     let fireBall = this.createFlame(enemy);
                     if (enemy.name === "dragonBoss") {
                         fireBall.speedX = fireBall.speedX/10 + 5 * -1; // set direction

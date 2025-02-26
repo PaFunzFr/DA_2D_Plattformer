@@ -10,17 +10,15 @@ class MovableObject extends DrawableObject {
     };
     attackingFromAbove = false;
     currentlyDying = false;
-    killed = false;
+    killed = false; // check if it is used
 
     moveRight(speed) {
         this.x += speed;
-        //this.walkingSound.play();
         this.otherDirection = false;
     }
 
     moveLeft(speed) {
         this.x -= speed;
-        //this.walkingSound.play();
         this.otherDirection = true;
     }
     
@@ -34,7 +32,10 @@ class MovableObject extends DrawableObject {
 
     hit(damage) {
         if (this.character) {
-            sounds.character.hurt.play(); // hitsound character
+            playSound('character', 'hurt'); // hitsound character
+        }
+        if (this.name) {
+            playSound(this.name, 'hurt');
         }
         this.energy -= damage;
         if(this.energy <= 0) {
@@ -109,7 +110,7 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) {
             return true;
         } else {
-            return this.y + this.yOffset < 330
+            return this.y + this.yOffset < 335
         }
     }
 

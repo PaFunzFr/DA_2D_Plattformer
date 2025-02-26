@@ -7,7 +7,24 @@ body {
     overflow: hidden;
     height: 100vh;
     margin: 0;
-    background: linear-gradient(to top, rgb(22, 38, 0),rgb(84, 118, 39), rgb(36, 111, 158), rgb(2, 68, 109));
+    /*background: linear-gradient(to top, rgba(22, 38, 0, 0.35),rgba(84, 118, 39, 0.35), rgb(36, 111, 158), rgb(2, 68, 109));*/
+    background: linear-gradient(to top, rgb(38, 0, 0),rgb(118, 39, 39), rgb(36, 111, 158), rgb(2, 68, 109));
+}
+
+
+video {
+    position: fixed;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    mix-blend-mode: screen;
+    filter: blur(10px);
+    opacity: 0;
+    z-index: 3;
+    transition: all 1s ease;
 }
 
 button {
@@ -44,9 +61,10 @@ button:hover {
     justify-content: center;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(to top, rgb(22, 38, 0),rgb(84, 118, 39), rgb(36, 111, 158), rgb(2, 68, 109));
+    background: linear-gradient(to top, rgb(38, 0, 0),rgb(118, 39, 39), rgb(36, 111, 158), rgb(2, 68, 109));
     transition: all 2s ease;
     z-index: 2;
+    filter: brightness();
 }
 
 .img-container {
@@ -112,13 +130,15 @@ button:hover {
     top: -200%;
     opacity: 0;
     height: 70vh;
+    max-height: 800px;
+    transform: translateY(-50%);
     background-color: rgb(59, 54, 45);
     border-radius: 16px;
     border: 5px solid rgb(55, 38, 26);
     filter: drop-shadow(5px 5px 5px black);
     overflow: hidden;
     transition: all 1s ease;
-    z-index: 3;
+    z-index: 5;
 }
 
 .char-container {
@@ -215,8 +235,11 @@ button:hover {
 }
 
 canvas {
+    opacity: 0;
     background-color: black;
     border-radius: 16px;
+    z-index: 1;
+    transition: all 0.5s ease;
 }
 
 .char-select-old {

@@ -8,17 +8,19 @@ class World {
     cameraX = -100;
     statusBar;
     weaponBar;
+    statusBarBoss;
     throwableObjects = [];
     missileObjects = [];
     throwableAmount = 10;
     lastThrowTime = 0;
     gameOver = false;
 
-    constructor(canvas, keyboard, level, character) {
+    constructor(canvas, keyboard, level, levelNumber, character) {
         this.character = new Character(character);
         this.animations = new Animation();
         this.statusBar = new StatusBar(character, "1_health", 6, 10, null);
         this.weaponBar = new StatusBar(character, "2_weapons", 11, 50, this.throwableAmount);
+        //this.statusBarBoss = new StatusBar("dragon" + levelNumber, "1_health", 300, 0, null);
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
         this.keyboard = keyboard;
@@ -35,7 +37,7 @@ class World {
         }, 30);
         setInterval(() => {
             this.collidingHandler.checkCollisions();
-        }, 150);
+        }, 200);
         setInterval(() => {
             this.collidingHandler.checkCollisionsThrowable();
             //this.collidingHandler.enemyDead();
@@ -56,6 +58,7 @@ class World {
         this.ctx.translate(-this.cameraX, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.weaponBar);
+        //this.addToMap(this.statusBarBoss);
         this.collidingHandler.throwObject(); 
         requestAnimationFrame(this.draw.bind(this)); // bind(this) instead of let self = this and self.draw()
     } 
@@ -113,20 +116,10 @@ class World {
 
     stopGame() {
         if (this.character.energy === 0 && !this.gameOver) {
-            console.log("YOU DIED!");
-            deathSoundCharacter.play();
+            playSound('character', 'death')
             this.gameOver = true;
             this.clearAllIntervals();
-    
-            let frame = 0;
-            this.character.currentImage = 0;
-            let animationInterval = setInterval(() => {
-                this.character.playAnimation(this.character.imagesDead);
-                frame++;
-                if (frame >= this.character.imagesDead.length) {
-                    clearInterval(animationInterval);
-                }
-            }, 100);
+            this.animations.characterDeath();
         }
     }
     

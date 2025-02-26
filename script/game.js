@@ -11,21 +11,26 @@ function init() {
 
 function startGame(character) {
     sounds.environment.wind.play();
-    sounds.character.battlecry.play();
-    charSelection.style.opacity = '0';
-    charSelection.style.top = '';
-    startScreen.style.opacity = '0';
+    sounds.character[character].play();
     setTimeout(() => {
-        startScreen.style.display = 'none';
-    }, 2000);
-    if (typeof world !== "undefined" && world !== null) {
-        world.clearAllIntervals();
-    }
-    world = null;
-    let level = loadLevel(1);
-    world = new World(canvas, keyboard, level, character);
-    console.log(world.character);
+        charSelection.style.opacity = '0';
+        charSelection.style.top = '';
+        startScreen.style.opacity = '0';
+        canvas.style.zIndex = 4;
+        canvas.style.opacity = '1';
+        setTimeout(() => {
+            startScreen.style.display = 'none';
+        }, 2000);
+        if (typeof world !== "undefined" && world !== null) {
+            world.clearAllIntervals();
+        }
+        world = null;
+        let level = loadLevel(1);
+        world = new World(canvas, keyboard, level, "1", character);
+        console.log(world.character);
+    }, 800);
 }
+
 function isButtonClicked(event, buttonCode, classNameButton, boolean) {
     if (event.code === buttonCode) {
         keyboard[classNameButton] = boolean;

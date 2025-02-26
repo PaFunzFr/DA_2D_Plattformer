@@ -7,6 +7,7 @@ class Animation {
     }*/
 
     animateDeath(target) {
+        playSound(target.name, 'death')
         target.currentlyDying = true;
         let index = 0;
         if (!target.killed) { 
@@ -18,4 +19,18 @@ class Animation {
         }
         target.killed = true;
     }
+
+    characterDeath() {
+        let frame = 0;
+        this.world.character.currentImage = 0;
+        let animationInterval = setInterval(() => {
+            this.world.character.playAnimation(this.world.character.imagesDead);
+            frame++;
+            if (frame >= this.world.character.imagesDead.length) {
+                clearInterval(animationInterval);
+            }
+        }, 100);
+    }
+
 }
+

@@ -1,5 +1,6 @@
 const charSelection = document.getElementById('charSelection');
 const startScreen = document.getElementById('startScreen');
+const backgroundVideo = document.getElementById('backgroundVideo');
 
 
 const characterContainer = [
@@ -25,13 +26,16 @@ const characterContainer = [
 
 
 function renderChars() {
-    setTimeout(() => {
-        sounds.environment.background.play()
-    }, 1000);
-    sounds.other.win.play();
+    sounds.environment.background.play()
+    sounds.other.start.play();
     musicActive = false;
-    charSelection.style.top = '15vh';
+    charSelection.style.top = '50%';
     charSelection.style.opacity = 1;
+    backgroundVideo.style.opacity = 1;
+    startScreen.style.filter = "brightness(100)";
+    setTimeout(() => {
+        startScreen.style.filter = "brightness(1)";
+    }, 300);
     charSelection.innerHTML = '';
     for (let index = 0; index < characterContainer.length; index++) {
         let currentCharacter = characterContainer[index];

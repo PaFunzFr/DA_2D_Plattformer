@@ -27,9 +27,9 @@ class Enemy extends MovableObject {
     getCharacterStat(name, level) {
         if (name == "ork") {
             this.getOrkType(level);
-        } else if (name == "troll" && level == 1) {
+        } else if (name == "troll") {
             this.getTrollType(level);
-        } else if (name == "dragon" && level == 1) {
+        } else if (name == "dragon") {
             this.getDragonType(level);
         }
     }
