@@ -2,12 +2,7 @@ class MovableObject extends DrawableObject {
     yOffset = 50;
     energy = 100;
     lastHit = 0;
-    offset = {
-        top: 0,
-        bottom: 0,
-        right: 0,
-        left: 0
-    };
+
     attackingFromAbove = false;
     currentlyDying = false;
     killed = false; // check if it is used
@@ -54,11 +49,7 @@ class MovableObject extends DrawableObject {
         return timepassed < 500; 
     }
 
-    playAnimation(array) {
-        let index = this.currentImage % array.length;
-        this.img = array[index];
-        this.currentImage ++
-    }
+  
 
     isColliding(obj) {
         return (

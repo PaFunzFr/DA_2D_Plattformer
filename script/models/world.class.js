@@ -11,6 +11,7 @@ class World {
     statusBarBoss;
     throwableObjects = [];
     missileObjects = [];
+    collectables;
     throwableAmount = 10;
     lastThrowTime = 0;
     gameOver = false;
@@ -26,6 +27,7 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.level = level;
+        this.collectables = this.level.collectables;
         this.setWorld();
         this.draw();
         this.runCollisionHandler();
@@ -81,6 +83,7 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.missileObjects);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.collectables);
         this.addToMap(this.character);
     }
 
@@ -120,6 +123,15 @@ class World {
     resumeIntervall() {
         this.draw();
     }
+
+    spawnCollectableOnEnemyDeath(enemy) {
+        if (enemy.name === "troll") {
+            console.log("triggerCheck");
+            let drinkHorn = new Collectable("drinkhorn", enemy.x + 100);
+            this.collectables.push(drinkHorn);
+        }
+    }
+    
 
     stopGame() {
         if (this.character.energy === 0 && !this.gameOver) {

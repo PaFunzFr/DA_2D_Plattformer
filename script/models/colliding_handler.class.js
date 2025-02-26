@@ -1,6 +1,7 @@
 class CollidingObject {
     hitByFireBall = false;
     checkCollisions() {
+        // character with enemy
         this.world.level.enemies.forEach((enemy) => {
             if (this.world.character.isColliding(enemy)) {
                 if (this.world.character.attackingFromAbove && enemy.name === "ork") {
@@ -13,6 +14,7 @@ class CollidingObject {
                 }
             }
         });
+        // character with missiles
         this.world.missileObjects.forEach((missile) => {
             if (this.world.character.isColliding(missile) && !this.hitByFireBall) {
                 this.hitByFireBall = true;
@@ -26,6 +28,15 @@ class CollidingObject {
                 this.world.missileObjects.splice(this.world.missileObjects.indexOf(missile), 1);
             }
         });
+        // character with collectables
+        this.world.collectables.forEach((collectable) => {
+            if (this.world.character.isColliding(collectable)) {
+                console.log(collectable.name + " picked up");
+                
+                this.world.level.collectables.splice(this.world.level.collectables.indexOf(collectable), 1);
+            }
+        });
+        // character with boss
     }
 
 
@@ -166,12 +177,16 @@ class CollidingObject {
                 if (inAir && throwableObject.isColliding(enemy)) {
                     enemy.hit(20);
                     console.log(enemy.name + "hit by" + throwableObject.name);
+                    
                     if (enemy.name === "dragonBoss") {
                         this.world.statusBarBoss.setPercentage(enemy.energy);
                         console.log(enemy.energy);
                     }
                     thrownObjects.splice(thrownObjects.indexOf(throwableObject), 1);
                     if (enemy.isDead()) {
+                        if (enemy.name === "troll") {
+                            this.world.spawnCollectableOnEnemyDeath(enemy);
+                        }
                         this.world.animations.animateDeath(enemy);
                         setTimeout(() => {
                             this.world.level.enemies = this.world.level.enemies.filter(e => e !== enemy);

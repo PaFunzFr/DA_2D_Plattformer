@@ -44,7 +44,7 @@ const sounds = {
 
 //loops
 sounds.environment.background.loop = true;
-sounds.environment.background.volume = 0.6;
+sounds.environment.background.volume = 0.5;
 sounds.environment.wind.loop = true;
 
 

@@ -34,6 +34,10 @@ function loadLevel(levelNumber) {
             [
                 new backgroundObject("./img/04_background/layers/air_day.png", -1255),
             ],
+            // collectables
+            [
+                new Collectable("thorshammer", 100),
+            ]
         );
     }
     return null;
