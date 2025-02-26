@@ -46,6 +46,7 @@ const sounds = {
 sounds.environment.background.loop = true;
 sounds.environment.background.volume = 0.5;
 sounds.environment.wind.loop = true;
+sounds.environment.wind.volume = 0.7;
 
 
 //preload sounds with API

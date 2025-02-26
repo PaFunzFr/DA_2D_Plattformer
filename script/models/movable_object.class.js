@@ -101,7 +101,7 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) {
             return true;
         } else {
-            return this.y + this.yOffset < 335
+            return this.y + this.yOffset < 330
         }
     }
 
