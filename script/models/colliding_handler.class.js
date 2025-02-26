@@ -67,8 +67,7 @@ class CollidingObject {
     
                     enemy.attackTriggered = true;
                     enemy.isAttacking = true;
-                    soundAttackDragon.play();
-                    soundAttackDragon.loop = false;
+                    sounds.dragon.attack.play();
                     let fireBall = this.createFlame(enemy);
                     if (enemy.name === "dragonBoss") {
                         fireBall.speedX = fireBall.speedX/10 + 5 * -1; // set direction
@@ -85,8 +84,6 @@ class CollidingObject {
                     }, 1000);
                     setTimeout(() => {
                         enemy.attackTriggered = false; 
-                        soundAttackDragon.pause();
-                        soundAttackDragon.currentTime = 0;
                     }, 3000); // attacking each 3000ms
                 }
 
@@ -104,7 +101,7 @@ class CollidingObject {
         
 
         if (this.world.keyboard.clickedD && cooldown >= 500) { // cooldown on throw by 0.5s
-            attackSoundCharacter.play();
+            sounds.character.attack.play();
             this.triggerThrowingObject(offsetX, offsetY, direction, currentTime);
         }
     }

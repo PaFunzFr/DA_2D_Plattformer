@@ -1,6 +1,6 @@
 const charSelection = document.getElementById('charSelection');
 const startScreen = document.getElementById('startScreen');
-backgroundMusic.loop = true;
+
 
 const characterContainer = [
     { 
@@ -26,9 +26,9 @@ const characterContainer = [
 
 function renderChars() {
     setTimeout(() => {
-        backgroundMusic.play()
+        sounds.environment.background.play()
     }, 1000);
-    victoryCry.play();
+    sounds.other.win.play();
     musicActive = false;
     charSelection.style.top = '15vh';
     charSelection.style.opacity = 1;

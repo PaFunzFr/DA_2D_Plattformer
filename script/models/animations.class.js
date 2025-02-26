@@ -1,10 +1,10 @@
 class Animation {
 
-    playAnimation(obj, array) {
+  /*  playAnimation(obj, array) {
         let index = obj.currentImage % array.length;
         obj.img = array[index];
         obj.currentImage ++
-    }
+    }*/
 
     animateDeath(target) {
         target.currentlyDying = true;

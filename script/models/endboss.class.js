@@ -36,10 +36,10 @@ class Endboss extends MovableObject {
     animate() {
             setInterval(() => {
                 if (!this.currentlyDying && !this.isAttacking) {
-                this.playAnimation(this.imagesWalking);
+                    this.playAnimation(this.imagesWalking);
                 }
                 if (this.isHurt() && !this.currentlyDying) {
-                        this.playAnimation(this.imagesHurt);
+                    this.playAnimation(this.imagesHurt);
                 }
                 if (this.isAttacking) {
                     this.playAnimation(this.imagesAttacking)
@@ -48,7 +48,7 @@ class Endboss extends MovableObject {
 
             setInterval(() => {
                 if (!this.currentlyDying && !this.isAttacking) {
-                this.floatMovement();
+                    this.floatMovement();
                 } else if (this.isDead()) {
                     this.fallToGround();
                 }

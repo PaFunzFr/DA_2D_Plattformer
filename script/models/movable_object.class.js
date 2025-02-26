@@ -26,7 +26,7 @@ class MovableObject extends DrawableObject {
     
     jump() {
         if(!this.isJumping) {
-            jumpSoundCharacter.play();
+            sounds.character.jump.play();
             this.isJumping = true;
             this.speedY = 11;
         }
@@ -34,7 +34,7 @@ class MovableObject extends DrawableObject {
 
     hit(damage) {
         if (this.character) {
-            hurtSoundCharacter.play(); // hitsound character
+            sounds.character.hurt.play(); // hitsound character
         }
         this.energy -= damage;
         if(this.energy <= 0) {

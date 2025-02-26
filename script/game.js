@@ -10,7 +10,8 @@ function init() {
 }
 
 function startGame(character) {
-    battlecrySoundCharacter.play();
+    sounds.environment.wind.play();
+    sounds.character.battlecry.play();
     charSelection.style.opacity = '0';
     charSelection.style.top = '';
     startScreen.style.opacity = '0';
