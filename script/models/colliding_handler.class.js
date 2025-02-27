@@ -16,7 +16,7 @@ class CollidingObject {
         });
         // character with missiles
         this.world.missileObjects.forEach((missile) => {
-            if (this.world.character.isColliding(missile) && !this.hitByFireBall) {
+            if (this.world.character.isColliding(missile) && !this.hitByFireBall && !this.world.character.ignoreDamage) {
                 this.hitByFireBall = true;
                 this.world.character.hit(50);
                 this.world.statusBar.setPercentage(this.world.character.energy);
@@ -31,14 +31,31 @@ class CollidingObject {
         // character with collectables
         this.world.collectables.forEach((collectable) => {
             if (this.world.character.isColliding(collectable)) {
-                console.log(collectable.name + " picked up");
+                // get 50 health
+                if (collectable.name === "drinkhorn") {
+                    this.world.character.energy = Math.min(this.world.character.energy + 50, 100);
+                    this.world.statusBar.setPercentage(this.world.character.energy);
+                }
+                // god mode 5s
+                else if (collectable.name === "thorshammer") {
+                    this.world.character.ignoreDamage = true;
+                    this.world.character.energy = 100;
+                    this.world.statusBar.setPercentage(this.world.character.energy);
+                    setTimeout(() => {
+                        this.world.character.ignoreDamage = false;
+                    }, 5000);
+                } else {
+                    console.log(collectable.name + " picked up");
+                    this.world.throwableAmount = Math.min(this.world.throwableAmount + 5, 10);
+                    this.world.weaponBar.setWeaponAmount(this.world.throwableAmount);
+                }
+
                 
                 this.world.level.collectables.splice(this.world.level.collectables.indexOf(collectable), 1);
             }
         });
         // character with boss
     }
-
 
     jumpKill(enemy) {
         enemy.hit(100);
@@ -174,7 +191,7 @@ class CollidingObject {
                 inAir = true;
             }
             this.world.level.enemies.forEach((enemy) => {
-                if (inAir && throwableObject.isColliding(enemy)) {
+                if (inAir && throwableObject.isColliding(enemy) && !enemy.isDead()) {
                     enemy.hit(20);
                     console.log(enemy.name + "hit by" + throwableObject.name);
                     

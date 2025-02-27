@@ -225,13 +225,23 @@ button:hover {
 .mobile-button {
     position: absolute;
     bottom: 0px;
-    left: 50px;
+    user-select: none;
     transform: translate(-50%, -50%);
     background: #ffa904;
     color: white;
     padding: 5px 10px;
     border-radius: 16px;
     border: 3px solid white;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+.btnleft {
+    left: 50px;
+}
+
+.btnright {
+    left: 200px;
 }
 
 canvas {

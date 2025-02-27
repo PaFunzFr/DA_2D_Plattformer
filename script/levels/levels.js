@@ -1,4 +1,4 @@
-function loadLevel(levelNumber) {
+function loadLevel(levelNumber, character) {
     if (levelNumber === 1) {
         // constructor (enemies, clouds, backgroundObjects, air)
         return new Level(
@@ -78,6 +78,7 @@ function loadLevel(levelNumber) {
             // collectables
             [
                 new Collectable("thorshammer", 100),
+                new Collectable("axe", -400),
             ]
         );
     };
@@ -119,6 +120,7 @@ function loadLevel(levelNumber) {
             // collectables
             [
                 new Collectable("thorshammer", 100),
+                new Collectable(character, -400),
             ]
         );
     }
