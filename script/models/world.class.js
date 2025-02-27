@@ -32,9 +32,12 @@ class World {
         this.level = level;
         this.collectables = this.level.collectables;
         this.endboss = this.level.enemies[this.level.enemies.length -1];
-        this.setWorld();
-        this.draw();
-        this.runCollisionHandler();
+        setTimeout(() => {
+            this.setWorld();
+            this.draw();
+            this.runCollisionHandler();
+            mobileInterface.style.display = 'block';
+        }, 2500);
     }
 
     runCollisionHandler() {

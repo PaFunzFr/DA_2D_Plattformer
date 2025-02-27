@@ -9,17 +9,22 @@
     <link rel="icon" href=""><!--add favicon link-->
 </head>
 
-<body onload="init()">
+<body>
     <video id="backgroundVideo" autoplay loop muted playsinline>
         <source src="./video/firebackground.mp4" type="video/mp4">
     </video>
     <section class="start" id="startScreen">
-        <img src="./img/08_intro/game_title.png">
+
         <div class="img-container">
+            <img class="title-img" src="./img/08_intro/game_title.png">
             <img class="main-img" id="mainImgEnemies" src="./img/08_intro/background_enemies.png">
             <img class="main-img" id="mainImgHeroes" src="./img/08_intro/background_heroes.png">
         </div>
         <button class="load-characters" onclick="renderChars()">Start</button>
+    </section>
+
+    <section class="turn-device">
+        <h3>Please turn your device to landscape mode to start game</h3>
     </section>
 
     <section class="character-selection" id="charSelection">
@@ -27,21 +32,24 @@
     </section>
 
     <section class="game">
-        <img class="title-game" src="./img/08_intro/game_title.png">
         <div id="gameContainer">
             <canvas id="canvas" width="720" height="480"></canvas>
-            <img id="mobileLeft" class="mobile-button btn-left" src="./img/09_mobile/left.png">
-            <img id="mobileRight" class="mobile-button btn-right" src="./img/09_mobile/right.png">
-            <img id="mobileJump" class="mobile-button btn-jump" src="./img/09_mobile/jump.png">
-            <img id="mobileAttack" class="mobile-button btn-attack" src="./img/09_mobile/attack.png">
+            <div id="mobileInterface">
+                <img id="mobileLeft" class="mobile-button btn-left" src="./img/09_mobile/left.png">
+                <img id="mobileRight" class="mobile-button btn-right" src="./img/09_mobile/right.png">
+                <img id="mobileJump" class="mobile-button btn-jump" src="./img/09_mobile/jump.png">
+                <img id="mobileAttack" class="mobile-button btn-attack" src="./img/09_mobile/attack.png">
+                <h2 id="levelInfo">Level 3</h2>
+                <h2 id="menuBtn">menu</h2>
+            </div>
         </div>
-        <h3 class="current-level">Level 1</3>
+        <!--<h3 class="current-level">Level 1</3>
         <div class="char-select-old">
             <button id="startGame1" onclick="startGame(`club`)">Ulfred</button>
             <button id="startGame2" onclick="startGame(`axe`)">Rasnak</button>
             <button id="startGame" onclick="startGame(`hammer`)">Jognyr</button>
         </div>
-        <button id="fullScreen" onclick="fullscreen()">Fullscreen</button>
+        <button id="fullScreen" onclick="fullscreen()">Fullscreen</button>-->
     </section>
 </body>
 <script src="./script/sounds/sounds.js"></script>
@@ -60,7 +68,10 @@
 <script src="./script/models/keyboard.class.js"></script>
 <script src="./script/models/level.class.js"></script>
 <script src="./script/models/endboss.class.js"></script>
+<script src="./script/characters/characters.js"></script>
 <script src="./script/levels/levels.js"></script>
+<script src="./script/controls.js"></script>
 <script src="./script/game.js"></script>
+<script src="./script/templates/templates.js"></script>
 <script src="./script/script.js"></script>
 </html>

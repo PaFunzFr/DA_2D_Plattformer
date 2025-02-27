@@ -33,7 +33,13 @@ class Character extends MovableObject {
         this.preloadImages(this.imagesDead, `./img/01_characters/${character}/5_dead/DIE_00`, 5);
         this.preloadImages(this.imagesAttack, `./img/01_characters/${character}/6_attack/ATTACK_00`, 5)
         this.applyGravity();
-        this.animate();
+        this.startMovementAfterDelay();
+    }
+
+    startMovementAfterDelay() {
+        setTimeout(() => {
+            this.animate();  
+        }, 2500);  
     }
 
     animate() {

@@ -21,8 +21,15 @@ class Enemy extends MovableObject {
         this.preloadImages(this.imagesAttacking, `./img/02_enemies/${name}/${name}${level}/6_attack/ATTACK_00`, 10);
         this.preloadImages(this.imagesDead, `./img/02_enemies/${name}/${name}${level}/5_dead/DIE_00`, 10);
         this.preloadImages(this.imagesHurt, `./img/02_enemies/${name}/${name}${level}/4_hurt/HURT_00`, 5);
-        this.animate();
+        this.startMovementAfterDelay();
     }
+
+    startMovementAfterDelay() {
+        setTimeout(() => {
+            this.animate();  
+        }, 2500);  
+    }
+
 
     getCharacterStat(name, level) {
         if (name == "ork") {

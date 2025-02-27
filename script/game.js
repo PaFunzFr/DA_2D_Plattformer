@@ -1,8 +1,8 @@
 let world;
-let keyboard = new Keyboard();
 const startButton = document.getElementById('startButton');
 const canvas = document.getElementById('canvas');
 const gameContainer = document.getElementById('gameContainer');
+const mobileInterface = document.getElementById('mobileInterface');
 
 function init() {
     //world = new World(canvas, keyboard, level1);
@@ -12,6 +12,7 @@ function init() {
 function startGame(character) {
     sounds.environment.wind.play();
     sounds.character[character].play();
+    let level = loadLevel(3, character);
     setTimeout(() => {
         charSelection.style.opacity = '0';
         charSelection.style.top = '';
@@ -25,76 +26,11 @@ function startGame(character) {
             world.clearAllIntervals();
         }
         world = null;
-        let level = loadLevel(3, character);
         world = new World(canvas, keyboard, level, "3", character);
         console.log(world.character);
     }, 800);
 }
 
-function isButtonClicked(event, buttonCode, classNameButton, boolean) {
-    if (event.code === buttonCode) {
-        keyboard[classNameButton] = boolean;
-    }
-}
-
-document.addEventListener("keydown", (event) => {
-    isButtonClicked(event, "ArrowRight", "clickedRight", true);
-    isButtonClicked(event, "ArrowLeft", "clickedLeft", true);
-    isButtonClicked(event, "ArrowUp", "clickedUp", true);
-    isButtonClicked(event, "ArrowDown", "clickedDown", true);
-    isButtonClicked(event, "Space", "clickedSpace", true);
-    isButtonClicked(event, "KeyD", "clickedD", true);
-});
-
-document.addEventListener("keyup", (event) => {
-    isButtonClicked(event, "ArrowRight", "clickedRight", false);
-    isButtonClicked(event, "ArrowLeft", "clickedLeft", false);
-    isButtonClicked(event, "ArrowUp", "clickedUp", false);
-    isButtonClicked(event, "ArrowDown", "clickedDown", false);
-    isButtonClicked(event, "Space", "clickedSpace", false);
-    isButtonClicked(event, "KeyD", "clickedD", false);
-});
-
-// mobile devices
-const testBtnRight = document.getElementById("testBtnRight");
-const testBtnLeft = document.getElementById("testBtnLeft");
-
-document.addEventListener("touchend", () => {
-    keyboard.clickedLeft = false;
-    keyboard.clickedRight = false;
-});
-
-testBtnRight.addEventListener("touchstart", (e) => {
-    e.preventDefault();
-    keyboard.clickedRight = true;  
-});
-
-testBtnRight.addEventListener("touchend", (e) => {
-    e.preventDefault();
-    keyboard.clickedRight = false;  
-});
-
-testBtnLeft.addEventListener("touchstart", (e) => {
-    e.preventDefault();
-    keyboard.clickedLeft = true; 
-});
-
-testBtnLeft.addEventListener("touchend", (e) => {
-    e.preventDefault();
-    keyboard.clickedLeft = false; 
-});
-
-
-
-
-document.addEventListener("touchend", (event) => {
-    isButtonClicked(event, "ArrowRight", "clickedRight", false);
-    isButtonClicked(event, "ArrowLeft", "clickedLeft", false);
-    isButtonClicked(event, "ArrowUp", "clickedUp", false);
-    isButtonClicked(event, "ArrowDown", "clickedDown", false);
-    isButtonClicked(event, "Space", "clickedSpace", false);
-    isButtonClicked(event, "KeyD", "clickedD", false);
-});
 
 // toggle Fullscreen
 function fullscreen() {
