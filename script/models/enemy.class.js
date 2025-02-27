@@ -56,9 +56,9 @@ class Enemy extends MovableObject {
         if (level == 1) {
             this.setEnemyLevelStats(180, 260, 360, 20);
         } else if (level == 2) {
-            this.setEnemyLevelStats(-30, 300, 350, 20);
+            this.setEnemyLevelStats(150, 260, 360, 20);
         } else if (level == 3) {
-            this.setEnemyLevelStats(-30, 300, 350, 40);
+            this.setEnemyLevelStats(100, 260, 360, 20);
         }
     }
 

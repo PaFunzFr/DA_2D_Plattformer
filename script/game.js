@@ -25,8 +25,8 @@ function startGame(character) {
             world.clearAllIntervals();
         }
         world = null;
-        let level = loadLevel(1);
-        world = new World(canvas, keyboard, level, "1", character);
+        let level = loadLevel(3);
+        world = new World(canvas, keyboard, level, "3", character);
         console.log(world.character);
     }, 800);
 }
@@ -55,14 +55,7 @@ document.addEventListener("keyup", (event) => {
     isButtonClicked(event, "KeyD", "clickedD", false);
 });
 
-// zum verständnis: 
-    /*
-    character.src = "../img/2_character_pepe/1_idle/long_idle/I-11.png";
-    setTimeout(() => {
-        ctx.drawImage(character, 20, 20, 50, 150); // x, y, width, height
-    }, 2000);
-    */
-
+// toggle Fullscreen
 function fullscreen() {
     gameContainer.style.width = "100vw";
     gameContainer.style.height = "100vh";

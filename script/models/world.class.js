@@ -138,7 +138,9 @@ class World {
     
     stopGame() {
         if (this.character.energy === 0 && !this.gameOver) {
-            this.gameOver();
+            console.log("game over");
+            
+            this.endGame();
         }
         if (this.endboss.energy === 0 && !this.gameOver) {
             this.statusBarBoss.img.src = `./img/06_statusbars/1_statusbar/1_health/dragon${this.levelNumber}/B6.png`;
@@ -146,7 +148,7 @@ class World {
         }
     }
 
-    gameOver() {
+    endGame() {
         playSound('character', 'death');
         muteAllSounds(true);
         this.gameOver = true;
