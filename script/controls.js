@@ -30,7 +30,7 @@ const btnMobileRight = document.getElementById("mobileRight");
 const btnMobileJump = document.getElementById("mobileJump");
 const btnMobileAttack = document.getElementById("mobileAttack");
 
-
+/*
 document.addEventListener("touchend", () => {
     keyboard.clickedLeft = false;
     keyboard.clickedRight = false;
@@ -39,7 +39,7 @@ document.addEventListener("touchend", () => {
     keyboard.clickedSpace = false;
     keyboard.clickedD = false;
 });
-
+*/
 btnMobileRight.addEventListener("touchstart", (e) => {
     e.preventDefault();
     keyboard.clickedRight = true;  
