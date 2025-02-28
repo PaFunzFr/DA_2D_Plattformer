@@ -39,6 +39,9 @@ class World {
             this.runCollisionHandler();
             if (nextLevelTriggered) {
                 this.reloadEnemyAnimations();
+                this.level.clouds.forEach((cloud) => {
+                    cloud.animate();
+                })
             }
             mobileInterface.style.display = 'block';
             gameDialog.style.display = 'none';

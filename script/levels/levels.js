@@ -69,7 +69,7 @@ function loadLevel(levelNumber, character) {
             ],
             //backgroundObjects
             [
-                new backgroundObject("./img/04_background/layers/1_first_layer/1.png", -1255),
+                new backgroundObject("./img/04_background/layers/1_first_layer/2.jpg", -1255),
             ],
             //air
             [

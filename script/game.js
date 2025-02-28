@@ -101,6 +101,9 @@ function togglePauseGame() {
 
 function nextStage() {
     nextLevelTriggered = true;
+    if (!mutedGlobal) {
+        muteAllSounds(false);
+    }
     if (world.levelNumber === 1) {
         startGame(world.character.character, 2)
     } else {
