@@ -38,6 +38,7 @@ class World {
             this.draw();
             this.runCollisionHandler();
             mobileInterface.style.display = 'block';
+            gameDialog.style.display = 'none';
             levelInfo.innerHTML = 'stage ' + levelNumber;
         }, 2500);
     }
@@ -142,15 +143,17 @@ class World {
         }
     }
 
-    pauseGame() {            
+    pauseGame() {      
         setTimeout(() => {
-        this.paused = !this.paused;
+        this.paused = !this.paused;    
         if (this.paused && !this.gameOver) {
                 muteAllSounds(true);
                 this.clearAllIntervals();
         } else if (!this.gameOver){
             console.log("Game Resumed");
-            muteAllSounds(true);
+            if (!mutedGlobal) {
+                muteAllSounds(false);
+            }
             this.runCollisionHandler();
             this.level.enemies.forEach((enemy) => {
                 enemy.animate();
@@ -171,12 +174,17 @@ class World {
     stopGame() {
         if (this.character.energy === 0 && !this.gameOver) {
             console.log("game over");
-            
             this.endGame();
+            setTimeout(() => {
+                renderGameOver();
+            }, 1900);
         }
         if (this.endboss.energy === 0 && !this.gameOver) {
             this.statusBarBoss.img.src = `./img/06_statusbars/1_statusbar/1_health/dragon${this.levelNumber}/B6.png`;
             this.nextLevel();
+            setTimeout(() => {
+                renderNextStageDialog();
+            }, 1900);
         }
     }
 

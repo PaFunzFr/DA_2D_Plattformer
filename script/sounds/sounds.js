@@ -71,6 +71,8 @@ function playSound(target, sound) {
 
 
 function muteAllSounds(mute) {
+    sounds.environment.background.muted = mute;
+    sounds.environment.wind.muted = mute;
     Object.values(sounds).forEach(category => {
         Object.values(category).forEach(sound => {
             if (sound instanceof Audio) {

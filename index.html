@@ -27,7 +27,7 @@
         <div class="start-menu">
             <img src="./img/09_mobile/info.png" alt="" class="global-button" id="globalInfoBtn">
             <button class="load-characters" onclick="renderChars()">Start</button>
-            <img onclick="globalMute()" src="./img/09_mobile/mute.png" alt="" class="global-button" id="globalMuteBtn">
+            <img onclick="globalMute(event)" src="./img/09_mobile/mute.png" alt="" class="global-button" id="globalMuteBtn">
         </div>
 
     </section>
@@ -49,8 +49,8 @@
                 <img id="mobileRight" class="mobile-button" src="./img/09_mobile/right.png">
                 <img id="mobileJump" class="mobile-button" src="./img/09_mobile/jump.png">
                 <img id="mobileAttack" class="mobile-button" src="./img/09_mobile/attack.png">
-                <img id="gamePause" class="mobile-button" src="./img/09_mobile/pause.png">
-                <img id="gameMute" class="mobile-button" src="./img/09_mobile/mute.png">
+                <img id="gamePause" onclick="togglePauseGame()"class="mobile-button" src="./img/09_mobile/pause.png">
+                <img id="gameMute" onclick="globalMute(event)" class="mobile-button" src="./img/09_mobile/mute.png">
                 <img id="gameFullscreen" onclick="toggleFullscreen()" class="mobile-button" src="./img/09_mobile/fullscreen.png">
                 <h2 id="levelInfo">Level 3</h2>
             </div>

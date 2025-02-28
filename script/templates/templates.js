@@ -19,8 +19,8 @@ function renderPauseMenu() {
     gameDialog.style.display = 'flex';
     gameDialog.innerHTML = `
             <h2>Paused Game</h2>
-            <button id="resumeGame">Resume</button>
-            <button id="quitGame">Quit Game</button>
+            <button id="resumeGame" onclick="togglePauseGame()">Resume</button>
+            <button id="quitGame" onclick="reloadSite()">Quit Game</button>
     `;
     return gameDialog.innerHTML;
 }
@@ -30,12 +30,12 @@ function renderGameOver() {
     gameDialog.innerHTML = `
             <h2>You have lost!</h2>
             <button id="retryGame">Retry</button>
-            <button id="quitGame">Quit Game</button>
+            <button id="quitGame" onclick="reloadSite()">Quit Game</button>
     `;
     return gameDialog.innerHTML;
 }
 
-function renderNextLevel() {
+function renderNextStageDialog() {
     gameDialog.style.display = 'flex';
     gameDialog.innerHTML = `
             <h2>You have won!</h2>
@@ -52,6 +52,14 @@ function renderWon() {
             <h3>The minions who threatened your land and your people are history!
             You have vanquished them! </h3>
             <button id="quitGame">Restart</button>
+    `;
+    return gameDialog.innerHTML;
+}
+
+function renderLoadingSpinner() {
+    gameDialog.style.display = 'flex';
+    gameDialog.innerHTML = `
+            <div id="loadingSpinner" class="spinner"></div>
     `;
     return gameDialog.innerHTML;
 }

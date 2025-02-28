@@ -4,6 +4,8 @@ const canvas = document.getElementById('canvas');
 const gameContainer = document.getElementById('gameContainer');
 const mobileInterface = document.getElementById('mobileInterface');
 const levelInfo = document.getElementById('levelInfo');
+const gameMuteBtn = document.getElementById("gameMute");
+const gameDialog = document.getElementById('gameDialog');
 
 function init() {
     //world = new World(canvas, keyboard, level1);
@@ -14,21 +16,19 @@ function startGame(character, levelNumber) {
     sounds.environment.wind.play();
     sounds.character[character].play();
     let level = loadLevel(levelNumber, character);
+    setMuteIconOnStart();
     setTimeout(() => {
         charSelection.style.opacity = '0';
         charSelection.style.top = '';
-        startScreen.style.opacity = '0';
         canvas.style.zIndex = 4;
         canvas.style.opacity = '1';
-        setTimeout(() => {
-            startScreen.style.display = 'none';
-        }, 2000);
         if (typeof world !== "undefined" && world !== null) {
             world.clearAllIntervals();
         }
         world = null;
         world = new World(canvas, keyboard, level, levelNumber, character);
         console.log(world.character);
+        renderLoadingSpinner();
     }, 800);
 }
 
@@ -63,10 +63,37 @@ document.getElementById("fullscreenButton").onclick = toggleFullscreen;
 
 
 // TEST mute BUTTON
-const globalMuteBtn = document.getElementById("globalMuteBtn");
 
-function globalMute() {
+
+function globalMute(event) {
+    if (startedMuted && mutedGlobal) {
+        sounds.environment.wind.play();
+        sounds.environment.background.play();
+    }
     mutedGlobal = !mutedGlobal;
     console.log(mutedGlobal);
     muteAllSounds(mutedGlobal ? true : false);
+    event.target.src = mutedGlobal ? "./img/09_mobile/muted.png" : "./img/09_mobile/mute.png"
+}
+
+function setMuteIconOnStart() {
+    if (mutedGlobal) {
+        gameMuteBtn.src = "./img/09_mobile/muted.png"
+    } else {
+        gameMuteBtn.src = "./img/09_mobile/mute.png"
+    }
+}
+
+// test pause game button
+const gamePauseBtn = document.getElementById("gamePause");
+
+function togglePauseGame() {
+    world.pauseGame();
+    if (!world.paused) {
+        renderPauseMenu();
+    } else if (gameDialog.style.display = "flex"){
+        setMuteIconOnStart();
+        gameDialog.style.display = 'none';
+        gameDialog.innerHTML = "";
+    }
 }

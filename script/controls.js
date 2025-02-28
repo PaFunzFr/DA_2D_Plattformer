@@ -33,17 +33,7 @@ const btnMobileRight = document.getElementById("mobileRight");
 const btnMobileJump = document.getElementById("mobileJump");
 const btnMobileAttack = document.getElementById("mobileAttack");
 const btnFullscreen = document.getElementById("gameFullscreen");
-
-/*
-document.addEventListener("touchend", () => {
-    keyboard.clickedLeft = false;
-    keyboard.clickedRight = false;
-    keyboard.clickedUp = false;
-    keyboard.clickedDown = false;
-    keyboard.clickedSpace = false;
-    keyboard.clickedD = false;
-});
-*/
+const btnGameMute = document.getElementById("gameMute");
 
 document.addEventListener("touchmove", (e) => {
     e.preventDefault(); // prevents scrolling
