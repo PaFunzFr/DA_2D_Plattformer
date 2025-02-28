@@ -37,6 +37,9 @@ class World {
             this.setWorld();
             this.draw();
             this.runCollisionHandler();
+            if (nextLevelTriggered) {
+                this.reloadEnemyAnimations();
+            }
             mobileInterface.style.display = 'block';
             gameDialog.style.display = 'none';
             levelInfo.innerHTML = 'stage ' + levelNumber;
@@ -53,7 +56,6 @@ class World {
         }, 200);
         setInterval(() => {
             this.collidingHandler.checkCollisionsThrowable();
-            //this.collidingHandler.enemyDead();
         }, 30);
     }
 
@@ -76,6 +78,7 @@ class World {
             if (!this.bossTriggerd) {
                 this.bossTriggerd = true;
                 playSound("dragonBoss", "death");
+                this.endboss.enemySpeed = 1 * this.levelNumber;
             }
             this.addToMap(this.statusBarBoss);
         }
@@ -154,21 +157,29 @@ class World {
             if (!mutedGlobal) {
                 muteAllSounds(false);
             }
-            this.runCollisionHandler();
-            this.level.enemies.forEach((enemy) => {
-                enemy.animate();
-                setTimeout(() => {
-                    enemy.isAttacking = false;
-                    enemy.attackTriggered = false;
-                }, 500);
-            });
-            this.missileObjects.forEach((missile) => { missile.animate(); });
-            this.throwableObjects.forEach((object) => { object.animate(); });
-            this.character.animate();
-            this.character.applyGravity();
-            this.draw(); 
+            this.reloadAnimations();
         }
     }, 500);
+    }
+
+    reloadAnimations() {
+        this.runCollisionHandler();
+        this.reloadEnemyAnimations()
+        this.missileObjects.forEach((missile) => { missile.animate(); });
+        this.throwableObjects.forEach((object) => { object.animate(); });
+        this.character.animate();
+        this.character.applyGravity();
+        this.draw(); 
+    }
+
+    reloadEnemyAnimations() {
+        this.level.enemies.forEach((enemy) => {
+            enemy.animate();
+            setTimeout(() => {
+                enemy.isAttacking = false;
+                enemy.attackTriggered = false;
+            }, 500);
+        });
     }
     
     stopGame() {
@@ -183,7 +194,11 @@ class World {
             this.statusBarBoss.img.src = `./img/06_statusbars/1_statusbar/1_health/dragon${this.levelNumber}/B6.png`;
             this.nextLevel();
             setTimeout(() => {
-                renderNextStageDialog();
+                if (this.endboss.level != "3") {
+                    renderNextStageDialog();
+                } else {
+                    renderWon();
+                }
             }, 1900);
         }
     }

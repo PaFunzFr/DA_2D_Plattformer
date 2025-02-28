@@ -1,6 +1,7 @@
 class Endboss extends MovableObject {
     width = 670;
     height = 470;
+    enemySpeed = 0;
     currentImage = 0;
     imagesWalking = [];
     imagesAttacking = [];
@@ -15,10 +16,12 @@ class Endboss extends MovableObject {
     isAttacking = false;
     yOffset = -120;
     attack;
+    level;
 
     constructor(level) {
         super();
         this.name = "dragonBoss";
+        this.level = level;
         this.attackDragon = "fireball";
         this.otherDirection = true;
         this.offset = { top: 120, bottom: 190, left: 220, right: 220 };
@@ -49,11 +52,14 @@ class Endboss extends MovableObject {
             setInterval(() => {
                 if (!this.currentlyDying && !this.isAttacking) {
                     this.floatMovement();
+                    this.moveLeft(this.enemySpeed);
                 } else if (this.isDead()) {
                     this.fallToGround();
                 }
             }, 30);
     }
+
+
 
     fallToGround() {
         if (!this.onGround) {

@@ -8,7 +8,7 @@ function renderCharSelection() {
                 <h3>${currentCharacter.title}</h3>
                 <img class="char-img" src="./img/01_characters/${currentCharacter.weapon}/6_attack/ATTACK_002.png"/>
                 <p class="character-description">${currentCharacter.story}</p>
-                <button class="start-game" id="startGame${index}" onclick="startGame('${currentCharacter.weapon}', 2)">Choose ${currentCharacter.name}</button>
+                <button class="start-game" id="startGame${index}" onclick="startGame('${currentCharacter.weapon}', 1)">Choose ${currentCharacter.name}</button>
             </div>`
     }
     charSelection.innerHTML += `<img class="char-background" src="./img/08_intro/background_ambiente.png">`
@@ -29,7 +29,7 @@ function renderGameOver() {
     gameDialog.style.display = 'flex';
     gameDialog.innerHTML = `
             <h2>You have lost!</h2>
-            <button id="retryGame">Retry</button>
+            <button id="retryGame" onclick="retryStage()">Retry</button>
             <button id="quitGame" onclick="reloadSite()">Quit Game</button>
     `;
     return gameDialog.innerHTML;
@@ -39,8 +39,8 @@ function renderNextStageDialog() {
     gameDialog.style.display = 'flex';
     gameDialog.innerHTML = `
             <h2>You have won!</h2>
-            <button id="nextGame">next Stage</button>
-            <button id="quitGame">Quit Game</button>
+            <button id="nextGame" onclick="nextStage()">next Stage</button>
+            <button id="quitGame" onclick="reloadSite()">Quit Game</button>
     `;
     return gameDialog.innerHTML;
 }
@@ -51,7 +51,7 @@ function renderWon() {
             <h2>You have won!</h2>
             <h3>The minions who threatened your land and your people are history!
             You have vanquished them! </h3>
-            <button id="quitGame">Restart</button>
+            <button id="quitGame" onclick="reloadSite()">Restart Game</button>
     `;
     return gameDialog.innerHTML;
 }

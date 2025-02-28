@@ -1,4 +1,4 @@
-let world;
+let nextLevelTriggered = false;
 const startButton = document.getElementById('startButton');
 const canvas = document.getElementById('canvas');
 const gameContainer = document.getElementById('gameContainer');
@@ -27,6 +27,7 @@ function startGame(character, levelNumber) {
         }
         world = null;
         world = new World(canvas, keyboard, level, levelNumber, character);
+        world.pause = false;
         console.log(world.character);
         renderLoadingSpinner();
     }, 800);
@@ -96,4 +97,17 @@ function togglePauseGame() {
         gameDialog.style.display = 'none';
         gameDialog.innerHTML = "";
     }
+}
+
+function nextStage() {
+    nextLevelTriggered = true;
+    if (world.levelNumber === 1) {
+        startGame(world.character.character, 2)
+    } else {
+        startGame(world.character.character, 3) 
+    }
+}
+
+function retryStage() {
+    startGame(world.character.character, world.levelNumber);
 }
