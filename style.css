@@ -11,6 +11,23 @@ body {
     background: linear-gradient(to top, rgb(38, 0, 0),rgb(118, 39, 39), rgb(36, 111, 158), rgb(2, 68, 109));
 }
 
+.global-button {
+    padding: 10px;
+    width: 6vw;
+    height: 6vw;
+    max-height: 80px;
+    max-width: 80px;
+    min-height: 50px;
+    min-width: 50px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    z-index: 100000;
+}
+
+.global-button:hover {
+    filter: brightness(1.2);
+}
+
 video {
     position: fixed;
     pointer-events: none;
@@ -71,9 +88,10 @@ button:hover {
     left: 50%;
     transform: translateX(-50%);
     width: 70%;
-    bottom: 30vh;
+    bottom: calc(100px + 10vw);
     object-fit: contain;
 }
+
 .img-container {
     position: relative;
     max-width: 1200px;
@@ -119,18 +137,37 @@ button:hover {
     }
 }
 
+.start-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4vw;
+}
+
 .load-characters {
+    text-align: center;
     background: #ffa904;
     color: white;
-    font-size: 40px;
-    padding: 10px 40px;
+    font-size: 3vw;
+    padding: 6px 12px;
     border-radius: 16px;
     border: 3px solid white;
+    max-width: 200px;
+    filter: drop-shadow(0px 0px 10px #2c0f00);
+    transition: all 0.5s ease;
+}
+
+.load-characters:hover {
+    background-color: #f78a00;
+    border: 3px solid rgba(255, 255, 255, 0.506);
+    filter: drop-shadow(0px 0px 10px #ffe785);
 }
 
 /* TURN DEVICE */
 .turn-device {
     display: none;
+    flex-direction: column;
+    gap: 30px;
     position: fixed;
     text-align: center;
     color: white;
@@ -144,6 +181,20 @@ button:hover {
     z-index: 4;
     transition: all 1s ease;
 }
+
+.rotate-phone {
+    width: 100px;
+    height: 100px;
+    animation: rotateImage 4s infinite ease-in-out;
+}
+
+@keyframes rotateImage {
+    0% { transform: rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: rotate(90deg); opacity: 0; }
+}
+
 
 /* CHOOSE CHARACTER */
 .character-selection {
@@ -258,9 +309,39 @@ button:hover {
     display: none;
 }
 
+#gameDialog {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    gap: 30px;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    background-color: rgba(0, 0, 0, 0.824);
+    z-index: 100000000;
+}
+
+#gameDialog button {
+    height: auto;
+    width: auto;
+    padding: 8px 20px;
+    background: #ffa904;
+    color: white;
+    border-radius: 16px;
+    border: 2px solid white
+}
+
+#gameDialog h3 {
+    color: white;
+    text-align: center;
+    width: 80%;
+}
+
 #levelInfo {
     position: absolute;
-    top: 32px;
+    top: calc(4vh + 25px);
     left: 50%;
     transform: translateX(-50%);
     color: rgb(206, 163, 111);
@@ -287,8 +368,6 @@ button:hover {
     z-index: 9999;
     cursor: pointer;
     opacity: 0.65;
-    background-color: green;
-
 }
 
 #mobileLeft {
@@ -308,23 +387,23 @@ button:hover {
     bottom: 40px;
 }
 
-#mobilePause,
-#mobileMute {
-    top: 30px;
-    height: 30px;
-    width: 30px;
+#gamePause,
+#gameMute {
+    top: calc(4vh + 15px);
+    height: 45px;
+    width: 45px;
     padding: 5px;
 }
 
-#mobilePause {
-    left: calc(50% - 20px);
+#gamePause {
+    left: calc(50% - 30px);
 }
 
-#mobileMute {
-    left: calc(50% + 20px);
+#gameMute {
+    left: calc(50% + 30px);
 }
 
-#mobileFullscreen {
+#gameFullscreen {
     right: -20px;
     bottom: -20px;
     width: 40px;
@@ -358,12 +437,6 @@ canvas {
     border: 3px solid white;
 }
 
-
-
-/* @media (hover: none) {                     (hover: none) für alle mobile Endgeräte. */
-/* @media (orientation: portrait) {           (orientation: portrait) wenn die Seitenverhältnisse ein Hochformat darstellen. */
-/* @media (orientation: landscape) {          (orientation: landscape) wenn die Seitenverhältnisse ein Querformat darstellen. */
-
 @media (hover: none) and (orientation: portrait) {  
     
     .start {
@@ -380,14 +453,17 @@ canvas {
     .turn-device {
         display: flex;
     }
-
 }
 
-@media (hover: none) and (orientation: landscape) {        /* Kombination der zwei werte - nur für mobile Endgeräte im landscape modus */
+@media (hover: none) and (orientation: landscape) {
 
     canvas {
         height: 100vh;
         width: 100vw;
+        border-radius: 0;
+    }
+
+    #gameDialog {
         border-radius: 0;
     }
 
@@ -422,7 +498,7 @@ canvas {
     .mobile-button {
         display: flex; /* toggle visibility buttons*/
     }
-    #mobileFullscreen {
+    #gameFullscreen {
         display: none;
     }
 }
@@ -430,9 +506,9 @@ canvas {
 /* DESKTOP ONLY */
 @media (hover: hover) {
 
-    #mobilePause,
-    #mobileMute,
-    #mobileFullscreen {
+    #gamePause,
+    #gameMute,
+    #gameFullscreen {
     display: flex;
     }
 }
@@ -463,14 +539,3 @@ canvas {
     }
 }
 
-#pauseButton {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 50%;
-    width: 100px;
-    height: 80px;
-    background-color: green;
-    z-index: 100000;
-    cursor: pointer;
-}

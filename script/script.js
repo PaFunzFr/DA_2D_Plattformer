@@ -1,12 +1,14 @@
 const charSelection = document.getElementById('charSelection');
 const startScreen = document.getElementById('startScreen');
 const backgroundVideo = document.getElementById('backgroundVideo');
+const gameDialog = document.getElementById('gameDialog');
 
 
 function renderChars() {
-    sounds.environment.background.play()
-    sounds.other.start.play();
-    //musicActive = false;
+    if (!mutedGlobal) {
+        sounds.environment.background.play()
+        sounds.other.start.play();
+    }
     charSelection.style.top = '50%';
     charSelection.style.opacity = 1;
     backgroundVideo.style.opacity = 1;

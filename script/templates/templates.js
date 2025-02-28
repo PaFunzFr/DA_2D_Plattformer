@@ -14,3 +14,44 @@ function renderCharSelection() {
     charSelection.innerHTML += `<img class="char-background" src="./img/08_intro/background_ambiente.png">`
     return charSelection.innerHTML
 }
+
+function renderPauseMenu() {
+    gameDialog.style.display = 'flex';
+    gameDialog.innerHTML = `
+            <h2>Paused Game</h2>
+            <button id="resumeGame">Resume</button>
+            <button id="quitGame">Quit Game</button>
+    `;
+    return gameDialog.innerHTML;
+}
+
+function renderGameOver() {
+    gameDialog.style.display = 'flex';
+    gameDialog.innerHTML = `
+            <h2>You have lost!</h2>
+            <button id="retryGame">Retry</button>
+            <button id="quitGame">Quit Game</button>
+    `;
+    return gameDialog.innerHTML;
+}
+
+function renderNextLevel() {
+    gameDialog.style.display = 'flex';
+    gameDialog.innerHTML = `
+            <h2>You have won!</h2>
+            <button id="nextGame">next Stage</button>
+            <button id="quitGame">Quit Game</button>
+    `;
+    return gameDialog.innerHTML;
+}
+
+function renderWon() {
+    gameDialog.style.display = 'flex';
+    gameDialog.innerHTML = `
+            <h2>You have won!</h2>
+            <h3>The minions who threatened your land and your people are history!
+            You have vanquished them! </h3>
+            <button id="quitGame">Restart</button>
+    `;
+    return gameDialog.innerHTML;
+}

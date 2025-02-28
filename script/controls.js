@@ -32,6 +32,7 @@ const btnMobileLeft = document.getElementById("mobileLeft");
 const btnMobileRight = document.getElementById("mobileRight");
 const btnMobileJump = document.getElementById("mobileJump");
 const btnMobileAttack = document.getElementById("mobileAttack");
+const btnFullscreen = document.getElementById("gameFullscreen");
 
 /*
 document.addEventListener("touchend", () => {

@@ -34,26 +34,39 @@ function startGame(character, levelNumber) {
 
 
 // toggle Fullscreen
-function fullscreen() {
-    gameContainer.style.width = "100vw";
-    gameContainer.style.height = "100vh";
-    gameContainer.style.position = "absolute";
-    canvas.style.width = "100vw";
-    canvas.style.height = "100vh";
-    if (gameContainer.requestFullscreen) {
-        gameContainer.requestFullscreen();
-    } else if (gameContainer.webkitRequestFullscreen) { /* Safari */
-        gameContainer.webkitRequestFullscreen();
-    } else if (gameContainer.msRequestFullscreen) { /* IE11 */
-        gameContainer.msRequestFullscreen();
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        gameContainer.style.width = "100vw";
+        gameContainer.style.height = "100vh";
+        gameContainer.style.position = "absolute";
+        canvas.style.width = "100vw";
+        canvas.style.height = "100vh";
+
+        if (gameContainer.requestFullscreen) {
+            gameContainer.requestFullscreen();
+        } else if (gameContainer.webkitRequestFullscreen) { /* Safari */
+            gameContainer.webkitRequestFullscreen();
+        } else if (gameContainer.msRequestFullscreen) { /* IE11 */
+            gameContainer.msRequestFullscreen();
+        }
+    } else {
+        document.exitFullscreen();
+        gameContainer.style.width = ""; 
+        gameContainer.style.height = ""; 
+        gameContainer.style.position = "";
+        canvas.style.width = "";
+        canvas.style.height = "";
     }
 }
 
-// TEST mute BUTTON
-const testPauseButton = document.getElementById("mobileMute");
+document.getElementById("fullscreenButton").onclick = toggleFullscreen;
 
-testPauseButton.onclick = () => {
-    muteAllSounds(true);
+
+// TEST mute BUTTON
+const globalMuteBtn = document.getElementById("globalMuteBtn");
+
+function globalMute() {
     mutedGlobal = !mutedGlobal;
-    //world.pauseGame();
+    console.log(mutedGlobal);
+    muteAllSounds(mutedGlobal ? true : false);
 }
