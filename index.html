@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <button id="pauseButton">PAUSE</button>
     <video id="backgroundVideo" autoplay loop muted playsinline>
         <source src="./video/firebackground.mp4" type="video/mp4">
     </video>
@@ -37,12 +38,14 @@
         <div id="gameContainer">
             <canvas id="canvas" width="720" height="480"></canvas>
             <div id="mobileInterface">
-                <img id="mobileLeft" class="mobile-button btn-left" src="./img/09_mobile/left.png">
-                <img id="mobileRight" class="mobile-button btn-right" src="./img/09_mobile/right.png">
-                <img id="mobileJump" class="mobile-button btn-jump" src="./img/09_mobile/jump.png">
-                <img id="mobileAttack" class="mobile-button btn-attack" src="./img/09_mobile/attack.png">
+                <img id="mobileLeft" class="mobile-button" src="./img/09_mobile/left.png">
+                <img id="mobileRight" class="mobile-button" src="./img/09_mobile/right.png">
+                <img id="mobileJump" class="mobile-button" src="./img/09_mobile/jump.png">
+                <img id="mobileAttack" class="mobile-button" src="./img/09_mobile/attack.png">
+                <img id="mobilePause" class="mobile-button" src="./img/09_mobile/pause.png">
+                <img id="mobileMute" class="mobile-button" src="./img/09_mobile/mute.png">
+                <img id="mobileFullscreen" class="mobile-button" src="./img/09_mobile/fullscreen.png">
                 <h2 id="levelInfo">Level 3</h2>
-                <h2 id="menuBtn">menu</h2>
             </div>
         </div>
         <!--<h3 class="current-level">Level 1</3>

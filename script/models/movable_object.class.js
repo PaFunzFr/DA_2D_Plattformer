@@ -5,8 +5,8 @@ class MovableObject extends DrawableObject {
 
     attackingFromAbove = false;
     currentlyDying = false;
-    killed = false; // check if it is used
-
+    killed = false;
+    
     moveRight(speed) {
         this.x += speed;
         this.otherDirection = false;
@@ -48,8 +48,6 @@ class MovableObject extends DrawableObject {
         let timepassed = new Date().getTime() - this.lastHit; // difference in ms
         return timepassed < 500; 
     }
-
-  
 
     isColliding(obj) {
         return (

@@ -78,8 +78,8 @@ class CollidingObject {
     
                 // common enemies
                 if (this.world.character.isApproaching(enemy, 120) &&
-                    enemy.name != "dragon" ||
-                    enemy.name != "dragonBoss") {
+                    (enemy.name != "dragon" ||
+                    enemy.name != "dragonBoss")) {
                     enemy.playAnimation(enemy.imagesAttacking);
                 } else {
                     enemy.playAnimation(enemy.imagesWalking);

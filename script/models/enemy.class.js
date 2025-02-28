@@ -61,11 +61,11 @@ class Enemy extends MovableObject {
             { top: 190, bottom: 150, left: 100, right: 100 }
         );
         if (level == 1) {
-            this.setEnemyLevelStats(180, 260, 360, 20);
+            this.setEnemyLevelStats((160 + Math.random() * 80), 260, 360, 20);
         } else if (level == 2) {
-            this.setEnemyLevelStats(150, 260, 360, 20);
+            this.setEnemyLevelStats((130 + Math.random() * 80), 260, 360, 20);
         } else if (level == 3) {
-            this.setEnemyLevelStats(100, 260, 360, 20);
+            this.setEnemyLevelStats((90 + Math.random() * 70), 260, 360, 20);
         }
     }
 
@@ -105,7 +105,7 @@ class Enemy extends MovableObject {
 
         setInterval(() => {
             if (this.isHurt() && !this.currentlyDying) {
-                    this.playAnimation(this.imagesHurt);
+                this.playAnimation(this.imagesHurt);
             }
         }, 100);
     }

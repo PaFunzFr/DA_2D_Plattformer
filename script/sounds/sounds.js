@@ -1,3 +1,4 @@
+let mutedGlobal = false;
 const sounds = {
     ork: {
         attack: new Audio("./audio/ork/attack.mp3"),
@@ -53,6 +54,7 @@ sounds.environment.wind.volume = 0.7;
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
 function playSound(target, sound) {
+    if (!mutedGlobal) {
     let audio = sounds[target][sound];
     fetch(audio.src)
         .then(response => response.arrayBuffer())
@@ -64,6 +66,7 @@ function playSound(target, sound) {
             source.start(0);
         })
         .catch(error => console.error('Error with Web Audio API:', error));
+    }
 }
 
 

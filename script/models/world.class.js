@@ -18,6 +18,7 @@ class World {
     bossTriggered = false;
     endboss;
     levelNumber;
+    pause = false;
 
     constructor(canvas, keyboard, level, levelNumber, character) {
         this.character = new Character(character);
@@ -37,6 +38,7 @@ class World {
             this.draw();
             this.runCollisionHandler();
             mobileInterface.style.display = 'block';
+            levelInfo.innerHTML = 'stage ' + levelNumber;
         }, 2500);
     }
 
@@ -61,6 +63,7 @@ class World {
     }
 
     draw() {
+        if (this.paused) return;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // refresh / clear canvas before
         this.ctx.translate(this.cameraX, 0);
         this.creatingBackground();
@@ -137,6 +140,32 @@ class World {
             let drinkHorn = new Collectable("drinkhorn", enemy.x + 100);
             this.collectables.push(drinkHorn);
         }
+    }
+
+    pauseGame() {            
+        setTimeout(() => {
+        this.paused = !this.paused;
+        if (this.paused && !this.gameOver) {
+                muteAllSounds(true);
+                this.clearAllIntervals();
+        } else if (!this.gameOver){
+            console.log("Game Resumed");
+            muteAllSounds(true);
+            this.runCollisionHandler();
+            this.level.enemies.forEach((enemy) => {
+                enemy.animate();
+                setTimeout(() => {
+                    enemy.isAttacking = false;
+                    enemy.attackTriggered = false;
+                }, 500);
+            });
+            this.missileObjects.forEach((missile) => { missile.animate(); });
+            this.throwableObjects.forEach((object) => { object.animate(); });
+            this.character.animate();
+            this.character.applyGravity();
+            this.draw(); 
+        }
+    }, 500);
     }
     
     stopGame() {

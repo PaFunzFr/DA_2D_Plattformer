@@ -13,6 +13,7 @@ document.addEventListener("keydown", (event) => {
     isButtonClicked(event, "ArrowDown", "clickedDown", true);
     isButtonClicked(event, "Space", "clickedSpace", true);
     isButtonClicked(event, "KeyD", "clickedD", true);
+    isButtonClicked(event, "KeyP", "clickedD", true);
 });
 
 document.addEventListener("keyup", (event) => {
@@ -22,7 +23,9 @@ document.addEventListener("keyup", (event) => {
     isButtonClicked(event, "ArrowDown", "clickedDown", false);
     isButtonClicked(event, "Space", "clickedSpace", false);
     isButtonClicked(event, "KeyD", "clickedD", false);
+    isButtonClicked(event, "KeyP", "clickedD", false);
 });
+
 
 // mobile devices
 const btnMobileLeft = document.getElementById("mobileLeft");
@@ -40,6 +43,11 @@ document.addEventListener("touchend", () => {
     keyboard.clickedD = false;
 });
 */
+
+document.addEventListener("touchmove", (e) => {
+    e.preventDefault(); // prevents scrolling
+});
+
 btnMobileRight.addEventListener("touchstart", (e) => {
     e.preventDefault();
     keyboard.clickedRight = true;  

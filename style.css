@@ -11,7 +11,6 @@ body {
     background: linear-gradient(to top, rgb(38, 0, 0),rgb(118, 39, 39), rgb(36, 111, 158), rgb(2, 68, 109));
 }
 
-
 video {
     position: fixed;
     pointer-events: none;
@@ -230,7 +229,6 @@ button:hover {
     filter: blur(10px);
 } 
 
-
 /* GAME */
 .game {
     display: flex;
@@ -262,7 +260,7 @@ button:hover {
 
 #levelInfo {
     position: absolute;
-    top: 5px;
+    top: 32px;
     left: 50%;
     transform: translateX(-50%);
     color: rgb(206, 163, 111);
@@ -273,16 +271,6 @@ button:hover {
         -1px -1px 0 rgba(0, 0, 0, 0.65), 
         1px -1px 0 rgba(0, 0, 0, 0.65), 
         -1px 1px 0 rgba(0, 0, 0, 0.65);
-}
-
-#menuBtn {
-    position: absolute;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 20px;
-    z-index: 9999;
-    color: rgba(255, 255, 255, 0.838);
 }
 
 .mobile-button {
@@ -299,24 +287,48 @@ button:hover {
     z-index: 9999;
     cursor: pointer;
     opacity: 0.65;
+    background-color: green;
 
 }
 
-.btn-left {
+#mobileLeft {
     left: 50px;
 }
 
-.btn-right {
+#mobileRight {
     left: 140px;
 }
 
-.btn-jump {
+#mobileJump {
     right: 0px;
 }
 
-.btn-attack {
+#mobileAttack {
     right: -40px;
     bottom: 40px;
+}
+
+#mobilePause,
+#mobileMute {
+    top: 30px;
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+}
+
+#mobilePause {
+    left: calc(50% - 20px);
+}
+
+#mobileMute {
+    left: calc(50% + 20px);
+}
+
+#mobileFullscreen {
+    right: -20px;
+    bottom: -20px;
+    width: 40px;
+    height: 40px;
 }
 
 canvas {
@@ -409,7 +421,20 @@ canvas {
 
     .mobile-button {
         display: flex; /* toggle visibility buttons*/
+    }
+    #mobileFullscreen {
+        display: none;
+    }
 }
+
+/* DESKTOP ONLY */
+@media (hover: hover) {
+
+    #mobilePause,
+    #mobileMute,
+    #mobileFullscreen {
+    display: flex;
+    }
 }
 
 @media screen and (max-width: 900px) and (hover: hover) {
@@ -424,9 +449,9 @@ canvas {
         max-width: 1000px;
         width: 100%;
         top: -200%;
-        height: 100vh;
         max-height: 600vh;
         border-radius: 0px;
+        max-height: 60vh;
     }
 
     h2 {
@@ -436,4 +461,16 @@ canvas {
     h3 {
         font-size: 20px;
     }
+}
+
+#pauseButton {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 100px;
+    height: 80px;
+    background-color: green;
+    z-index: 100000;
+    cursor: pointer;
 }

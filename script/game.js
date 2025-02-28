@@ -3,16 +3,17 @@ const startButton = document.getElementById('startButton');
 const canvas = document.getElementById('canvas');
 const gameContainer = document.getElementById('gameContainer');
 const mobileInterface = document.getElementById('mobileInterface');
+const levelInfo = document.getElementById('levelInfo');
 
 function init() {
     //world = new World(canvas, keyboard, level1);
     //console.log(world.character);
 }
 
-function startGame(character) {
+function startGame(character, levelNumber) {
     sounds.environment.wind.play();
     sounds.character[character].play();
-    let level = loadLevel(3, character);
+    let level = loadLevel(levelNumber, character);
     setTimeout(() => {
         charSelection.style.opacity = '0';
         charSelection.style.top = '';
@@ -26,7 +27,7 @@ function startGame(character) {
             world.clearAllIntervals();
         }
         world = null;
-        world = new World(canvas, keyboard, level, "3", character);
+        world = new World(canvas, keyboard, level, levelNumber, character);
         console.log(world.character);
     }, 800);
 }
@@ -46,4 +47,13 @@ function fullscreen() {
     } else if (gameContainer.msRequestFullscreen) { /* IE11 */
         gameContainer.msRequestFullscreen();
     }
+}
+
+// TEST mute BUTTON
+const testPauseButton = document.getElementById("mobileMute");
+
+testPauseButton.onclick = () => {
+    muteAllSounds(true);
+    mutedGlobal = !mutedGlobal;
+    //world.pauseGame();
 }
