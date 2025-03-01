@@ -8,7 +8,11 @@ class CollidingObject {
                     this.jumpKill(enemy);
                 }
                 else if (!this.world.character.ignoreDamage && !enemy.currentlyDying){
-                this.world.character.hit(5);
+                if (enemy.name === "dragonBoss") {
+                    this.world.character.hit(100);
+                } else {
+                    this.world.character.hit(10);
+                }
                 this.world.statusBar.setPercentage(this.world.character.energy);
                 console.log(this.world.character.energy);
                 }

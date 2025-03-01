@@ -94,8 +94,10 @@ function togglePauseGame() {
         renderPauseMenu();
     } else if (gameDialog.style.display = "flex"){
         setMuteIconOnStart();
-        gameDialog.style.display = 'none';
-        gameDialog.innerHTML = "";
+        setTimeout(() => {
+            gameDialog.style.display = 'none';
+            gameDialog.innerHTML = "";
+        }, 200);
     }
 }
 
@@ -112,5 +114,9 @@ function nextStage() {
 }
 
 function retryStage() {
+    nextLevelTriggered = true;
+    if (!mutedGlobal) {
+        muteAllSounds(false);
+    }
     startGame(world.character.character, world.levelNumber);
 }

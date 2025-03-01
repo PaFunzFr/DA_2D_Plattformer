@@ -77,7 +77,7 @@ class World {
         this.ctx.translate(-this.cameraX, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.weaponBar);
-        if (this.character.x >= 1600) { // spawn if character reaches position x
+        if (this.character.x >= 3600) { // spawn if character reaches position x
             if (!this.bossTriggerd) {
                 this.bossTriggerd = true;
                 playSound("dragonBoss", "death");
@@ -156,13 +156,12 @@ class World {
                 muteAllSounds(true);
                 this.clearAllIntervals();
         } else if (!this.gameOver){
-            console.log("Game Resumed");
             if (!mutedGlobal) {
                 muteAllSounds(false);
             }
             this.reloadAnimations();
         }
-    }, 500);
+    }, 0);
     }
 
     reloadAnimations() {

@@ -28,11 +28,11 @@ function loadLevel(levelNumber, character) {
             ],
             //backgroundObjects
             [
-                new backgroundObject("./img/04_background/layers/1_first_layer/1.png", -1255),
+                new backgroundObject("./img/04_background/layers/1_first_layer/1.png", -300),
             ],
             //air
             [
-                new backgroundObject("./img/04_background/layers/air_day.png", -1255),
+                new backgroundObject("./img/04_background/layers/air_day.png", -300),
             ],
             // collectables
             [
@@ -72,11 +72,11 @@ function loadLevel(levelNumber, character) {
             ],
             //backgroundObjects
             [
-                new backgroundObject("./img/04_background/layers/1_first_layer/2.jpg", -1255),
+                new backgroundObject("./img/04_background/layers/1_first_layer/2.jpg", -300),
             ],
             //air
             [
-                new backgroundObject("./img/04_background/layers/air_day.png", -1255),
+                new backgroundObject("./img/04_background/layers/air_day.png", -300),
             ],
             // collectables
             [
@@ -114,11 +114,11 @@ function loadLevel(levelNumber, character) {
             ],
             //backgroundObjects
             [
-                new backgroundObject("./img/04_background/layers/1_first_layer/3.jpg", -1255),
+                new backgroundObject("./img/04_background/layers/1_first_layer/3.jpg", -300),
             ],
             //air
             [
-                new backgroundObject("./img/04_background/layers/air_day.png", -1255),
+                new backgroundObject("./img/04_background/layers/air_day.png", -300),
             ],
             // collectables
             [

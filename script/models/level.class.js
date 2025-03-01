@@ -5,7 +5,7 @@ class Level {
     air;
     collectables;
     backgroundObjects;
-    levelEndX = 3460;
+    levelEndX = 4400;
 
     constructor(enemies, cloudsBackground, clouds, backgroundObjects, air, collectables) {
         this.enemies = enemies;

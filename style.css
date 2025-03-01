@@ -341,8 +341,22 @@ button:hover {
     width: 100%;
     height: 100%;
     border-radius: 16px;
-    background-color: rgba(0, 0, 0, 0.824);
+    background: linear-gradient(to top, rgb(38, 0, 0), rgb(2, 68, 109));
+    background-size: 100% 200%;
+    animation: backgroundAnimation 5s infinite ease;
     z-index: 100000000;
+}
+
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 0% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
 }
 
 #gameDialog button {

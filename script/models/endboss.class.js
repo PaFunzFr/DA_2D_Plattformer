@@ -25,7 +25,7 @@ class Endboss extends MovableObject {
         this.attackDragon = "fireball";
         this.otherDirection = true;
         this.offset = { top: 120, bottom: 190, left: 220, right: 220 };
-        this.x = 2100;
+        this.x = 4400;
         this.y = 480 - this.height - this.yOffset;
         this.initialY = this.y;
         this.loadImage(`./img/03_endboss/dragon${level}/7_fly/Dragon_fly_000.png`);

@@ -48,7 +48,7 @@ class Character extends MovableObject {
             if (this.world.keyboard.clickedRight && this.x < this.world.level.levelEndX) {
                 this.moveRight(this.speedX);
             }
-            if (this.world.keyboard.clickedLeft && this.x > -960) {
+            if (this.world.keyboard.clickedLeft && this.x > 0) {
                 this.moveLeft(this.speedX);
             }
             if (this.world.keyboard.clickedUp || this.world.keyboard.clickedSpace) {
