@@ -36,7 +36,8 @@ function loadLevel(levelNumber, character) {
             ],
             // collectables
             [
-                new Collectable("thorshammer", 100),
+                new Collectable("thorshammer", 500),
+                new Collectable(character, 1000),
             ]
         );
     };
@@ -79,8 +80,8 @@ function loadLevel(levelNumber, character) {
             ],
             // collectables
             [
-                new Collectable("thorshammer", 100),
-                new Collectable("axe", -400),
+                new Collectable("thorshammer", 500),
+                new Collectable(character, 1200),
             ]
         );
     };
@@ -121,8 +122,8 @@ function loadLevel(levelNumber, character) {
             ],
             // collectables
             [
-                new Collectable("thorshammer", 100),
-                new Collectable(character, -400),
+                new Collectable("thorshammer", -500),
+                new Collectable(character, 1000),
             ]
         );
     }

@@ -17,7 +17,6 @@ class Character extends MovableObject {
     elementOnGround = 480 - this.height - this.yOffset;
     energy = 100;
     ignoreDamage = false;
-
     character;
 
     constructor(character) { 
@@ -49,7 +48,7 @@ class Character extends MovableObject {
             if (this.world.keyboard.clickedRight && this.x < this.world.level.levelEndX) {
                 this.moveRight(this.speedX);
             }
-            if (this.world.keyboard.clickedLeft && this.x > -719) {
+            if (this.world.keyboard.clickedLeft && this.x > -960) {
                 this.moveLeft(this.speedX);
             }
             if (this.world.keyboard.clickedUp || this.world.keyboard.clickedSpace) {

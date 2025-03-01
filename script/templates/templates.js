@@ -8,7 +8,7 @@ function renderCharSelection() {
                 <h3>${currentCharacter.title}</h3>
                 <img id="charImg${index}"class="char-img" src="./img/01_characters/${currentCharacter.weapon}/6_attack/ATTACK_002.png"/>
                 <p class="character-description">${currentCharacter.story}</p>
-                <button class="start-game" id="startGame${index}" onclick="startGame('${currentCharacter.weapon}', 3)">Choose ${currentCharacter.name}</button>
+                <button class="start-game" id="startGame${index}" onclick="startGame('${currentCharacter.weapon}', 1)">Choose ${currentCharacter.name}</button>
             </div>`
     }
     charSelection.innerHTML += `<img class="char-background" src="./img/08_intro/background_ambiente.png">`

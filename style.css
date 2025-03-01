@@ -91,7 +91,7 @@ button:hover {
     object-fit: contain;
     animation: titleAnimation 10s infinite ease;
     z-index: 2;
-    opacity: 0.96;
+    opacity: 0.9;
 }
 
 @keyframes titleAnimation {
