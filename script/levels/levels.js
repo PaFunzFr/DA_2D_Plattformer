@@ -55,17 +55,19 @@ function loadLevel(levelNumber, character) {
             ],
             //clouds background
             [
-                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_1.png", 1255 * 3, -70, "background"),
-                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_2.png", 1255, 70, "background"),
-                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_3.png", 10, 0, "background"),
-                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_1.png", 1255 * 2, -40, "background"),
             ],
             //clouds
             [
-                new Cloud("./img/04_background/layers/4_clouds/cloud_1.png", 1255, 0, "foreground"),
-                new Cloud("./img/04_background/layers/4_clouds/cloud_2.png", 1755, -80, "foreground"),
-                new Cloud("./img/04_background/layers/4_clouds/cloud_3.png", 655, 20, "foreground"),
-                new Cloud("./img/04_background/layers/4_clouds/cloud_1.png", -1005, -30, "foreground"),
+                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_swamp_1.png", 1255 * 3, -70, "swamp-background"),
+                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_swamp_2.png", 1255, 0, "swamp-background"),
+                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_swamp_3.png", 10, -70, "swamp-background"),
+                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_swamp_1.png", 1255 * 2, 0, "swamp-background"),
+                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_swamp_3.png", 700, -70, "swamp-background"),
+                new Cloud("./img/04_background/layers/4_clouds/fog_swamp_1.png", 1255, 160, "swamp-foreground"),
+                new Cloud("./img/04_background/layers/4_clouds/fog_swamp_2.png", 1755, 180, "swamp-foreground"),
+                new Cloud("./img/04_background/layers/4_clouds/fog_swamp_1.png", 655, 160, "swamp-foreground"),
+                new Cloud("./img/04_background/layers/4_clouds/fog_swamp_2.png", -1005, 180, "swamp-foreground"),
+                new Cloud("./img/04_background/layers/4_clouds/fog_swamp_1.png", 10, 160, "swamp-foreground"),
             ],
             //backgroundObjects
             [
@@ -97,21 +99,21 @@ function loadLevel(levelNumber, character) {
             ],
             //clouds background
             [
-                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_1.png", 1255 * 3, -70, "background"),
-                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_2.png", 1255, 70, "background"),
-                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_3.png", 10, 0, "background"),
-                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_1.png", 1255 * 2, -40, "background"),
             ],
             //clouds
             [
-                new Cloud("./img/04_background/layers/4_clouds/cloud_1.png", 1255, 0, "foreground"),
-                new Cloud("./img/04_background/layers/4_clouds/cloud_2.png", 1755, -80, "foreground"),
-                new Cloud("./img/04_background/layers/4_clouds/cloud_3.png", 655, 20, "foreground"),
-                new Cloud("./img/04_background/layers/4_clouds/cloud_1.png", -1005, -30, "foreground"),
+                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_cave_1.png", 1255 * 3, -70, "cave-background"),
+                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_cave_2.png", 1255, 70, "cave-background"),
+                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_cave_1.png", 10, 0, "cave-background"),
+                new Cloud("./img/04_background/layers/4_clouds/background_clouds/cloud_bg_cave_1.png", 1255 * 2, -40, "cave-background"),
+                new Cloud("./img/04_background/layers/4_clouds/fog_cave_1.png", 1255, 0, "cave-foreground"),
+                new Cloud("./img/04_background/layers/4_clouds/fog_cave_2.png", 1755, -80, "cave-foreground"),
+                new Cloud("./img/04_background/layers/4_clouds/fog_cave_1.png", 655, 20, "cave-foreground"),
+                new Cloud("./img/04_background/layers/4_clouds/fog_cave_2.png", -1005, -30, "cave-foreground"),
             ],
             //backgroundObjects
             [
-                new backgroundObject("./img/04_background/layers/1_first_layer/1.png", -1255),
+                new backgroundObject("./img/04_background/layers/1_first_layer/3.jpg", -1255),
             ],
             //air
             [

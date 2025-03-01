@@ -86,10 +86,24 @@ button:hover {
 .title-img {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
     width: 70%;
     bottom: calc(100px + 10vw);
     object-fit: contain;
+    animation: titleAnimation 10s infinite ease;
+    z-index: 2;
+    opacity: 0.96;
+}
+
+@keyframes titleAnimation {
+    0% {
+        transform: translateX(-50%) translateY(0px);
+    }
+    50% {
+        transform: translateX(-50%) translateY(10px);
+    }
+    100% {
+        transform: translateX(-50%) translateY(0px);
+    }
 }
 
 .img-container {
@@ -120,6 +134,7 @@ button:hover {
 
 #mainImgHeroes {
     animation: pulse 3s infinite ease;
+    z-index: 3;
 }
 
 @keyframes pulse {
