@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jump n Run</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./fonts/fonts.css">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" href=""><!--add favicon link-->
+</head>
+
+<body>
+    <main>
+        <video id="backgroundVideo" autoplay loop muted playsinline>
+            <source src="./video/firebackground.mp4" type="video/mp4">
+        </video>
+        <section class="start" id="startScreen">
+            <div class="img-container">
+                <div>
+                    <img class="title-img" src="./img/08_intro/game_title.png">
+                    <img class="main-img" id="mainImgEnemies" src="./img/08_intro/background_enemies.png">
+                    <img class="main-img" id="mainImgHeroes" src="./img/08_intro/background_heroes.png">
+                </div>
+                <div class="start-menu">
+                    <img src="./img/09_mobile/info.png" alt="" class="menu-button" id="globalInfoBtn">
+                    <button class="load-characters" onclick="renderChars()">Start</button>
+                    <img onclick="globalMute(event)" src="./img/09_mobile/mute.png" alt="" class="menu-button" id="globalMuteBtn">
+                </div>
+            </div>
+
+        </section>
+
+        <section class="controls">
+            <img src="./img/08_intro/controls.png">
+        </section>
+
+        <section class="turn-device">
+            <h3>Please rotate your device into landscape mode to start the game</h3>
+            <img src="./img/09_mobile/mobile.png" class="rotate-phone">
+        </section>
+
+        <section class="character-selection" id="charSelection">
+            <!-- rendered chars -->
+        </section>
+
+        <section class="game">
+            <div id="gameContainer">
+                <canvas id="canvas" width="720" height="480"></canvas>
+                <div id="mobileInterface">
+                    <img id="mobileLeft" class="mobile-button" src="./img/09_mobile/left.png">
+                    <img id="mobileRight" class="mobile-button" src="./img/09_mobile/right.png">
+                    <img id="mobileJump" class="mobile-button" src="./img/09_mobile/jump.png">
+                    <img id="mobileAttack" class="mobile-button" src="./img/09_mobile/attack.png">
+                    <img id="gamePause" onclick="togglePauseGame()"class="mobile-button" src="./img/09_mobile/pause.png">
+                    <img id="gameMute" onclick="globalMute(event)" class="mobile-button" src="./img/09_mobile/mute.png">
+                    <img id="gameFullscreen" onclick="toggleFullscreen()" class="mobile-button" src="./img/09_mobile/fullscreen.png">
+                    <h2 id="levelInfo">Level 3</h2>
+                </div>
+                <div id="gameDialog">
+                    <!-- rendered Dialog -->
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+<script src="./script/sounds/sounds.js"></script>
+<script src="./script/models/animations.class.js"></script>
+<script src="./script/models/drawable_object.class.js"></script>
+<script src="./script/models/collectable_object.class.js"></script>
+<script src="./script/models/movable_object.class.js"></script>
+<script src="./script/models/throwable_object.class.js"></script>
+<script src="./script/models/character.class.js"></script>
+<script src="./script/models/enemy.class.js"></script>
+<script src="./script/models/cloud.class.js"></script>
+<script src="./script/models/status_bar.class.js"></script>
+<script src="./script/models/world.class.js"></script>
+<script src="./script/models/colliding_handler.class.js"></script>
+<script src="./script/models/background_object.class.js"></script>
+<script src="./script/models/keyboard.class.js"></script>
+<script src="./script/models/level.class.js"></script>
+<script src="./script/models/endboss.class.js"></script>
+<script src="./script/characters/characters.js"></script>
+<script src="./script/levels/levels.js"></script>
+<script src="./script/controls.js"></script>
+<script src="./script/game.js"></script>
+<script src="./script/templates/templates.js"></script>
+<script src="./script/script.js"></script>
+</html>

@@ -47,3 +47,10 @@ function addHoverEffect() {
         }); 
     }
 }
+
+function fixHeight() {
+    document.body.style.height = `${window.innerHeight}px`;
+}
+
+window.addEventListener('resize', fixHeight);
+fixHeight();
