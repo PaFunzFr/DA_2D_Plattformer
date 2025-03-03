@@ -72,6 +72,6 @@ class Character extends MovableObject {
                     this.playAnimation(this.imagesIdle);
                 }
             }
-        }, 100);
+        }, 80);
     }
 }

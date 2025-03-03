@@ -39,9 +39,12 @@ class World {
             this.runCollisionHandler();
             if (nextLevelTriggered) {
                 this.reloadEnemyAnimations();
+                this.level.collectables.forEach((collectable) => {
+                    collectable.animate();
+                });
                 this.level.clouds.forEach((cloud) => {
                     cloud.animate();
-                })
+                });
             }
             mobileInterface.style.display = 'block';
             gameDialog.style.display = 'none';
@@ -83,6 +86,8 @@ class World {
                 playSound("dragonBoss", "death");
                 this.endboss.enemySpeed = 1 * this.levelNumber;
             }
+        }
+        if (this.bossTriggerd) {
             this.addToMap(this.statusBarBoss);
         }
         this.collidingHandler.throwObject(); 

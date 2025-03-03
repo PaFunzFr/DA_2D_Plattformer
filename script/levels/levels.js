@@ -10,6 +10,15 @@ function loadLevel(levelNumber, character) {
                 new Enemy("ork", 1, 700 + Math.random() * 100),
                 new Enemy("ork", 1, 900 + Math.random() * 100),
                 new Enemy("troll", 1, 1300 + Math.random() * 100),
+                new Enemy("ork", 1, 1500 + Math.random() * 100),
+                new Enemy("ork", 1, 1700 + Math.random() * 100),
+                new Enemy("ork", 1, 1900 + Math.random() * 100),
+                new Enemy("troll", 1, 2300 + Math.random() * 100),
+                new Enemy("ork", 1, 2700 + Math.random() * 100),
+                new Enemy("ork", 1, 3000 + Math.random() * 100),
+                new Enemy("ork", 1, 3700 + Math.random() * 100),
+                new Enemy("ork", 1, 4000 + Math.random() * 100),
+                new Enemy("ork", 1, 4200 + Math.random() * 100),
                 new Endboss(1)
             ],
             //clouds background
@@ -36,8 +45,9 @@ function loadLevel(levelNumber, character) {
             ],
             // collectables
             [
-                new Collectable("thorshammer", 500),
+                new Collectable("thorshammer",1800),
                 new Collectable(character, 1000),
+                new Collectable(character, 3300),
             ]
         );
     };
@@ -80,8 +90,9 @@ function loadLevel(levelNumber, character) {
             ],
             // collectables
             [
-                new Collectable("thorshammer", 500),
+                new Collectable("thorshammer", 2500),
                 new Collectable(character, 1200),
+                new Collectable(character, 3200),
             ]
         );
     };
@@ -122,8 +133,9 @@ function loadLevel(levelNumber, character) {
             ],
             // collectables
             [
-                new Collectable("thorshammer", -500),
-                new Collectable(character, 1000),
+                new Collectable("thorshammer", 2500),
+                new Collectable(character, 1200),
+                new Collectable(character, 3200),
             ]
         );
     }

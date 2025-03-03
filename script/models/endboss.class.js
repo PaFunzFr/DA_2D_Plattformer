@@ -59,8 +59,6 @@ class Endboss extends MovableObject {
             }, 30);
     }
 
-
-
     fallToGround() {
         if (!this.onGround) {
             this.y += this.floatingSpeed * 2.5;

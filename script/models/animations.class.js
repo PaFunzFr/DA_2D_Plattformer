@@ -32,5 +32,9 @@ class Animation {
         }, 100);
     }
 
+    animateDragonBoss() {
+
+    }
+
 }
 
