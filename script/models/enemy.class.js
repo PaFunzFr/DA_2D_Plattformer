@@ -23,7 +23,7 @@ class Enemy extends MovableObject {
     startMovementAfterDelay() {
         setTimeout(() => {
             this.animate();  
-        }, 2500);  
+        }, 3000);  
     }
 
     getCharacterStat(name, level) {

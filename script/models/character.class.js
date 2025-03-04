@@ -31,7 +31,7 @@ class Character extends MovableObject {
     startMovementAfterDelay() {
         setTimeout(() => {
             this.animate();  
-        }, 2500);  
+        }, 3000);  
     }
 
     animate() {

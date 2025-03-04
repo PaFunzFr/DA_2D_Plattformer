@@ -1,5 +1,13 @@
 
 let keyboard = new Keyboard();
+// mobile devices
+const btnMobileLeft = document.getElementById("mobileLeft");
+const btnMobileRight = document.getElementById("mobileRight");
+const btnMobileJump = document.getElementById("mobileJump");
+const btnMobileAttack = document.getElementById("mobileAttack");
+const btnFullscreen = document.getElementById("gameFullscreen");
+const btnGameMute = document.getElementById("gameMute");
+
 function isButtonClicked(event, buttonCode, classNameButton, boolean) {
     if (event.code === buttonCode) {
         keyboard[classNameButton] = boolean;
@@ -25,15 +33,6 @@ document.addEventListener("keyup", (event) => {
     isButtonClicked(event, "KeyD", "clickedD", false);
     isButtonClicked(event, "KeyP", "clickedD", false);
 });
-
-
-// mobile devices
-const btnMobileLeft = document.getElementById("mobileLeft");
-const btnMobileRight = document.getElementById("mobileRight");
-const btnMobileJump = document.getElementById("mobileJump");
-const btnMobileAttack = document.getElementById("mobileAttack");
-const btnFullscreen = document.getElementById("gameFullscreen");
-const btnGameMute = document.getElementById("gameMute");
 
 document.addEventListener("touchmove", (e) => {
     e.preventDefault(); // prevents scrolling

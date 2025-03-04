@@ -8,7 +8,6 @@ const gameMuteBtn = document.getElementById("gameMute");
 const gameDialog = document.getElementById('gameDialog');
 const gamePauseBtn = document.getElementById("gamePause");
 
-
 function startGame(character, levelNumber) {
     sounds.environment.wind.play();
     sounds.character[character].play();
