@@ -13,7 +13,6 @@ class DrawableObject {
     currentImage = 0;
     otherDirection = false;
 
-    // loadImage("./assets/images/picture.png")
     loadImage(path) {
         this.img = new Image(); // = <img>
         this.img.src = path;
@@ -23,8 +22,7 @@ class DrawableObject {
         for (let index = 0; index < imageCount; index++) {
             let img = new Image();
             img.src = `${path}${index}.png`;
-            array.push(img);   
-            //console.log(img.src);         
+            array.push(img);        
         }
     }
     

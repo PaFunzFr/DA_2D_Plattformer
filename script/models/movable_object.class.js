@@ -2,6 +2,13 @@ class MovableObject extends DrawableObject {
     yOffset = 50;
     energy = 100;
     lastHit = 0;
+    currentImage = 0;
+    imagesIdle = [];
+    imagesWalking = [];
+    imagesJumping = [];
+    imagesHurt = [];
+    imagesDead = [];
+    imagesAttack = [];
     attackingFromAbove = false;
     currentlyDying = false;
     killed = false;
@@ -25,17 +32,21 @@ class MovableObject extends DrawableObject {
     }
 
     hit(damage) {
-        if (this.character) {
-            playSound('character', 'hurt'); // hitsound character
-        }
-        if (this.name) {
-            playSound(this.name, 'hurt');
-        }
+        this.triggerHurtSound();
         this.energy -= damage;
         if(this.energy <= 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
+        }
+    }
+
+    triggerHurtSound() {
+        if (this.character) {
+            playSound('character', 'hurt');
+        }
+        if (this.name) {
+            playSound(this.name, 'hurt');
         }
     }
 
@@ -69,10 +80,8 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY
                 this.speedY -= this.acceleration; 
-
                 if (this instanceof Character && this.y < 210) {
                     this.attackingFromAbove = true;
-                    console.log("attacking from above ground"); // is attacking while jumping
                 }
                 if (this instanceof ThrowableObject) {
                     this.x += this.speedX;
@@ -82,7 +91,6 @@ class MovableObject extends DrawableObject {
         }, 1000/60);
     }
 
-    // ONLY FOR MISSILES (DRAGONS) used in THROWABLEOBJECT
     fireMissile() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -106,15 +114,23 @@ class MovableObject extends DrawableObject {
         if (this.y >= this.elementOnGround) {
             this.y = this.elementOnGround;
             this.speedY = 0;
-            if (this instanceof ThrowableObject) {
-                this.speedX = 0;
-            }
-            this.isJumping = false;
-            this.attackingFromAbove = false;
+            this.stopThrowableObjects();
+            this.resetVerticalStatuses();
             this.currentImage = 0; // reset animation
             return true;
         }
         return false;
+    }
+
+    stopThrowableObjects() {
+        if (this instanceof ThrowableObject) {
+            this.speedX = 0;
+        }
+    }
+
+    resetVerticalStatuses() {
+        this.isJumping = false;
+        this.attackingFromAbove = false;
     }
 }
 

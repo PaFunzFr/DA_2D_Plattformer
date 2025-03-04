@@ -27,8 +27,6 @@ function createInitialWorld(level, levelNumber, character) {
     }
     world = null;
     world = new World(canvas, keyboard, level, levelNumber, character);
-    world.pause = false;
-    //console.log(world.character);
 }
 
 // toggle Fullscreen
@@ -67,7 +65,7 @@ function setMuteIconOnStart() {
 // test pause game button
 function togglePauseGame() {
     world.pauseGame();
-    if (!world.paused) {
+    if (world.paused) {
         renderPauseMenu();
     } else if (gameDialog.style.display = "flex"){
         setMuteIconOnStart();

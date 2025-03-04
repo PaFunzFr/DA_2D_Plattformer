@@ -53,7 +53,6 @@ class World {
     }
 
     runCollisionHandler() {
-
         setInterval(() => {
             this.stopGame();
         }, 30);

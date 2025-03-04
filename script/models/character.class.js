@@ -1,13 +1,6 @@
 class Character extends MovableObject {
     width = 150;
     height = 150;
-    currentImage = 0;
-    imagesIdle = [];
-    imagesWalking = [];
-    imagesJumping = [];
-    imagesHurt = [];
-    imagesDead = [];
-    imagesAttack = [];
     isJumping = false;
     x = 290;
     speedX = 4.5;

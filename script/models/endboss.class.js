@@ -2,11 +2,6 @@ class Endboss extends MovableObject {
     width = 670;
     height = 470;
     enemySpeed = 0;
-    currentImage = 0;
-    imagesWalking = [];
-    imagesAttacking = [];
-    imagesHurt = [];
-    imagesDead = [];
     bossSpeed = 0.25;
     floatingRange = 50;
     floatingSpeed = 2;
@@ -15,6 +10,7 @@ class Endboss extends MovableObject {
     movingUp = false;
     isAttacking = false;
     yOffset = -120;
+    currentPositionY = 0;
     attack;
     level;
 
@@ -30,7 +26,7 @@ class Endboss extends MovableObject {
         this.initialY = this.y;
         this.loadImage(`./img/03_endboss/dragon${level}/7_fly/Dragon_fly_000.png`);
         this.preloadImages(this.imagesWalking, `./img/03_endboss/dragon${level}/7_fly/Dragon_fly_00`, 10);
-        this.preloadImages(this.imagesAttacking, `./img/03_endboss/dragon${level}/6_attack/Dragon_Attack_00`, 10);
+        this.preloadImages(this.imagesAttack, `./img/03_endboss/dragon${level}/6_attack/Dragon_Attack_00`, 10);
         this.preloadImages(this.imagesHurt, `./img/03_endboss/dragon${level}/4_hurt/Dragon_hurt_00`, 6);
         this.preloadImages(this.imagesDead, `./img/03_endboss/dragon${level}/5_dead/Dragon_hurt_00`, 10);
         this.animate();
@@ -45,7 +41,7 @@ class Endboss extends MovableObject {
                     this.playAnimation(this.imagesHurt);
                 }
                 if (this.isAttacking) {
-                    this.playAnimation(this.imagesAttacking)
+                    this.playAnimation(this.imagesAttack)
                 }
             }, 60);
 
@@ -69,7 +65,7 @@ class Endboss extends MovableObject {
         }
     }
     
-    currentPositionY = 0;
+
     floatMovement() {
         if (this.movingUp) {
             this.y -= this.floatingSpeed;

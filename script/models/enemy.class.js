@@ -1,11 +1,6 @@
 class Enemy extends MovableObject {
     width = 0;
     height = 0;
-    currentImage = 0;
-    imagesWalking = [];
-    imagesAttacking = [];
-    imagesHurt = [];
-    imagesDead = [];
     enemySpeed = 0;
     passedCharacter = false;
     name;
@@ -19,7 +14,7 @@ class Enemy extends MovableObject {
         this.y = 480 - this.height - this.yOffset;
         this.loadImage(`./img/02_enemies/${name}/${name}${level}/6_attack/ATTACK_000.png`)
         this.preloadImages(this.imagesWalking, `./img/02_enemies/${name}/${name}${level}/2_walk/WALK_00`, 10);
-        this.preloadImages(this.imagesAttacking, `./img/02_enemies/${name}/${name}${level}/6_attack/ATTACK_00`, 10);
+        this.preloadImages(this.imagesAttack, `./img/02_enemies/${name}/${name}${level}/6_attack/ATTACK_00`, 10);
         this.preloadImages(this.imagesDead, `./img/02_enemies/${name}/${name}${level}/5_dead/DIE_00`, 10);
         this.preloadImages(this.imagesHurt, `./img/02_enemies/${name}/${name}${level}/4_hurt/HURT_00`, 5);
         this.startMovementAfterDelay();
@@ -30,7 +25,6 @@ class Enemy extends MovableObject {
             this.animate();  
         }, 2500);  
     }
-
 
     getCharacterStat(name, level) {
         if (name == "ork") {

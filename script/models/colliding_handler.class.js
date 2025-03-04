@@ -17,6 +17,18 @@ class CollidingObject {
         });
     }
 
+    checkCollisionsThrowable() {
+        let thrownObjects = this.world.throwableObjects;
+        thrownObjects.forEach((throwableObject) => {
+            let inAir = this.setStatusInAir(throwableObject);
+            if (this.world.character.isColliding(throwableObject)) {
+                this.collectThrowable(throwableObject, thrownObjects);
+            }
+            this.setStatusInAir(throwableObject, inAir);
+            this.hitEnemyWithThrowable(throwableObject, inAir, thrownObjects);
+        });
+    }
+
     collidingWithEnemy() {
         this.world.level.enemies.forEach((enemy) => {
             if (this.world.character.isColliding(enemy)) {
@@ -84,17 +96,26 @@ class CollidingObject {
         this.world.character.energy = 100;
         this.world.statusBar.loadImage(`./img/06_statusbars/1_statusbar/1_health/${this.world.character.character}/B6.png`);
         setTimeout(() => {
-            this.world.statusBar.loadImage(`./img/06_statusbars/1_statusbar/1_health/${this.world.character.character}/B5.png`);
-            this.world.character.ignoreDamage = false;
+            this.resetGodmode();
         }, 5000);
+    }
+
+    resetGodmode() {
+        this.world.statusBar.loadImage(`./img/06_statusbars/1_statusbar/1_health/${this.world.character.character}/B5.png`);
+        this.world.character.ignoreDamage = false;
     }
 
     jumpKill(enemy) {
         enemy.hit(100);
+        this.deleteIfDead(enemy);
+    }
+    
+    deleteIfDead(enemy) {
         if (enemy.isDead()) {
+            this.trollDropsHorn(enemy);
             this.world.animations.animateDeathAndDelete(enemy);
         }
-    } 
+    }
 
     EnemiesFollowing(enemy) {
         if(this.world.character.x > (enemy.x + 50) && !enemy.currentlyDying && enemy.name != "dragon") {
@@ -106,7 +127,7 @@ class CollidingObject {
 
     EnemiesAttacking(enemy) {
         if (this.world.character.isApproaching(enemy, 120) && (enemy.name != "dragon" || enemy.name != "dragonBoss")) {
-            enemy.playAnimation(enemy.imagesAttacking);
+            enemy.playAnimation(enemy.imagesAttack);
         } else {
             enemy.playAnimation(enemy.imagesWalking);
         }
@@ -225,28 +246,14 @@ class CollidingObject {
                     this.world.statusBarBoss.setPercentage(enemy.energy);
                 }
                 thrownObjects.splice(thrownObjects.indexOf(throwableObject), 1);
-                if (enemy.isDead()) {
-                    if (enemy.name === "troll") {
-                        this.world.spawnCollectableOnEnemyDeath(enemy);
-                    }
-                    this.world.animations.animateDeath(enemy);
-                    setTimeout(() => {
-                        this.world.level.enemies = this.world.level.enemies.filter(e => e !== enemy);
-                    }, 1000);
-                }
+                this.deleteIfDead(enemy);
             }
         });
     }
 
-    checkCollisionsThrowable() {
-        let thrownObjects = this.world.throwableObjects;
-        thrownObjects.forEach((throwableObject) => {
-            let inAir = this.setStatusInAir(throwableObject);
-            if (this.world.character.isColliding(throwableObject)) {
-                this.collectThrowable(throwableObject, thrownObjects);
-            }
-            this.setStatusInAir(throwableObject, inAir);
-            this.hitEnemyWithThrowable(throwableObject, inAir, thrownObjects);
-        });
+    trollDropsHorn(enemy) {
+        if (enemy.name === "troll") {
+            this.world.spawnCollectableOnEnemyDeath(enemy);
+        }
     }
 }
