@@ -41,13 +41,20 @@ const sounds = {
     },
 };
 
-//loops
+/**
+ * Sets up all audio sources with appropriate loop, volume, and muted state.
+ */
 sounds.environment.background.loop = true;
 sounds.environment.background.volume = 0.6;
 sounds.environment.wind.loop = true;
 sounds.environment.wind.volume = 0.5;
 
 
+/**
+ * Plays a specified sound from the target category if not muted.
+ * @param {string} target The target sound category (e.g., 'environment').
+ * @param {string} sound The specific sound to play (e.g., 'background').
+ */
 function playSound(target, sound) {
     if (!mutedGlobal) {
         let audio = sounds[target][sound];
@@ -55,6 +62,10 @@ function playSound(target, sound) {
     }
 }
 
+/**
+ * Fetches and decodes the audio data for the given sound and plays it.
+ * @param {Audio} audio The audio object to fetch and play.
+ */
 function fetchAudioData(audio) {
     fetch(audio.src)
     .then(response => response.arrayBuffer())
@@ -67,6 +78,10 @@ function fetchAudioData(audio) {
     })
 }
 
+/**
+ * Mutes or unmutes all sounds globally.
+ * @param {boolean} mute Whether to mute the sounds (true to mute, false to unmute).
+ */
 function muteAllSounds(mute) {
     sounds.environment.background.muted = mute;
     sounds.environment.wind.muted = mute;
