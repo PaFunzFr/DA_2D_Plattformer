@@ -11,9 +11,7 @@ function renderCharSelection() {
             </div>`
     }
     charSelection.innerHTML += `<img class="char-background" src="./img/08_intro/background_ambiente.png">`
-    
     addHoverEffect();
-
     return charSelection.innerHTML;
 }
 

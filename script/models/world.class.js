@@ -34,22 +34,22 @@ class World {
         this.collectables = this.level.collectables;
         this.endboss = this.level.enemies[this.level.enemies.length -1];
         setTimeout(() => {
-            this.setWorld();
-            this.draw();
-            this.runCollisionHandler();
-            if (nextLevelTriggered) {
-                this.reloadEnemyAnimations();
-                this.level.collectables.forEach((collectable) => {
-                    collectable.animate();
-                });
-                this.level.clouds.forEach((cloud) => {
-                    cloud.animate();
-                });
-            }
+            this.createAnimatedWorld();
             mobileInterface.style.display = 'block';
             gameDialog.style.display = 'none';
             levelInfo.innerHTML = 'stage ' + levelNumber;
         }, 2500);
+    }
+
+    createAnimatedWorld() {
+        this.setWorld();
+        this.draw();
+        this.runCollisionHandler();
+        if (nextLevelTriggered) {
+            this.reloadAnimationsEnemies();
+            this.reloadAniamtionClouds()
+            this.reloadAnimationCollectables();
+        }
     }
 
     runCollisionHandler() {
@@ -78,12 +78,16 @@ class World {
         this.creatingBackground();
         this.addMovableObjects();
         this.ctx.translate(-this.cameraX, 0);
-        this.addToMap(this.statusBar);
-        this.addToMap(this.weaponBar);
+        this.addStatusBars();
         this.bossTriggerEvent();
         this.collidingHandler.throwObject(); 
         requestAnimationFrame(this.draw.bind(this)); // bind(this) instead of let self = this and self.draw()
     } 
+
+    addStatusBars() {
+        this.addToMap(this.statusBar);
+        this.addToMap(this.weaponBar);
+    }
 
     bossTriggerEvent() {
         if (this.character.x >= 3600) { // spawn if character reaches position x
@@ -146,10 +150,6 @@ class World {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
     }
 
-    resumeIntervall() {
-        this.draw();
-    }
-
     spawnCollectableOnEnemyDeath(enemy) {
         if (enemy.name === "troll") {
             console.log("triggerCheck");
@@ -173,15 +173,32 @@ class World {
 
     reloadAnimations() {
         this.runCollisionHandler();
-        this.reloadEnemyAnimations()
+        this.reloadAnimationsEnemies()
         this.missileObjects.forEach((missile) => { missile.animate(); });
         this.throwableObjects.forEach((object) => { object.animate(); });
         this.character.animate();
         this.character.applyGravity();
+        this.reloadAnimationCollectables();
+        this.reloadAniamtionClouds();
         this.draw(); 
     }
 
-    reloadEnemyAnimations() {
+    reloadAnimationCollectables() {
+        this.level.collectables.forEach((collectable) => {
+            collectable.animate();
+        });
+    }
+
+    reloadAniamtionClouds() {
+        this.level.clouds.forEach((cloud) => {
+            cloud.animate();
+        });
+        this.level.cloudsBackground.forEach((cloud) => {
+            cloud.animate();
+        });
+    }
+
+    reloadAnimationsEnemies() {
         this.level.enemies.forEach((enemy) => {
             enemy.animate();
             setTimeout(() => {
@@ -192,6 +209,11 @@ class World {
     }
     
     stopGame() {
+        this.endIfCharacterDead();
+        this.endIfBossDead();
+    }
+
+    endIfCharacterDead() {
         if (this.character.energy === 0 && !this.gameOver) {
             console.log("game over");
             this.endGame();
@@ -199,16 +221,23 @@ class World {
                 renderGameOver();
             }, 1900);
         }
+    }
+
+    endIfBossDead() {
         if (this.endboss.energy === 0 && !this.gameOver) {
             this.statusBarBoss.img.src = `./img/06_statusbars/1_statusbar/1_health/dragon${this.levelNumber}/B6.png`;
             this.nextLevel();
             setTimeout(() => {
-                if (this.endboss.level != "3") {
-                    renderNextStageDialog();
-                } else {
-                    renderWon();
-                }
+                this.renderBossDeadDialog();
             }, 1900);
+        }
+    }
+
+    renderBossDeadDialog() {
+        if (this.endboss.level != "3") {
+            renderNextStageDialog();
+        } else {
+            renderWon();
         }
     }
 
@@ -221,7 +250,6 @@ class World {
     }
     
     nextLevel() {
-        console.log("unlocked next level");
         muteAllSounds(true);
         this.gameOver = true;
         setTimeout(() => {

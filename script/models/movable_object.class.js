@@ -79,16 +79,24 @@ class MovableObject extends DrawableObject {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY
-                this.speedY -= this.acceleration; 
-                if (this instanceof Character && this.y < 210) {
-                    this.attackingFromAbove = true;
-                }
-                if (this instanceof ThrowableObject) {
-                    this.x += this.speedX;
-                }
+                this.speedY -= this.acceleration;
+                this.setCharacterJumpAttack(); 
+                this.setThrowableSpeedX();
                 this.isOnGround();
             }
         }, 1000/60);
+    }
+
+    setCharacterJumpAttack() {
+        if (this instanceof Character && this.y < 210) {
+            this.attackingFromAbove = true;
+        }
+    }
+
+    setThrowableSpeedX() {
+        if (this instanceof ThrowableObject) {
+            this.x += this.speedX;
+        }
     }
 
     fireMissile() {

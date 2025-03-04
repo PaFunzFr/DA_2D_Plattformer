@@ -33,16 +33,25 @@ function createInitialWorld(level, levelNumber, character) {
 function toggleFullscreen() {
     if (!document.fullscreenElement) {
         setGameStyle("100vw", "100vh", "absolute", "100vw", "100vh");
-        if (gameContainer.requestFullscreen) {
-            gameContainer.requestFullscreen();
-        } else if (gameContainer.webkitRequestFullscreen) { /* Safari */
-            gameContainer.webkitRequestFullscreen();
-        } else if (gameContainer.msRequestFullscreen) { /* IE11 */
-            gameContainer.msRequestFullscreen();
-        }
+        setFullScreen();
     } else {
         document.exitFullscreen();
+    }
+}
+
+document.addEventListener("fullscreenchange", function () {
+    if (!document.fullscreenElement) {
         setGameStyle("", "", "", "", "");
+    }
+});
+
+function setFullScreen() {
+    if (gameContainer.requestFullscreen) {
+        gameContainer.requestFullscreen();
+    } else if (gameContainer.webkitRequestFullscreen) { /* Safari */
+        gameContainer.webkitRequestFullscreen();
+    } else if (gameContainer.msRequestFullscreen) { /* IE11 */
+        gameContainer.msRequestFullscreen();
     }
 }
 
@@ -69,11 +78,15 @@ function togglePauseGame() {
         renderPauseMenu();
     } else if (gameDialog.style.display = "flex"){
         setMuteIconOnStart();
-        setTimeout(() => {
-            gameDialog.style.display = 'none';
-            gameDialog.innerHTML = "";
-        }, 200);
+        hideGameDialog();
     }
+}
+
+function hideGameDialog() {
+    setTimeout(() => {
+        gameDialog.style.display = 'none';
+        gameDialog.innerHTML = "";
+    }, 200);
 }
 
 function nextStage() {

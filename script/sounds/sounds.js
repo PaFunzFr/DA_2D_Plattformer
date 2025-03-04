@@ -1,4 +1,6 @@
 let mutedGlobal = false;
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
 const sounds = {
     ork: {
         hurt: new Audio("./audio/ork/hurt.mp3"),
@@ -46,25 +48,24 @@ sounds.environment.wind.loop = true;
 sounds.environment.wind.volume = 0.5;
 
 
-//preload sounds with API
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
 function playSound(target, sound) {
     if (!mutedGlobal) {
-    let audio = sounds[target][sound];
-    fetch(audio.src)
-        .then(response => response.arrayBuffer())
-        .then(data => audioContext.decodeAudioData(data))
-        .then(buffer => {
-            const source = audioContext.createBufferSource();
-            source.buffer = buffer;
-            source.connect(audioContext.destination);
-            source.start(0);
-        })
-        .catch(error => console.error('Error with Web Audio API:', error));
+        let audio = sounds[target][sound];
+        fetchAudioData(audio);
     }
 }
 
+function fetchAudioData(audio) {
+    fetch(audio.src)
+    .then(response => response.arrayBuffer())
+    .then(data => audioContext.decodeAudioData(data))
+    .then(buffer => {
+        const source = audioContext.createBufferSource();
+        source.buffer = buffer;
+        source.connect(audioContext.destination);
+        source.start(0);
+    })
+}
 
 function muteAllSounds(mute) {
     sounds.environment.background.muted = mute;

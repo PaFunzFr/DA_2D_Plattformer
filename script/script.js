@@ -46,15 +46,23 @@ function addHoverEffect() {
     for (let index = 0; index < characterCards.length; index++) {
         const card = characterCards[index];
         const img = document.getElementById(`charImg${index}`);
-        card.addEventListener('mouseover', () => {
-            card.style.backgroundColor = "#9a57008d";
-            img.style.animation = "pulseImg 0.6s infinite alternate ease-in-out";
-        });
-        card.addEventListener('mouseout', () => {
-            card.style.backgroundColor = "";
-            img.style.animation = "";
-        }); 
+        effectMouseOver(card, img);
+        effectMouseOut(card, img);
     }
+}
+
+function effectMouseOver(card, img) {
+    card.addEventListener('mouseover', () => {
+        card.style.backgroundColor = "#9a57008d";
+        img.style.animation = "pulseImg 0.6s infinite alternate ease-in-out";
+    });
+}
+
+function effectMouseOut(card, img) {
+    card.addEventListener('mouseout', () => {
+        card.style.backgroundColor = "";
+        img.style.animation = "";
+    }); 
 }
 
 function toggleControlMenu() {

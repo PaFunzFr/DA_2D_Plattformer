@@ -72,11 +72,11 @@ class CollidingObject {
     }
 
     getBonusByCollectableType(collectable) {
-        if (collectable.name === "drinkhorn" && !this.world.character.ignoreDamage) {
+        if (collectable.name === "drinkhorn") {
             this.gainHealth();
         } else if (collectable.name === "thorshammer") {
             this.setGodMode();
-        } else {
+        } else if (["axe", "club", "hammer"].includes(collectable.name)) {
             this.gainWeapons();
         };
     }
@@ -87,9 +87,14 @@ class CollidingObject {
     }
 
     gainHealth() {
-        this.world.character.energy = Math.min(this.world.character.energy + 50, 100);
-        this.world.statusBar.setPercentage(this.world.character.energy);
+        if (!this.world.character.ignoreDamage) {
+            this.world.character.energy = Math.min(this.world.character.energy + 50, 100);
+            this.world.statusBar.setPercentage(this.world.character.energy);
+        } else {
+            this.world.character.energy = 100;
+        }
     }
+    
 
     setGodMode() {
         this.world.character.ignoreDamage = true;

@@ -33,26 +33,26 @@ class Endboss extends MovableObject {
     }
 
     animate() {
-            setInterval(() => {
-                if (!this.currentlyDying && !this.isAttacking) {
-                    this.playAnimation(this.imagesWalking);
-                }
-                if (this.isHurt() && !this.currentlyDying) {
-                    this.playAnimation(this.imagesHurt);
-                }
-                if (this.isAttacking) {
-                    this.playAnimation(this.imagesAttack)
-                }
-            }, 60);
+        setInterval(() => {
+            if (!this.currentlyDying && !this.isAttacking) {
+                this.playAnimation(this.imagesWalking);
+            }
+            if (this.isHurt() && !this.currentlyDying) {
+                this.playAnimation(this.imagesHurt);
+            }
+            if (this.isAttacking) {
+                this.playAnimation(this.imagesAttack)
+            }
+        }, 60);
 
-            setInterval(() => {
-                if (!this.currentlyDying && !this.isAttacking) {
-                    this.floatMovement();
-                    this.moveLeft(this.enemySpeed);
-                } else if (this.isDead()) {
-                    this.fallToGround();
-                }
-            }, 30);
+        setInterval(() => {
+            if (!this.currentlyDying && !this.isAttacking) {
+                this.floatMovement();
+                this.moveLeft(this.enemySpeed);
+            } else if (this.isDead()) {
+                this.fallToGround();
+            }
+        }, 30);
     }
 
     fallToGround() {
