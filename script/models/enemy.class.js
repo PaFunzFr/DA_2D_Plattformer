@@ -7,6 +7,7 @@ class Enemy extends MovableObject {
     imagesHurt = [];
     imagesDead = [];
     enemySpeed = 0;
+    passedCharacter = false;
     name;
 
     constructor(name, level, positionX) {
@@ -98,8 +99,10 @@ class Enemy extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (!this.currentlyDying) {
+            if (!this.currentlyDying && !this.passedCharacter) {
                 this.moveLeft(this.enemySpeed);
+            } else if (!this.currentlyDying && this.passedCharacter) {
+                this.moveRight(this.enemySpeed)
             }
         }, 1000 / 60);
 

@@ -2,11 +2,10 @@ class MovableObject extends DrawableObject {
     yOffset = 50;
     energy = 100;
     lastHit = 0;
-
     attackingFromAbove = false;
     currentlyDying = false;
     killed = false;
-    
+
     moveRight(speed) {
         this.x += speed;
         this.otherDirection = false;

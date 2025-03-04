@@ -9,16 +9,16 @@ function loadLevel(levelNumber, character) {
                 new Enemy("ork", 1, 500 + Math.random() * 100),
                 new Enemy("ork", 1, 700 + Math.random() * 100),
                 new Enemy("ork", 1, 900 + Math.random() * 100),
-                new Enemy("troll", 1, 1300 + Math.random() * 100),
-                new Enemy("ork", 1, 1500 + Math.random() * 100),
-                new Enemy("ork", 1, 1700 + Math.random() * 100),
-                new Enemy("ork", 1, 1900 + Math.random() * 100),
+                new Enemy("troll", 1, 1200 + Math.random() * 100),
+                new Enemy("ork", 1, 1600 + Math.random() * 100),
+                new Enemy("ork", 1, 1800 + Math.random() * 100),
+                new Enemy("ork", 1, 2000 + Math.random() * 100),
                 new Enemy("troll", 1, 2300 + Math.random() * 100),
-                new Enemy("ork", 1, 2700 + Math.random() * 100),
+                new Enemy("ork", 1, 2600 + Math.random() * 100),
                 new Enemy("ork", 1, 3000 + Math.random() * 100),
                 new Enemy("ork", 1, 3700 + Math.random() * 100),
-                new Enemy("ork", 1, 4000 + Math.random() * 100),
-                new Enemy("ork", 1, 4200 + Math.random() * 100),
+                new Enemy("troll", 1, 4000 + Math.random() * 100),
+                new Enemy("ork", 1, 4400 + Math.random() * 100),
                 new Endboss(1)
             ],
             //clouds background
@@ -45,9 +45,9 @@ function loadLevel(levelNumber, character) {
             ],
             // collectables
             [
-                new Collectable("thorshammer",1800),
-                new Collectable(character, 1000),
-                new Collectable(character, 3300),
+                new Collectable("thorshammer",2600),
+                new Collectable(character, 2000),
+                new Collectable(character, 3700),
             ]
         );
     };
@@ -56,12 +56,22 @@ function loadLevel(levelNumber, character) {
         return new Level(
             // enemies
             [
-                new Enemy("dragon", 2, 2500 + Math.random() * 100),
                 new Enemy("dragon", 2, 1500 + Math.random() * 100),
+                new Enemy("dragon", 2, 3000 + Math.random() * 100),
+                new Enemy("dragon", 2, 4500 + Math.random() * 100),
                 new Enemy("ork", 2, 500 + Math.random() * 100),
-                new Enemy("ork", 2, 700 + Math.random() * 100),
+                new Enemy("ork", 1, 700 + Math.random() * 100),
                 new Enemy("ork", 2, 900 + Math.random() * 100),
                 new Enemy("troll", 2, 1300 + Math.random() * 100),
+                new Enemy("ork", 1, 1600 + Math.random() * 100),
+                new Enemy("troll", 1, 1800 + Math.random() * 100),
+                new Enemy("ork", 1, 2000 + Math.random() * 100),
+                new Enemy("ork", 2, 2300 + Math.random() * 100),
+                new Enemy("ork", 2, 2600 + Math.random() * 100),
+                new Enemy("ork", 1, 3000 + Math.random() * 100),
+                new Enemy("troll", 2, 3700 + Math.random() * 100),
+                new Enemy("ork", 2, 4000 + Math.random() * 100),
+                new Enemy("ork", 1, 4400 + Math.random() * 100),
                 new Endboss(2)
             ],
             //clouds background
@@ -90,9 +100,9 @@ function loadLevel(levelNumber, character) {
             ],
             // collectables
             [
-                new Collectable("thorshammer", 2500),
-                new Collectable(character, 1200),
-                new Collectable(character, 3200),
+                new Collectable("thorshammer", 3000),
+                new Collectable(character, 2200),
+                new Collectable(character, 3700),
             ]
         );
     };
@@ -101,12 +111,22 @@ function loadLevel(levelNumber, character) {
         return new Level(
             // enemies
             [
-                new Enemy("dragon", 3, 2500 + Math.random() * 100),
                 new Enemy("dragon", 3, 1500 + Math.random() * 100),
+                new Enemy("dragon", 3, 2500 + Math.random() * 100),
+                new Enemy("dragon", 3, 3500 + Math.random() * 100),
+                new Enemy("dragon", 3, 4500 + Math.random() * 100),
                 new Enemy("ork", 3, 500 + Math.random() * 100),
-                new Enemy("ork", 3, 700 + Math.random() * 100),
+                new Enemy("ork", 2, 700 + Math.random() * 100),
                 new Enemy("ork", 3, 900 + Math.random() * 100),
                 new Enemy("troll", 3, 1300 + Math.random() * 100),
+                new Enemy("ork", 2, 2300 + Math.random() * 100),
+                new Enemy("ork", 3, 2600 + Math.random() * 100),
+                new Enemy("ork", 1, 3000 + Math.random() * 100),
+                new Enemy("troll", 3, 3700 + Math.random() * 100),
+                new Enemy("troll", 2, 4000 + Math.random() * 100),
+                new Enemy("ork", 2, 4000 + Math.random() * 100),
+                new Enemy("troll", 3, 4300 + Math.random() * 100),
+                new Enemy("ork", 1, 4600 + Math.random() * 100),
                 new Endboss(3)
             ],
             //clouds background
@@ -133,9 +153,10 @@ function loadLevel(levelNumber, character) {
             ],
             // collectables
             [
-                new Collectable("thorshammer", 2500),
-                new Collectable(character, 1200),
+                new Collectable("thorshammer", 3700),
+                new Collectable(character, 2300),
                 new Collectable(character, 3200),
+                new Collectable(character, 3900),
             ]
         );
     }

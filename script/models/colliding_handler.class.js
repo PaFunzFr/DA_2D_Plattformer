@@ -14,7 +14,6 @@ class CollidingObject {
                     this.world.character.hit(10);
                 }
                 this.world.statusBar.setPercentage(this.world.character.energy);
-                console.log(this.world.character.energy);
                 }
             }
         });
@@ -51,28 +50,32 @@ class CollidingObject {
                         this.world.character.ignoreDamage = false;
                     }, 5000);
                 } else {
-                    console.log(collectable.name + " picked up");
                     this.world.throwableAmount = Math.min(this.world.throwableAmount + 5, 10);
                     this.world.weaponBar.setWeaponAmount(this.world.throwableAmount);
                 }
-
-                
                 this.world.level.collectables.splice(this.world.level.collectables.indexOf(collectable), 1);
             }
         });
-        // character with boss
+        // enemies following
+        this.world.level.enemies.forEach((enemy) => {
+            if(this.world.character.x > (enemy.x + 50) && !enemy.currentlyDying && enemy.name != "dragon") {
+                enemy.passedCharacter = true;
+            } else {
+                enemy.passedCharacter = false;
+            }
+        });
     }
 
     jumpKill(enemy) {
         enemy.hit(100);
         if (enemy.isDead()) {
-                enemy.enemySpeed = 0;
-                this.world.character.ignoreDamage = true;
-                this.world.animations.animateDeath(enemy);
-                setTimeout(() => {
-                    this.world.level.enemies = this.world.level.enemies.filter(e => e !== enemy);
-                    this.world.character.ignoreDamage = false;
-                }, 1000);
+            enemy.enemySpeed = 0;
+            this.world.character.ignoreDamage = true;
+            this.world.animations.animateDeath(enemy);
+            setTimeout(() => {
+                this.world.level.enemies = this.world.level.enemies.filter(e => e !== enemy);
+                this.world.character.ignoreDamage = false;
+            }, 1000);
         }
     } 
 
@@ -81,7 +84,6 @@ class CollidingObject {
         setInterval(() => {
             this.world.level.enemies.forEach((enemy) => {
                 if (enemy.currentlyDying) return;
-    
                 // common enemies
                 if (this.world.character.isApproaching(enemy, 120) &&
                     (enemy.name != "dragon" ||
@@ -90,19 +92,15 @@ class CollidingObject {
                 } else {
                     enemy.playAnimation(enemy.imagesWalking);
                 }
-    
                 //Flying Enemies && FIREBALL ANIMATION
                 if (enemy.name === "dragon" &&
                     this.world.character.isApproaching(enemy, 250) ||
                     enemy.name === "dragonBoss" && 
                     this.world.character.isApproaching(enemy, 250)) {
-
                     if (enemy.attackTriggered) return; 
-    
                     enemy.attackTriggered = true;
                     enemy.isAttacking = true;
                     sounds.dragon.attack.play();
-
                     let fireBall = this.createFlame(enemy);
                     if (enemy.name === "dragonBoss") {
                         fireBall.speedX = fireBall.speedX/10 + 5 * -1; // set direction
@@ -110,18 +108,14 @@ class CollidingObject {
                         fireBall.speedY = -5; // set gravity and speed Y
                         fireBall.speedX = fireBall.speedX/10 + 5 * -1; // set direction and speed X
                     }
-
                     this.world.missileObjects.push(fireBall); // adds object to world / canvas
-
                     setTimeout(() => {
-
                         enemy.isAttacking = false;
                     }, 1000);
                     setTimeout(() => {
                         enemy.attackTriggered = false; 
                     }, 3000); // attacking each 3000ms
                 }
-
             });
         }, 200);
     }
@@ -133,8 +127,6 @@ class CollidingObject {
         let offsetX = this.world.character.width / 2; // x centered to character
         let offsetY = this.world.character.height / 3; // y slightly above character
         let direction = this.world.character.otherDirection ? -1 : 1; // throw left if walking left
-        
-
         if (this.world.keyboard.clickedD && cooldown >= 500) { // cooldown on throw by 0.5s
             sounds.character.attack.play();
             this.triggerThrowingObject(offsetX, offsetY, direction, currentTime);
@@ -162,13 +154,11 @@ class CollidingObject {
     }
 
     createFlame(object) {
-        console.log(object.attackDragon);
-        
         if (object.name === "dragonBoss") {
             return new ThrowableObject(
                 object.x + object.offset.right * 1,
                 object.currentPositionY + object.offset.top + 70,
-                object.attackDragon, // its a fireball
+                object.attackDragon,
                 object.otherDirection
             );
         }
@@ -176,7 +166,7 @@ class CollidingObject {
             return new ThrowableObject(
                 object.x + 20 * 1,
                 object.y + object.offset.top - 20,
-                object.attackDragon, // its a fireball
+                object.attackDragon,
                 object.otherDirection
             );
         }
@@ -184,12 +174,10 @@ class CollidingObject {
 
     checkCollisionsThrowable() {
         let thrownObjects = this.world.throwableObjects;
-        let enemies = this.world.level.enemies;
         thrownObjects.forEach((throwableObject) => {
             let inAir = false;
             if (this.world.character.isColliding(throwableObject)) {
                 thrownObjects.splice(thrownObjects.indexOf(throwableObject), 1);
-                console.log("waffe + 1");
                 this.world.throwableAmount += 1;
                 this.world.weaponBar.setWeaponAmount(this.world.throwableAmount);
             }
@@ -199,11 +187,8 @@ class CollidingObject {
             this.world.level.enemies.forEach((enemy) => {
                 if (inAir && throwableObject.isColliding(enemy) && !enemy.isDead()) {
                     enemy.hit(20);
-                    console.log(enemy.name + "hit by" + throwableObject.name);
-                    
                     if (enemy.name === "dragonBoss") {
                         this.world.statusBarBoss.setPercentage(enemy.energy);
-                        console.log(enemy.energy);
                     }
                     thrownObjects.splice(thrownObjects.indexOf(throwableObject), 1);
                     if (enemy.isDead()) {
