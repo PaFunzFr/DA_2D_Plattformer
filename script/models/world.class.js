@@ -357,5 +357,4 @@ class World {
             playSound("other", "win");
         }, 2000);
     }
-    
 } 

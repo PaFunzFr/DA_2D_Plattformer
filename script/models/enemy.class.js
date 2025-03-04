@@ -1,3 +1,9 @@
+/**
+ * Represents an enemy in the game.
+ * 
+ * The `Enemy` class extends from `MovableObject` and handles various behaviors specific to enemies,
+ * such as movement, animations, and state based on different types of enemies (e.g., Ork, Troll, Dragon).
+ */
 class Enemy extends MovableObject {
     width = 0;
     height = 0;
@@ -5,6 +11,12 @@ class Enemy extends MovableObject {
     passedCharacter = false;
     name;
 
+    /**
+     * Creates an instance of the Enemy.
+     * @param {string} name - The name/type of the enemy (e.g., "ork", "troll", "dragon").
+     * @param {number} level - The level of the enemy (1, 2, or 3).
+     * @param {number} positionX - The initial X position of the enemy.
+     */
     constructor(name, level, positionX) {
         super();
         this.x = positionX;
@@ -20,12 +32,22 @@ class Enemy extends MovableObject {
         this.startMovementAfterDelay();
     }
 
+    /**
+     * Starts the enemy's movement with a delay.
+     * @private
+     */
     startMovementAfterDelay() {
         setTimeout(() => {
             this.animate();  
         }, 3000);  
     }
 
+    /**
+     * Gets the character stats based on the enemy type and level.
+     * @param {string} name - The name/type of the enemy (e.g., "ork", "troll", "dragon").
+     * @param {number} level - The level of the enemy (1, 2, or 3).
+     * @private
+     */
     getCharacterStat(name, level) {
         if (name == "ork") {
             this.getOrkType(level);
@@ -36,6 +58,11 @@ class Enemy extends MovableObject {
         }
     }
 
+    /**
+     * Sets stats for the Troll type enemy.
+     * @param {number} level - The level of the enemy (1, 2, or 3).
+     * @private
+     */
     getTrollType(level) {
         this.setEnemyMetaStats(
             0.15 + Math.random() * 0.25,
@@ -50,6 +77,11 @@ class Enemy extends MovableObject {
         }
     }
 
+    /**
+     * Sets stats for the Dragon type enemy.
+     * @param {number} level - The level of the enemy (1, 2, or 3).
+     * @private
+     */
     getDragonType(level) {
         this.setEnemyMetaStats(
             1.5 + Math.random() * 0.25,
@@ -64,7 +96,11 @@ class Enemy extends MovableObject {
         }
     }
 
-
+    /**
+     * Sets stats for the Ork type enemy.
+     * @param {number} level - The level of the enemy (1, 2, or 3).
+     * @private
+     */
     getOrkType(level) {
         this.setEnemyMetaStats(
             0.45 + Math.random() * 0.55,
@@ -79,11 +115,25 @@ class Enemy extends MovableObject {
         }
     }
 
+    /**
+     * Sets the metadata stats for the enemy, such as speed and offsets.
+     * @param {number} speed - The speed of the enemy.
+     * @param {object} offset - The offsets for the enemy's hitbox.
+     * @private
+     */
     setEnemyMetaStats(speed, offset) {
         this.enemySpeed = speed;
         this.offset = offset;
     }
 
+    /**
+     * Sets the level-specific stats for the enemy, such as size and energy.
+     * @param {number} yOffset - The vertical offset of the enemy.
+     * @param {number} width - The width of the enemy.
+     * @param {number} height - The height of the enemy.
+     * @param {number} energy - The energy of the enemy.
+     * @private
+     */
     setEnemyLevelStats(yOffset, width, height, energy) {
         this.yOffset = yOffset;
         this.width = width;
@@ -91,19 +141,40 @@ class Enemy extends MovableObject {
         this.energy = energy;
     }
 
+    /**
+     * Manages the animation and movement behavior of the enemy.
+     * This method runs at intervals to update the movement and animation frames for the enemy.
+     * It controls the movement direction and plays the hurt animation when the enemy is hurt.
+     * @private
+     */
     animate() {
         setInterval(() => {
-            if (!this.currentlyDying && !this.passedCharacter) {
-                this.moveLeft(this.enemySpeed);
-            } else if (!this.currentlyDying && this.passedCharacter) {
-                this.moveRight(this.enemySpeed)
-            }
+            this.setMovement();
         }, 1000 / 60);
-
         setInterval(() => {
-            if (this.isHurt() && !this.currentlyDying) {
-                this.playAnimation(this.imagesHurt);
-            }
+            this.setFrames();
         }, 100);
+    }
+
+    /**
+     * Updates the animation frames of the enemy based on its current state.
+     * If the enemy is hurt and not currently dying, the hurt animation is played.
+     */
+    setFrames() {
+        if (this.isHurt() && !this.currentlyDying) {
+            this.playAnimation(this.imagesHurt);
+        }
+    }
+    
+    /**
+     * Controls the movement of the enemy based on its current state.
+     * The enemy moves left until it passes the character, and then moves right.
+     */
+    setMovement() {
+        if (!this.currentlyDying && !this.passedCharacter) {
+            this.moveLeft(this.enemySpeed);
+        } else if (!this.currentlyDying && this.passedCharacter) {
+            this.moveRight(this.enemySpeed)
+        }
     }
 }
