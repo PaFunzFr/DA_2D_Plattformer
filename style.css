@@ -98,13 +98,18 @@ button:hover {
     }
 }
 
-.img-container {
+.title-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
     max-width: 1200px;
+}
+
+.img-container {
+    display: flex;
+    position:relative;
 }
 
 .main-img {
@@ -127,6 +132,7 @@ button:hover {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    bottom: 0;
     animation: pulse 3s infinite ease;
     z-index: 3;
 }
@@ -181,16 +187,21 @@ button:hover {
     justify-content: center;
     align-items: center;
     width: 100vw;
-    background-color: rgba(0, 0, 0, 0.875);
+    background: linear-gradient(to top, rgb(38, 0, 0),rgb(118, 39, 39), rgb(36, 111, 158), rgb(2, 68, 109));
     top: 0;
     left: 0;
 }
 
-.controls img {
+.controls-img {
+    background-repeat: no-repeat;
+    background-image: url('./img/08_intro/controls.png');
+    background-size: 100% 100%;
+    border: 2px solid white;
+    border-radius: 15px;
     width: 100%;
     height: 60vw;
-    min-height: 400px;
-    max-height: 800px;
+    max-height: 600px;
+    max-width: 1000px;
 }
 
 /* TURN DEVICE */
@@ -235,7 +246,7 @@ button:hover {
     top: -200%;
     opacity: 0;
     height: 70vh;
-    max-height: 600px;
+    max-height: 500px;
     transform: translateY(-50%);
     background-color: rgb(59, 54, 45);
     border-radius: 16px;
@@ -243,6 +254,7 @@ button:hover {
     filter: drop-shadow(5px 5px 5px black);
     overflow: hidden;
     transition: all 1s ease;
+    cursor: pointer;
     z-index: 5;
 }
 
@@ -267,8 +279,8 @@ button:hover {
 .char-img {
     flex: 1;
     position: absolute;
-    top: 50%;
-    transform: translateY(-55%);
+    top: calc(50% + 20px);
+    transform: translateY(-50%);
     width: 100%;
     object-fit: contain;
     filter: drop-shadow(0 0 5px white);
@@ -282,6 +294,7 @@ button:hover {
 }
 
 .character-description {
+    font-family: 'Skranji';
     padding: 20px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.623), transparent);
     margin: 0;
@@ -544,9 +557,12 @@ canvas {
     }
 
     .char-img {
-        width: 100%;
-        object-fit: contain;
-        filter: drop-shadow(0 0 5px white);
+        left: 56%;
+        transform: translate(-50%, -50%);
+    }
+
+    .character-description {
+        font-size: 14px;
     }
 
     h2 {
@@ -571,18 +587,18 @@ canvas {
         display: none;
     }
 
-    .controls img {
+    .controls-img {
         width: 100%;
         height: 100dvh;
-        min-height: 100dvh;
         max-height: 100dvh;
+        background-image: url('./img/08_intro/controls_mobile.png');
+        border-radius: 0px;
+        border: none;
     }
-
 }
 
 /* DESKTOP ONLY */
 @media (hover: hover) {
-
     #gamePause,
     #gameMute,
     #gameFullscreen {

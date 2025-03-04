@@ -48,9 +48,7 @@ function addHoverEffect() {
     }
 }
 
-function fixHeight() {
-    document.body.style.height = `${window.innerHeight}px`;
+function toggleControlMenu() {
+    const controlMenu = document.getElementById('controlMenu');
+    controlMenu.style.display = controlMenu.style.display === 'none' ? 'flex' : 'none';
 }
-
-window.addEventListener('resize', fixHeight);
-fixHeight();
