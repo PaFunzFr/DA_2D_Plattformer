@@ -1,3 +1,6 @@
+/**
+ * Class representing a character that can move, jump, and perform actions in the game world.
+ */
 class Character extends MovableObject {
     width = 150;
     height = 150;
@@ -12,6 +15,10 @@ class Character extends MovableObject {
     ignoreDamage = false;
     character;
 
+    /**
+     * Creates a new character with the specified name and sets up its images and animations.
+     * @param {string} character - The name of the character to load (e.g., "hero").
+     */
     constructor(character) { 
         super();
         this.character = character;
@@ -28,43 +35,60 @@ class Character extends MovableObject {
         this.startMovementAfterDelay();
     }
 
+    /**
+     * Starts the character's movement after a delay.
+     */
     startMovementAfterDelay() {
         setTimeout(() => {
             this.animate();  
         }, 3000);  
     }
 
+    /**
+     * Starts the animation loop and frame updates for the character.
+     */
     animate() {
-        //this.isOnGround();
-        //MOVEMENT X
         setInterval(() => {
-            if (this.world.keyboard.clickedRight && this.x < this.world.level.levelEndX) {
-                this.moveRight(this.speedX);
-            }
-            if (this.world.keyboard.clickedLeft && this.x > 0) {
-                this.moveLeft(this.speedX);
-            }
-            if (this.world.keyboard.clickedUp || this.world.keyboard.clickedSpace) {
-                this.jump();
-            }
-            this.world.cameraX = -(this.x - 290); // - offsetX from character to canvas border
+            this.setMovement();
         }, 1000/60);
 
-        // ANIMATION SET (PICTURES)
         setInterval(() => {
-            if (this.isAboveGround()) {
-                this.playAnimation(this.imagesJumping);
-            } else {
-                if (!this.isJumping && this.world.keyboard.clickedRight || this.world.keyboard.clickedLeft) {
-                    this.playAnimation(this.imagesWalking);
-                } else if (this.isHurt()) {
-                    this.playAnimation(this.imagesHurt);
-                } else if (this.world.keyboard.clickedD) {
-                    this.playAnimation(this.imagesAttack);
-                } else {
-                    this.playAnimation(this.imagesIdle);
-                }
-            }
+            this.setFrames();
         }, 80);
+    }
+
+    /**
+     * Sets the animation frames based on the character's current state (jumping, walking, idle, etc.).
+     */
+    setFrames() {
+        if (this.isAboveGround()) {
+            this.playAnimation(this.imagesJumping);
+        } else {
+            if (!this.isJumping && this.world.keyboard.clickedRight || this.world.keyboard.clickedLeft) {
+                this.playAnimation(this.imagesWalking);
+            } else if (this.isHurt()) {
+                this.playAnimation(this.imagesHurt);
+            } else if (this.world.keyboard.clickedD) {
+                this.playAnimation(this.imagesAttack);
+            } else {
+                this.playAnimation(this.imagesIdle);
+            }
+        }
+    }
+
+    /**
+     * Sets the character's movement based on keyboard input (right, left, up, or jump).
+     */
+    setMovement() {
+        if (this.world.keyboard.clickedRight && this.x < this.world.level.levelEndX) {
+            this.moveRight(this.speedX);
+        }
+        if (this.world.keyboard.clickedLeft && this.x > 0) {
+            this.moveLeft(this.speedX);
+        }
+        if (this.world.keyboard.clickedUp || this.world.keyboard.clickedSpace) {
+            this.jump();
+        }
+        this.world.cameraX = -(this.x - 290); // - offsetX from character to canvas border
     }
 }

@@ -133,8 +133,6 @@ class CollidingObject {
         if (!this.world.character.ignoreDamage) {
             this.world.character.energy = Math.min(this.world.character.energy + 50, 100);
             this.world.statusBar.setPercentage(this.world.character.energy);
-        } else {
-            this.world.character.energy = 100;
         }
     }
     
@@ -156,7 +154,8 @@ class CollidingObject {
      * 
      */
     resetGodmode() {
-        this.world.statusBar.loadImage(`./img/06_statusbars/1_statusbar/1_health/${this.world.character.character}/B5.png`);
+        this.world.character.energy = 100;
+        this.world.statusBar.setPercentage(this.world.character.energy);
         this.world.character.ignoreDamage = false;
     }
 

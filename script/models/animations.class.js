@@ -1,5 +1,12 @@
+/**
+ * Class responsible for handling various animation effects in the game.
+ */
 class Animation {
 
+    /**
+     * Animates the death of a target and plays the corresponding sound.
+     * @param {Object} target - The target object to animate the death of.
+     */
     animateDeath(target) {
         playSound(target.name, 'death')
         target.currentlyDying = true;
@@ -14,6 +21,9 @@ class Animation {
         target.killed = true;
     }
 
+    /**
+     * Animates the death sequence of the player's character.
+     */
     characterDeath() {
         let frame = 0;
         this.world.character.currentImage = 0;
@@ -26,6 +36,10 @@ class Animation {
         }, 100);
     }
 
+    /**
+     * Animates the death of a target and deletes it from the level after a delay.
+     * @param {Object} target - The enemy target to animate the death and deletion of.
+     */
     animateDeathAndDelete(target) {
         target.enemySpeed = 0;
         this.world.character.ignoreDamage = true;
@@ -35,6 +49,5 @@ class Animation {
             this.world.character.ignoreDamage = false;
         }, 1000);
     }
-
 }
 

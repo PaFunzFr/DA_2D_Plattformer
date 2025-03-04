@@ -4,12 +4,18 @@ const backgroundVideo = document.getElementById('backgroundVideo');
 const controlMenu = document.getElementById('controlMenu');
 let startedMuted = false;
 
+/**
+ * Renders the character selection screen, sets game sound, and toggles menu styles.
+ */
 function renderChars() {
     setGameSound();
     toggleMenuStyle();
     renderCharSelection();
 }
 
+/**
+ * Plays background sounds if the game is not muted and sets the muted state flag.
+ */
 function setGameSound() {
     if (!mutedGlobal) {
         sounds.environment.background.play()
@@ -20,6 +26,9 @@ function setGameSound() {
     }
 }
 
+/**
+ * Toggles the menu style and transitions from the start screen to character selection.
+ */
 function toggleMenuStyle() {
     charSelection.style.top = '50%';
     charSelection.style.opacity = 1;
@@ -30,6 +39,9 @@ function toggleMenuStyle() {
     setTimeout(() => {startScreen.style.display = 'none'}, 1000);
 }
 
+/**
+ * Hides the character selection menu and displays the game canvas.
+ */
 function hideMenu() {
     charSelection.style.opacity = '0';
     charSelection.style.top = '';
@@ -37,10 +49,16 @@ function hideMenu() {
     canvas.style.opacity = '1';
 }
 
+/**
+ * Reloads the current page.
+ */
 function reloadSite() {
     location.reload();
 }
 
+/**
+ * Adds hover effects to character cards for interactivity.
+ */
 function addHoverEffect() {
     const characterCards = document.querySelectorAll('.char-container');
     for (let index = 0; index < characterCards.length; index++) {
@@ -51,6 +69,11 @@ function addHoverEffect() {
     }
 }
 
+/**
+ * Adds hover effects when mouse enters the character card.
+ * @param {HTMLElement} card The character card element.
+ * @param {HTMLElement} img The character image element.
+ */
 function effectMouseOver(card, img) {
     card.addEventListener('mouseover', () => {
         card.style.backgroundColor = "#9a57008d";
@@ -58,6 +81,11 @@ function effectMouseOver(card, img) {
     });
 }
 
+/**
+ * Removes hover effects when mouse leaves the character card.
+ * @param {HTMLElement} card The character card element.
+ * @param {HTMLElement} img The character image element.
+ */
 function effectMouseOut(card, img) {
     card.addEventListener('mouseout', () => {
         card.style.backgroundColor = "";
@@ -65,16 +93,21 @@ function effectMouseOut(card, img) {
     }); 
 }
 
+/**
+ * Toggles the display of the control menu.
+ */
 function toggleControlMenu() {
     const isHidden = getComputedStyle(controlMenu).display === 'none';
     controlMenu.style.display = isHidden ? 'flex' : 'none';
 }
 
-// MUTE BUTTON
+/**
+ * Toggles the global mute state and updates the mute button icon.
+ * @param {Event} event The event triggered by the mute button.
+ */
 function globalMute(event) {
     if (startedMuted && mutedGlobal) {
-        sounds.environment.wind.play();
-        sounds.environment.background.play();
+        playBackgroundSounds();
     }
     mutedGlobal = !mutedGlobal;
     muteAllSounds(mutedGlobal ? true : false);

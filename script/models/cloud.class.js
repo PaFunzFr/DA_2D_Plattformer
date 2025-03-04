@@ -1,8 +1,18 @@
+/**
+ * Class representing a cloud object that moves across the screen.
+ */
 class Cloud extends MovableObject {
     height;
     width;
     speed;
 
+    /**
+     * Creates a new cloud object with specified attributes and position.
+     * @param {string} path - The path to the image representing the cloud.
+     * @param {number} xOffset - The initial X position offset for the cloud.
+     * @param {number} yOffset - The initial Y position offset for the cloud.
+     * @param {string} position - The position type of the cloud (e.g., "background", "foreground").
+     */
     constructor(path, xOffset, yOffset, position) {
         super();
         this.setCloudAttributes(position);
@@ -13,6 +23,10 @@ class Cloud extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Sets the cloud's attributes based on its position (e.g., size and speed).
+     * @param {string} position - The position type of the cloud (e.g., "background", "foreground").
+     */
     setCloudAttributes(position) {
         if (position === "background") {
             this.height = 300;
@@ -41,6 +55,10 @@ class Cloud extends MovableObject {
         }
     }
 
+    /**
+     * Starts the animation loop for the cloud, making it move left continuously.
+     * Resets the cloud's position when it moves off the screen.
+     */
     animate() {
         setInterval(() => {
             this.moveLeft(this.speed);
