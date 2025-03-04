@@ -16,8 +16,6 @@ class StatusBar extends DrawableObject {
         this.y = positionY;
         this.loadImage(`./img/06_statusbars/1_statusbar/${type}/${character}/B${this.initialImg}.png`);
         this.preloadImages(this.healthBarImages, `./img/06_statusbars/1_statusbar/${type}/${character}/B`, length);
-        //this.setPercentage(100);
-        //this.setWeaponAmount(throwableAmount);
     }
 
     setPercentage(percentage) {

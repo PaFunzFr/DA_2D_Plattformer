@@ -35,8 +35,9 @@ class CollidingObject {
         // character with collectables
         this.world.collectables.forEach((collectable) => {
             if (this.world.character.isColliding(collectable)) {
+                playSound("environment", "pickup");
                 // get 50 health
-                if (collectable.name === "drinkhorn") {
+                if (collectable.name === "drinkhorn" && !this.world.character.ignoreDamage) {
                     this.world.character.energy = Math.min(this.world.character.energy + 50, 100);
                     this.world.statusBar.setPercentage(this.world.character.energy);
                 }
@@ -44,8 +45,9 @@ class CollidingObject {
                 else if (collectable.name === "thorshammer") {
                     this.world.character.ignoreDamage = true;
                     this.world.character.energy = 100;
-                    this.world.statusBar.setPercentage(this.world.character.energy);
+                    this.world.statusBar.loadImage(`./img/06_statusbars/1_statusbar/1_health/${this.world.character.character}/B6.png`);
                     setTimeout(() => {
+                        this.world.statusBar.loadImage(`./img/06_statusbars/1_statusbar/1_health/${this.world.character.character}/B5.png`);
                         this.world.character.ignoreDamage = false;
                     }, 5000);
                 } else {

@@ -1,12 +1,10 @@
 let mutedGlobal = false;
 const sounds = {
     ork: {
-        attack: new Audio("./audio/ork/attack.mp3"),
         hurt: new Audio("./audio/ork/hurt.mp3"),
         death: new Audio("./audio/ork/death.mp3"),
     },
     troll: {
-        attack: new Audio("./audio/troll/attack.mp3"),
         hurt: new Audio("./audio/troll/hurt.mp3"),
         death: new Audio("./audio/troll/death.mp3"),
     },
@@ -32,22 +30,20 @@ const sounds = {
     },
     environment: {
         background: new Audio("./audio/environment/background.mp3"),
-        footsteps: new Audio("./audio/environment/footsteps.mp3"),
-        ambient: new Audio("./audio/environment/ambient_sound.mp3"),
+        pickup: new Audio("./audio/environment/pickup.mp3"),
         wind: new Audio("./audio/environment/wind.mp3"),
     },
     other: {
         start: new Audio("./audio/other/start.mp3"),
         win: new Audio("./audio/other/victory-cry.mp3"),
-        lose: new Audio("./audio/other/lose_sound.mp3"),
     },
 };
 
 //loops
 sounds.environment.background.loop = true;
-sounds.environment.background.volume = 0.5;
+sounds.environment.background.volume = 0.6;
 sounds.environment.wind.loop = true;
-sounds.environment.wind.volume = 0.7;
+sounds.environment.wind.volume = 0.5;
 
 
 //preload sounds with API
