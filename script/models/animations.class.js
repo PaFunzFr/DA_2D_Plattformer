@@ -32,8 +32,14 @@ class Animation {
         }, 100);
     }
 
-    animateDragonBoss() {
-
+    animateDeathAndDelete(target) {
+        target.enemySpeed = 0;
+        this.world.character.ignoreDamage = true;
+        this.world.animations.animateDeath(target);
+        setTimeout(() => {
+            this.world.level.enemies = this.world.level.enemies.filter(e => e !== target);
+            this.world.character.ignoreDamage = false;
+        }, 1000);
     }
 
 }

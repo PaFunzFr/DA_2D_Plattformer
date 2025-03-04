@@ -53,12 +53,13 @@ class World {
     }
 
     runCollisionHandler() {
-        this.collidingHandler.checkDistance();
+
         setInterval(() => {
             this.stopGame();
         }, 30);
         setInterval(() => {
-            this.collidingHandler.checkCollisions();
+            this.collidingHandler.collisionTriggers();
+            this.collidingHandler.distanceTriggers();
         }, 200);
         setInterval(() => {
             this.collidingHandler.checkCollisionsThrowable();
@@ -80,6 +81,12 @@ class World {
         this.ctx.translate(-this.cameraX, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.weaponBar);
+        this.bossTriggerEvent();
+        this.collidingHandler.throwObject(); 
+        requestAnimationFrame(this.draw.bind(this)); // bind(this) instead of let self = this and self.draw()
+    } 
+
+    bossTriggerEvent() {
         if (this.character.x >= 3600) { // spawn if character reaches position x
             if (!this.bossTriggerd) {
                 this.bossTriggerd = true;
@@ -90,9 +97,7 @@ class World {
         if (this.bossTriggerd) {
             this.addToMap(this.statusBarBoss);
         }
-        this.collidingHandler.throwObject(); 
-        requestAnimationFrame(this.draw.bind(this)); // bind(this) instead of let self = this and self.draw()
-    } 
+    }
 
     creatingBackground() {
         this.addObjectsToMap(this.level.air);
@@ -155,7 +160,6 @@ class World {
     }
 
     pauseGame() {      
-        setTimeout(() => {
         this.paused = !this.paused;    
         if (this.paused && !this.gameOver) {
                 muteAllSounds(true);
@@ -166,7 +170,6 @@ class World {
             }
             this.reloadAnimations();
         }
-    }, 0);
     }
 
     reloadAnimations() {
