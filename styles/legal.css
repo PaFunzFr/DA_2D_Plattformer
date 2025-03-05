@@ -1,0 +1,40 @@
+body {
+    margin: 0px 40px 30px 40px;
+    min-height: 100vh;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: white;
+    gap: 20px;
+}
+
+.legal-section {
+    max-width: 800px;
+}
+
+h3 {
+    color: #ffa904;
+    filter: drop-shadow(0 0 1px black);
+}
+
+p {
+    margin: 2px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #ffa904;
+}
+
+.close-legal {
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-legal:hover {
+    filter: brightness(1.2);
+}

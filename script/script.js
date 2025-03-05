@@ -2,6 +2,7 @@ const charSelection = document.getElementById('charSelection');
 const startScreen = document.getElementById('startScreen');
 const backgroundVideo = document.getElementById('backgroundVideo');
 const controlMenu = document.getElementById('controlMenu');
+const legalRef = document.getElementById('legalRef');
 let startedMuted = false;
 
 /**
@@ -11,6 +12,7 @@ function renderChars() {
     setGameSound();
     toggleMenuStyle();
     renderCharSelection();
+    hideLegalRef();
 }
 
 /**
@@ -24,6 +26,13 @@ function setGameSound() {
     if (mutedGlobal) {
         startedMuted = true;
     }
+}
+
+/**
+ * Hides Hyperlink to legal notice.
+ */
+function hideLegalRef() {
+    legalRef.style.display = 'none';
 }
 
 /**

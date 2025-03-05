@@ -4,10 +4,13 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    height: 100dvh;
     margin: 0;
     background: linear-gradient(to top, rgb(38, 0, 0),rgb(118, 39, 39), rgb(36, 111, 158), rgb(2, 68, 109));
+}
+
+.no-overflow {
+    overflow: hidden;
+    height: 100dvh;
 }
 
 .menu-button {
@@ -62,6 +65,22 @@ button:hover {
     cursor: pointer;
 }
 
+.legal-ref {
+    position: absolute;
+    bottom: 20px;
+    right: 50%;
+    transform: translateX(50%);
+    font-family: 'Skranji';
+    margin-top: 10px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.641);
+    z-index: 15;
+}
+
+.legal-ref:hover {
+    color: #ffa904;
+}
+
 /* START SCREEN */
 .start {
     display: flex;
@@ -84,18 +103,6 @@ button:hover {
     width: 50%;
     z-index: 2;
     opacity: 0.9;
-}
-
-@keyframes titleAnimation {
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(10px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
 }
 
 .title-container {
@@ -135,21 +142,6 @@ button:hover {
     bottom: 0;
     animation: pulse 3s infinite ease;
     z-index: 3;
-}
-
-@keyframes pulse {
-    0% {
-        filter: brightness(1);
-        width: 80%;
-    }
-    50% {
-        filter: brightness(1.2);
-        width: 82%;
-    }
-    100% {
-        filter: brightness(1);
-        width: 80%;
-    }
 }
 
 .start-menu {
@@ -229,13 +221,6 @@ button:hover {
     animation: rotateImage 4s infinite ease-in-out;
 }
 
-@keyframes rotateImage {
-    0% { transform: rotate(0deg); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: rotate(90deg); opacity: 0; }
-}
-
 /* CHOOSE CHARACTER */
 .character-selection {
     display: flex;
@@ -287,11 +272,6 @@ button:hover {
     animation: "";
 }
 
-@keyframes pulseImg {
-    0% { filter: drop-shadow(0 0 5px #f78a00); }
-    100% { filter: drop-shadow(0 0 20px #f78a00); }
-}
-
 .character-description {
     font-family: 'Skranji';
     padding: 20px;
@@ -329,304 +309,3 @@ button:hover {
     filter: blur(10px);
 } 
 
-/* GAME */
-.game {
-    display: flex;
-    position: absolute;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100dvh;
-    width: 100vw;
-}
-
-.title-game {
-    margin-bottom: 15px;
-    color: white;
-    width: 50%;
-}
-
-#gameContainer {
-    position: relative;
-    justify-content: center;
-    display: flex;
-    opacity: 1;
-}
-
-#mobileInterface {
-    display: none;
-}
-
-#gameDialog {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    gap: 30px;
-    width: 100%;
-    height: 100%;
-    border-radius: 16px;
-    background: linear-gradient(to top, rgb(38, 0, 0), rgb(2, 68, 109));
-    background-size: 100% 200%;
-    animation: backgroundAnimation 5s infinite ease;
-    z-index: 11;
-}
-
-@keyframes backgroundAnimation {
-    0% {
-        background-position: 0% 0%;
-    }
-    50% {
-        background-position: 0% 100%;
-    }
-    100% {
-        background-position: 0% 0%;
-    }
-}
-
-#gameDialog button {
-    height: auto;
-    width: auto;
-    padding: 8px 20px;
-    background: #ffa904;
-    color: white;
-    border-radius: 16px;
-    border: 2px solid white
-}
-
-#gameDialog h3 {
-    color: white;
-    text-align: center;
-    width: 80%;
-}
-
-.spinner {
-    border: 4px solid rgba(255, 255, 255, 0.3);
-    border-top: 4px solid #3498db;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin: 0 auto;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-#levelInfo {
-    position: absolute;
-    top: calc(4vh + 25px);
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgb(206, 163, 111);
-    font-size: 20px;
-    z-index: 10;
-    text-shadow:
-        1px 1px 0 rgba(0, 0, 0, 0.65), 
-        -1px -1px 0 rgba(0, 0, 0, 0.65), 
-        1px -1px 0 rgba(0, 0, 0, 0.65), 
-        -1px 1px 0 rgba(0, 0, 0, 0.65);
-}
-
-.mobile-button {
-    display: none;
-    position: absolute;
-    bottom: -35px;
-    height: 70px;
-    width: 70px;
-    user-select: none;
-    transform: translate(-50%, -50%);
-    color: white;
-    padding: 8px;
-    border-radius: 50%;
-    z-index: 10;
-    cursor: pointer;
-    opacity: 0.65;
-}
-
-#mobileLeft {
-    left: 50px;
-}
-
-#mobileRight {
-    left: 140px;
-}
-
-#mobileJump {
-    right: 0px;
-}
-
-#mobileAttack {
-    right: -40px;
-    bottom: 40px;
-}
-
-#gamePause,
-#gameMute {
-    top: calc(4vh + 15px);
-    height: 45px;
-    width: 45px;
-    padding: 5px;
-}
-
-#gamePause {
-    left: calc(50% - 30px);
-}
-
-#gameMute {
-    left: calc(50% + 30px);
-}
-
-#gameFullscreen {
-    right: -20px;
-    bottom: -20px;
-    width: 40px;
-    height: 40px;
-}
-
-canvas {
-    opacity: 0;
-    background-color: black;
-    border-radius: 16px;
-    z-index: 1;
-    transition: all 0.5s ease;
-}
-
-.char-select-old {
-    margin-top: 15px;
-}
-
-.current-level {
-    margin-top: 20px;
-    color: white;
-    font-size: 24px;
-    text-align: center;
-}
-
-.char-select-old button {
-    background: #ffa904;
-    color: white;
-    padding: 5px 20px;
-    border-radius: 16px;
-    border: 3px solid white;
-}
-
-@media (hover: none) and (orientation: portrait) {  
-    
-    .start {
-        display: none;
-    }
-
-    .game {
-        display: none;
-    }
-
-    video {
-        opacity: 1;
-    }
-    .turn-device {
-        display: flex;
-    }
-}
-
-@media (hover: none) and (orientation: landscape) {
-
-    canvas {
-        height: 100dvh;
-        width: 100vw;
-        border-radius: 0;
-    }
-
-    #gameDialog {
-        border-radius: 0;
-    }
-
-    .character-selection {
-        max-width: 1000px;
-        width: 100%;
-        height: 100dvh;
-        border-radius: 0px;
-    }
-
-    .main-img {
-        max-height: 300px;
-    }
-
-    .char-img {
-        left: 56%;
-        transform: translate(-50%, -50%);
-    }
-
-    .character-description {
-        font-size: 12px;
-    }
-
-    h2 {
-        font-size: 30px;
-    }
-    
-    h3 {
-        font-family: 'Caesar Dressing';
-        font-size: 20px;
-        margin: 0;
-    }
-
-    .start-game {
-        width: 100%;
-        height: 40px;
-    }
-
-    .mobile-button {
-        display: flex; /* toggle visibility buttons*/
-    }
-    #gameFullscreen {
-        display: none;
-    }
-
-    .controls-img {
-        width: 100%;
-        height: 100dvh;
-        max-height: 100dvh;
-        background-image: url('./img/08_intro/controls_mobile.png');
-        border-radius: 0px;
-        border: none;
-    }
-}
-
-/* DESKTOP ONLY */
-@media (hover: hover) {
-    #gamePause,
-    #gameMute,
-    #gameFullscreen {
-    display: flex;
-    }
-}
-
-@media screen and (max-width: 900px) and (hover: hover) {
-
-    canvas {
-        height: 70vw;
-        width: 100vw;
-        border-radius: 0;
-    }
-
-    .character-selection {
-        max-width: 1000px;
-        width: 100%;
-        top: -200%;
-        max-height: 600px;
-        border-radius: 0px;
-        max-height: 60vh;
-    }
-
-    h2 {
-        font-size: 30px;
-    }
-    
-    h3 {
-        font-size: 20px;
-    }
-}
