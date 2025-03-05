@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jump n Run</title>
+    <title>Brawl n Bounce Saga</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./fonts/fonts.css">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="icon" href=""><!--add favicon link-->
+    <link rel="icon" href="./img/10_site/favicon.png">
 </head>
 
 <body>
-
     <video id="backgroundVideo" autoplay loop muted playsinline>
         <source src="./video/firebackground.mp4" type="video/mp4">
     </video>
+
     <section class="start" id="startScreen">
         <div class="title-container">
             <img class="title-img" src="./img/08_intro/game_title.png">
@@ -29,7 +29,6 @@
                 <img onclick="globalMute(event)" src="./img/09_mobile/mute.png" alt="" class="menu-button" id="globalMuteBtn">
             </div>
         </div>
-
     </section>
 
     <section class="controls" id="controlMenu" onclick="toggleControlMenu()">
@@ -64,6 +63,7 @@
         </div>
     </section>
 </body>
+
 <script src="./script/sounds/sounds.js"></script>
 <script src="./script/models/animations.class.js"></script>
 <script src="./script/models/drawable_object.class.js"></script>
@@ -86,4 +86,5 @@
 <script src="./script/game.js"></script>
 <script src="./script/templates/templates.js"></script>
 <script src="./script/script.js"></script>
+
 </html>

@@ -39,7 +39,7 @@ class Enemy extends MovableObject {
     startMovementAfterDelay() {
         setTimeout(() => {
             this.animate();  
-        }, 3000);  
+        }, 5000);  
     }
 
     /**
@@ -165,7 +165,7 @@ class Enemy extends MovableObject {
             this.playAnimation(this.imagesHurt);
         }
     }
-    
+
     /**
      * Controls the movement of the enemy based on its current state.
      * The enemy moves left until it passes the character, and then moves right.

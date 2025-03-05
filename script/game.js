@@ -14,7 +14,7 @@ const gamePauseBtn = document.getElementById("gamePause");
  * @param {number} levelNumber The level number to start the game at.
  */
 function startGame(character, levelNumber) {
-    playBackgroundSounds();
+    playBackgroundSounds(character);
     let level = loadLevel(levelNumber, character);
     setMuteIconOnStart();
     setTimeout(() => {
@@ -27,7 +27,7 @@ function startGame(character, levelNumber) {
 /**
  * Plays background sounds for the environment and the selected character.
  */
-function playBackgroundSounds() {
+function playBackgroundSounds(character) {
     sounds.environment.wind.play();
     sounds.character[character].play();
 }

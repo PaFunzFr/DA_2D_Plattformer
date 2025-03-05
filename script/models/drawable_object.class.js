@@ -20,17 +20,15 @@ class DrawableObject {
 
     /**
      * Loads an image from a given path.
-     * 
      * @param {string} path - The path to the image file.
      */
     loadImage(path) {
-        this.img = new Image(); // = <img>
+        this.img = new Image();
         this.img.src = path;
     }
 
     /**
      * Preloads a series of images into an array.
-     * 
      * @param {HTMLImageElement[]} array - The array to store the preloaded images.
      * @param {string} path - The base path to the images.
      * @param {number} imageCount - The number of images to preload.
@@ -46,7 +44,6 @@ class DrawableObject {
     /**
      * Draws the collision body of the object on the given canvas context.
      * This method draws a transparent rectangle around the object based on its position and size.
-     * 
      * @param {CanvasRenderingContext2D} ctx - The canvas context to draw on.
      */
     drawCollisionBody(ctx) {
@@ -67,7 +64,6 @@ class DrawableObject {
     /**
      * Plays an animation by cycling through an array of images.
      * The current image is updated based on the `currentImage` index.
-     * 
      * @param {HTMLImageElement[]} array - The array of images to animate.
      */
     playAnimation(array) {

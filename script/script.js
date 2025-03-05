@@ -107,7 +107,8 @@ function toggleControlMenu() {
  */
 function globalMute(event) {
     if (startedMuted && mutedGlobal) {
-        playBackgroundSounds();
+        sounds.environment.wind.play();
+        sounds.environment.background.play();
     }
     mutedGlobal = !mutedGlobal;
     muteAllSounds(mutedGlobal ? true : false);

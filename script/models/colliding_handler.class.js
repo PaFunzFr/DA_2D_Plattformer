@@ -3,6 +3,7 @@
  */
 class CollidingObject {
     hitByFireBall = false;
+    invulnerable = false;
     attackTriggered = false;
 
     /**
@@ -12,7 +13,6 @@ class CollidingObject {
     collisionTriggers() {
         this.collidingWithEnemy();
         this.collidingWithMissile();
-        this.collidingWithCollectables();
     }
 
     /**
@@ -55,6 +55,7 @@ class CollidingObject {
                 if (this.world.character.attackingFromAbove && enemy.name === "ork") {
                     this.jumpKill(enemy);
                 } else if (!this.world.character.ignoreDamage && !enemy.currentlyDying) {
+                    if (this.invulnerable) return;
                     this.hitCharacter(enemy);
                     this.world.statusBar.setPercentage(this.world.character.energy);
                 }
@@ -80,6 +81,7 @@ class CollidingObject {
     collidingWithMissile() {
         this.world.missileObjects.forEach((missile) => {
             if (this.world.character.isColliding(missile) && !this.hitByFireBall && !this.world.character.ignoreDamage) {
+                if (this.invulnerable) return;
                 this.hitByFireBall = true;
                 this.world.character.hit(50);
                 this.world.statusBar.setPercentage(this.world.character.energy);
@@ -98,6 +100,7 @@ class CollidingObject {
     collidingWithCollectables() {
         this.world.collectables.forEach((collectable) => {
             if (this.world.character.isColliding(collectable)) {
+                if (collectable.name === "drinkhorn" && this.invulnerable) return
                 playSound("environment", "pickup");
                 this.getBonusByCollectableType(collectable);
                 this.world.level.collectables.splice(this.world.level.collectables.indexOf(collectable), 1);
@@ -112,6 +115,7 @@ class CollidingObject {
         if (collectable.name === "drinkhorn") {
             this.gainHealth();
         } else if (collectable.name === "thorshammer") {
+            playSound("other", "thorshammer");
             this.setGodMode();
         } else if (["axe", "club", "hammer"].includes(collectable.name)) {
             this.gainWeapons();
@@ -130,18 +134,15 @@ class CollidingObject {
      * Restores health to the character. The health is capped at a maximum of 100.
      */
     gainHealth() {
-        if (!this.world.character.ignoreDamage) {
-            this.world.character.energy = Math.min(this.world.character.energy + 50, 100);
-            this.world.statusBar.setPercentage(this.world.character.energy);
-        }
+        this.world.character.energy = Math.min(this.world.character.energy + 50, 100);
+        this.world.statusBar.setPercentage(this.world.character.energy);
     }
     
-
     /**
      * Activates god mode for the character for 5 seconds.
      */
     setGodMode() {
-        this.world.character.ignoreDamage = true;
+        this.invulnerable = true;
         this.world.character.energy = 100;
         this.world.statusBar.loadImage(`./img/06_statusbars/1_statusbar/1_health/${this.world.character.character}/B6.png`);
         setTimeout(() => {
@@ -151,12 +152,11 @@ class CollidingObject {
 
     /**
      * Resets the character's god mode, making them vulnerable again. Restores the health bar initial img.
-     * 
      */
     resetGodmode() {
         this.world.character.energy = 100;
         this.world.statusBar.setPercentage(this.world.character.energy);
-        this.world.character.ignoreDamage = false;
+        this.invulnerable = false;
     }
 
     /**
@@ -215,7 +215,7 @@ class CollidingObject {
             this.setAttackStatus(enemy);
             let fireBall = this.createFlame(enemy);
             this.attackByDragonType(enemy, fireBall);
-            this.world.missileObjects.push(fireBall); // adds object to world / canvas
+            this.world.missileObjects.push(fireBall);
             this.resetAttackStatus(enemy);
         }
     }
@@ -249,10 +249,10 @@ class CollidingObject {
      */
     attackByDragonType(enemy, fireBall) {
         if (enemy.name === "dragonBoss") {
-            fireBall.speedX = fireBall.speedX/10 + 5 * -1; // set direction
+            fireBall.speedX = fireBall.speedX/10 + 5 * -1;
         } else {
-            fireBall.speedY = -5; // set gravity and speed Y
-            fireBall.speedX = fireBall.speedX/10 + 5 * -1; // set direction and speed X
+            fireBall.speedY = -5;
+            fireBall.speedX = fireBall.speedX/10 + 5 * -1;
         }
     }
 
@@ -262,10 +262,10 @@ class CollidingObject {
     throwObject() {
         let currentTime = Date.now();
         let cooldown = currentTime - this.world.lastThrowTime;
-        let offsetX = this.world.character.width / 2; // x centered to character
-        let offsetY = this.world.character.height / 3; // y slightly above character
-        let direction = this.world.character.otherDirection ? -1 : 1; // throw left if walking left
-        if (this.world.keyboard.clickedD && cooldown >= 500) { // cooldown on throw by 0.5s
+        let offsetX = this.world.character.width / 2;
+        let offsetY = this.world.character.height / 3;
+        let direction = this.world.character.otherDirection ? -1 : 1;
+        if (this.world.keyboard.clickedD && cooldown >= 500) {
             sounds.character.attack.play();
             this.triggerThrowingObject(offsetX, offsetY, direction, currentTime);
         }
@@ -282,9 +282,9 @@ class CollidingObject {
         if (this.world.throwableAmount <= 0) {return};
         this.world.throwableAmount -= 1;
         this.world.weaponBar.setWeaponAmount(this.world.throwableAmount);
-        this.world.lastThrowTime = currentTime; // set time of last throw
+        this.world.lastThrowTime = currentTime;
         let throwableObject = this.createThrowableObject(offsetX, offsetY, direction);
-        throwableObject.speedX = throwableObject.speedX * direction; // set direction
+        throwableObject.speedX = throwableObject.speedX * direction;
         this.world.throwableObjects.push(throwableObject);
     }
 
@@ -391,8 +391,6 @@ class CollidingObject {
      * @param {Enemy} enemy - The defeated enemy.
      */
     trollDropsHorn(enemy) {
-        if (enemy.name === "troll") {
-            this.world.spawnCollectableOnEnemyDeath(enemy);
-        }
+        this.world.spawnCollectableOnEnemyDeath(enemy);
     }
 }

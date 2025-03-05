@@ -14,7 +14,7 @@ class World {
     statusBarBoss;
     throwableObjects = [];
     missileObjects = [];
-    collectables;
+    collectables = [];
     throwableAmount = 10;
     lastThrowTime = 0;
     gameOver = false;
@@ -49,7 +49,7 @@ class World {
             mobileInterface.style.display = 'block';
             gameDialog.style.display = 'none';
             levelInfo.innerHTML = 'stage ' + levelNumber;
-        }, 3000);
+        }, 5000);
     }
 
     /**
@@ -71,14 +71,15 @@ class World {
      */
     runCollisionHandler() {
         setInterval(() => {
-            this.stopGame();
-        }, 30);
+            this.collidingHandler.collidingWithCollectables();
+        }, 20);
         setInterval(() => {
             this.collidingHandler.collisionTriggers();
             this.collidingHandler.distanceTriggers();
         }, 200);
         setInterval(() => {
             this.collidingHandler.checkCollisionsThrowable();
+            this.stopGame();
         }, 30);
     }
 
@@ -97,7 +98,7 @@ class World {
      */
     draw() {
         if (this.paused) return;
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // refresh / clear canvas before
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.cameraX, 0);
         this.creatingBackground();
         this.addMovableObjects();
@@ -105,7 +106,7 @@ class World {
         this.addStatusBars();
         this.bossTriggerEvent();
         this.collidingHandler.throwObject(); 
-        requestAnimationFrame(this.draw.bind(this)); // bind(this) instead of let self = this and self.draw()
+        requestAnimationFrame(this.draw.bind(this));
     } 
 
     /**
@@ -121,7 +122,7 @@ class World {
      * The boss is spawned and its speed is adjusted based on the level number.
      */
     bossTriggerEvent() {
-        if (this.character.x >= 3600) { // spawn if character reaches position x
+        if (this.character.x >= 3600) {
             if (!this.bossTriggerd) {
                 this.bossTriggerd = true;
                 playSound("dragonBoss", "death");
@@ -187,9 +188,9 @@ class World {
      */
     flipContent(object) {
         this.ctx.save();
-        this.ctx.translate(object.width, 0); //move img origin
-        this.ctx.scale(-1, 1); // flip img
-        object.x = object.x * -1; // flip x position back to 0 = left
+        this.ctx.translate(object.width, 0); 
+        this.ctx.scale(-1, 1);
+        object.x = object.x * -1;
     }
 
 
@@ -215,7 +216,6 @@ class World {
      */
     spawnCollectableOnEnemyDeath(enemy) {
         if (enemy.name === "troll") {
-            console.log("triggerCheck");
             let drinkHorn = new Collectable("drinkhorn", enemy.x + 100);
             this.collectables.push(drinkHorn);
         }

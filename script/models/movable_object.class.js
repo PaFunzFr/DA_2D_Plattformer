@@ -160,7 +160,7 @@ class MovableObject extends DrawableObject {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
-                this.speedY -= 0.02; // acceleration
+                this.speedY -= 0.02;
                 this.x += this.speedX;
                 this.isOnGround();
             }
@@ -190,7 +190,7 @@ class MovableObject extends DrawableObject {
             this.speedY = 0;
             this.stopThrowableObjects();
             this.resetVerticalStatuses();
-            this.currentImage = 0; // reset animation
+            this.currentImage = 0;
             return true;
         }
         return false;

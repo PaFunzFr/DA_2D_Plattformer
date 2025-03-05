@@ -41,7 +41,7 @@ class Character extends MovableObject {
     startMovementAfterDelay() {
         setTimeout(() => {
             this.animate();  
-        }, 3000);  
+        }, 5000);  
     }
 
     /**
@@ -89,6 +89,6 @@ class Character extends MovableObject {
         if (this.world.keyboard.clickedUp || this.world.keyboard.clickedSpace) {
             this.jump();
         }
-        this.world.cameraX = -(this.x - 290); // - offsetX from character to canvas border
+        this.world.cameraX = -(this.x - 290);
     }
 }

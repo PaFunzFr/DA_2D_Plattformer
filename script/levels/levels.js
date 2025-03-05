@@ -45,7 +45,7 @@ function loadLevel(levelNumber, character) {
             ],
             // collectables
             [
-                new Collectable("thorshammer",2600),
+                new Collectable("thorshammer",2000),
                 new Collectable(character, 2000),
                 new Collectable(character, 3700),
             ]

@@ -38,6 +38,7 @@ const sounds = {
     other: {
         start: new Audio("./audio/other/start.mp3"),
         win: new Audio("./audio/other/victory-cry.mp3"),
+        thorshammer: new Audio("./audio/other/thorshammer.mp3")
     },
 };
 
