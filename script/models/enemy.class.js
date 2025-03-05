@@ -24,12 +24,22 @@ class Enemy extends MovableObject {
         this.attackDragon = "fireball";
         this.getCharacterStat(name, level);
         this.y = 480 - this.height - this.yOffset;
+        this.loadAllImages(level, name);
+        this.startMovementAfterDelay();
+    }
+
+
+    /**
+     * Loads all images for the specified character, including idle, walking, jumping, hurt, dead, and attack animations.
+     * @param {number} level - The level number for which the enemy images are loaded.
+     * @param {string} name - The name of the enemy.
+     */
+    loadAllImages(level, name) {
         this.loadImage(`./img/02_enemies/${name}/${name}${level}/6_attack/ATTACK_000.png`)
         this.preloadImages(this.imagesWalking, `./img/02_enemies/${name}/${name}${level}/2_walk/WALK_00`, 10);
         this.preloadImages(this.imagesAttack, `./img/02_enemies/${name}/${name}${level}/6_attack/ATTACK_00`, 10);
         this.preloadImages(this.imagesDead, `./img/02_enemies/${name}/${name}${level}/5_dead/DIE_00`, 10);
-        this.preloadImages(this.imagesHurt, `./img/02_enemies/${name}/${name}${level}/4_hurt/HURT_00`, 5);
-        this.startMovementAfterDelay();
+        this.preloadImages(this.imagesHurt, `./img/02_enemies/${name}/${name}${level}/4_hurt/HURT_00`, 3);
     }
 
     /**

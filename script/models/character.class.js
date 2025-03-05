@@ -24,6 +24,16 @@ class Character extends MovableObject {
         this.character = character;
         this.y = this.elementOnGround;
         this.offset = { top: 20, bottom: 40, left: 40, right: 40 };
+        this.loadAllImages(character);
+        this.applyGravity();
+        this.startMovementAfterDelay();
+    }
+
+    /**
+     * Loads all images for the specified character, including idle, walking, jumping, hurt, dead, and attack animations.
+     * @param {string} character - The name or identifier of the character whose images are being loaded.
+     */
+    loadAllImages(character) {
         this.loadImage(`./img/01_characters/${character}/1_idle/IDLE_000.png`);
         this.preloadImages(this.imagesIdle, `./img/01_characters/${character}/1_idle/IDLE_00`, 5);
         this.preloadImages(this.imagesWalking, `./img/01_characters/${character}/2_walk/WALK_00`, 5);
@@ -31,8 +41,6 @@ class Character extends MovableObject {
         this.preloadImages(this.imagesHurt, `./img/01_characters/${character}/4_hurt/HURT_00`, 5);
         this.preloadImages(this.imagesDead, `./img/01_characters/${character}/5_dead/DIE_00`, 5);
         this.preloadImages(this.imagesAttack, `./img/01_characters/${character}/6_attack/ATTACK_00`, 5)
-        this.applyGravity();
-        this.startMovementAfterDelay();
     }
 
     /**

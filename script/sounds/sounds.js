@@ -46,9 +46,9 @@ const sounds = {
  * Sets up all audio sources with appropriate loop, volume, and muted state.
  */
 sounds.environment.background.loop = true;
-sounds.environment.background.volume = 0.6;
+sounds.environment.background.volume = 0.5;
 sounds.environment.wind.loop = true;
-sounds.environment.wind.volume = 0.5;
+sounds.environment.wind.volume = 0.4;
 
 
 /**

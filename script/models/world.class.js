@@ -32,13 +32,8 @@ class World {
      * @param {Character} character The character object.
      */
     constructor(canvas, keyboard, level, levelNumber, character) {
-        this.character = new Character(character);
-        this.animations = new Animation();
-        this.statusBar = new StatusBar(character, "1_health", 6, 10, 10, null);
-        this.weaponBar = new StatusBar(character, "2_weapons", 11, 10, 50, this.throwableAmount);
-        this.statusBarBoss = new StatusBar("dragon" + levelNumber, "1_health", 6, 410, 10, null);
-        this.ctx = canvas.getContext("2d");
-        this.canvas = canvas;
+        this.buildObjects(levelNumber, character)
+        this.setCanvas(canvas);
         this.levelNumber = levelNumber;
         this.keyboard = keyboard;
         this.level = level;
@@ -46,10 +41,41 @@ class World {
         this.endboss = this.level.enemies[this.level.enemies.length -1];
         setTimeout(() => {
             this.createAnimatedWorld();
-            mobileInterface.style.display = 'block';
-            gameDialog.style.display = 'none';
-            levelInfo.innerHTML = 'stage ' + levelNumber;
+            this.hideDialog(levelNumber);
         }, 5000);
+    }
+
+    /**
+     * Hides the game dialog and displays the mobile interface.
+     * Updates the level information display.
+     * @param {number} levelNumber - The current level number.
+     */
+    hideDialog(levelNumber) {
+        mobileInterface.style.display = 'block';
+        gameDialog.style.display = 'none';
+        levelInfo.innerHTML = 'stage ' + levelNumber;
+    }
+
+    /**
+     * Initializes game objects for the specified level and character.
+     * @param {number} levelNumber - The current level number.
+     * @param {string} character - The character identifier.
+     */
+    buildObjects(levelNumber, character) {
+        this.character = new Character(character);
+        this.animations = new Animation();
+        this.statusBar = new StatusBar(character, "1_health", 6, 10, 10, null);
+        this.weaponBar = new StatusBar(character, "2_weapons", 11, 10, 50, this.throwableAmount);
+        this.statusBarBoss = new StatusBar("dragon" + levelNumber, "1_health", 6, 410, 10, null);
+    }
+
+    /**
+     * Sets the canvas and initializes its rendering context.
+     * @param {HTMLCanvasElement} canvas - The canvas element.
+     */
+    setCanvas(canvas) {
+        this.ctx = canvas.getContext("2d");
+        this.canvas = canvas;
     }
 
     /**
@@ -299,7 +325,6 @@ class World {
 
     endIfCharacterDead() {
         if (this.character.energy === 0 && !this.gameOver) {
-            console.log("game over");
             this.endGame();
             setTimeout(() => {
                 renderGameOver();
