@@ -73,8 +73,9 @@ button:hover {
     font-family: 'Skranji';
     margin-top: 10px;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.641);
-    z-index: 15;
+    color: rgba(255, 255, 255, 0.698);
+    z-index: 3;
+    height: 20px;
 }
 
 .legal-ref:hover {
@@ -309,3 +310,14 @@ button:hover {
     filter: blur(10px);
 } 
 
+@media (hover: none) and (orientation: landscape) {
+    .controls-img {
+        width: 100%;
+        height: 100dvh;
+        max-height: 100dvh;
+        background-image: url('./img/08_intro/controls_mobile.png');
+        border-radius: 0px;
+        border: none;
+        z-index: 20;
+    }
+}

@@ -108,6 +108,7 @@ function effectMouseOut(card, img) {
 function toggleControlMenu() {
     const isHidden = getComputedStyle(controlMenu).display === 'none';
     controlMenu.style.display = isHidden ? 'flex' : 'none';
+    legalRef.style.display = isHidden ? 'none' : 'block';
 }
 
 /**
