@@ -2,6 +2,7 @@
 /assets/img/_ignore
 ./_ignore
 /_ignore
+/img
 /node_modules
 ./node_modules
 
