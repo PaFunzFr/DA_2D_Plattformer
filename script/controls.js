@@ -53,7 +53,17 @@ document.addEventListener("keyup", (event) => {
  * @param {TouchEvent} e The touchmove event.
  */
 document.addEventListener("touchmove", (e) => {
-    e.preventDefault(); // prevents scrolling
+    e.preventDefault();
+}, { passive: false });
+
+
+/**
+ * Disables the context menu, text selection, and drag behavior for all elements with the class "mobile-button".
+ */
+document.querySelectorAll('.mobile-button').forEach(img => {
+    img.addEventListener('contextmenu', (e) => e.preventDefault()); 
+    img.addEventListener('selectstart', (e) => e.preventDefault()); 
+    img.addEventListener('mousedown', (e) => e.preventDefault());
 });
 
 /**

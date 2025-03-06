@@ -84,13 +84,25 @@
         -1px 1px 0 rgba(0, 0, 0, 0.65);
 }
 
+#mobileInterface {
+    user-select: none; 
+    -webkit-user-drag: none; 
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: none;
+}
+
 .mobile-button {
     display: none;
     position: absolute;
     bottom: -35px;
     height: 70px;
     width: 70px;
-    user-select: none;
+    user-select: none; 
+    -webkit-user-drag: none; 
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: none;
     transform: translate(-50%, -50%);
     color: white;
     padding: 8px;
