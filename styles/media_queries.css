@@ -1,8 +1,9 @@
-@media (hover: none) and (orientation: portrait) {  
+@media (pointer: coarse) and (orientation: portrait) {  
     
     video {
         opacity: 1;
     }
+    
     .turn-device {
         display: flex;
     }
@@ -15,7 +16,7 @@
     }
 }
 
-@media (hover: none) and (orientation: landscape) {
+@media (pointer: coarse) and (orientation: landscape) {
 
     .legal-ref {
         top: 10px;
@@ -76,37 +77,8 @@
     }
 }
 
-/* DESKTOP ONLY */
-@media (hover: hover) {
-    #gamePause,
-    #gameMute,
-    #gameFullscreen {
-    display: flex;
-    }
-}
-
-@media screen and (max-width: 900px) and (hover: hover) {
-
-    canvas {
-        height: 70vw;
-        width: 100vw;
-        border-radius: 0;
-    }
-
-    .character-selection {
-        max-width: 1000px;
-        width: 100%;
-        top: -200%;
-        max-height: 600px;
-        border-radius: 0px;
-        max-height: 60vh;
-    }
-
-    h2 {
-        font-size: 30px;
-    }
-    
-    h3 {
-        font-size: 20px;
-    }
+#gamePause,
+#gameMute,
+#gameFullscreen {
+display: flex;
 }
